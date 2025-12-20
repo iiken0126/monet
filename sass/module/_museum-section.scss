@@ -100,7 +100,6 @@
 // ===== MUSEUM BUTTONS =====
 .museum-section__buttons {
   display: flex;
-  border-top: 1px solid rgba(0, 0, 0, 0.15);
   @include fs.pc-size(gap, 30);
 }
 .museum-section__buttons .button-outline {

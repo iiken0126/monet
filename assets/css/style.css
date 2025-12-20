@@ -2984,7 +2984,6 @@ img {
 
 .museum-section__buttons {
   display: flex;
-  border-top: 1px solid rgba(0, 0, 0, 0.15);
   gap: clamp(21.09375px, calc(21.09375px + 16.40625 * (100vw - 900px) / 700), 37.5px);
 }
 

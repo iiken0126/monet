@@ -228,6 +228,7 @@
   @include fs.pc-size(gap, 30);
 }
 .nav__sns-label {
+  font-family: var(--font-ja__bold);
   font-weight: 500;
   color: var(--color-primary);
   @include fs.pc-size(font-size, 14);

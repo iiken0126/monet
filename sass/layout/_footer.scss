@@ -29,7 +29,9 @@
   @include fs.pc-size(gap, 25);
 }
 .footer__social-label {
+  font-family: var(--font-ja__bold);
   font-weight: 500;
+  color: #000;
   line-height: 1.85;
   @include fs.pc-size(font-size, 14);
 }

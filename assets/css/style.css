@@ -1131,6 +1131,7 @@ img {
 }
 
 .nav__sns-label {
+  font-family: var(--font-ja__bold);
   font-weight: 500;
   color: var(--color-primary);
   font-size: clamp(10px, calc(10px + 7.5 * (100vw - 900px) / 700), 17.5px);
@@ -1267,7 +1268,9 @@ img {
 }
 
 .footer__social-label {
+  font-family: var(--font-ja__bold);
   font-weight: 500;
+  color: #000;
   line-height: 1.85;
   font-size: clamp(10px, calc(10px + 7.5 * (100vw - 900px) / 700), 17.5px);
 }

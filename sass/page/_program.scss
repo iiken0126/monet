@@ -1,0 +1,182 @@
+@use "../foundation/fluid-size" as fs;
+
+.program {
+  @include fs.pc-size(margin-top, 46);
+}
+
+.program__section {
+  @include fs.pc-size(padding, 80 0);
+}
+
+.program__section:first-child {
+  padding-top: 0;
+}
+
+.program__section:last-child {
+  padding-bottom: 0;
+}
+
+.program__section:not(:last-child) {
+  border-bottom: 1px solid rgba(102, 140, 159, 0.3);
+}
+
+.program__title {
+  display: flex;
+  align-items: center;
+  @include fs.pc-size(gap, 20);
+}
+
+.program__section-note {
+  font-weight: 500;
+  line-height: 2;
+  font-family: var(--font-ja__bold);
+  @include fs.pc-size(font-size, 16);
+}
+
+.program__list {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(102, 140, 159, 0.3);
+  @include fs.pc-size(margin-top, 30);
+}
+
+/* Program Item */
+.program__item {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.program__item:not(:last-child) {
+  border-bottom: 1px solid rgba(102, 140, 159, 0.3);
+}
+
+.program__date {
+  border-right: 1px solid rgba(102, 140, 159, 0.3);
+  background: var(--668-c-9-f, rgba(102, 140, 159, 0.1));
+  font-family: var(--font-ja__normal-mincho);
+  font-weight: 600;
+  line-height: 1.8;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 33.33%;
+  @include fs.pc-size(padding, 20);
+  @include fs.pc-size(font-size, 20);
+}
+
+.program__detail {
+  background-color: #fff;
+  flex: 1;
+  font-feature-settings: normal;
+  @include fs.pc-size(padding, 20);
+}
+
+.program__speaker {
+  line-height: 2;
+  font-family: var(--font-ja__bold);
+  font-weight: 500;
+  @include fs.pc-size(font-size, 16);
+}
+
+.program__note,
+.program__venue {
+  line-height: 2.133;
+  @include fs.pc-size(font-size, 15);
+}
+
+.program__venue a {
+  text-decoration: underline;
+  display: inline;
+}
+
+/* Button Wrapper */
+.program__button {
+  text-align: center;
+  @include fs.pc-size(margin-top, 60);
+}
+
+// ============================================================
+// SP版スタイル（レスポンシブ対応）
+// ============================================================
+
+@media screen and (max-width: 824px) {
+  /* Program Section Wrapper */
+  .program {
+    @include fs.sp-size(margin-top, 40);
+  }
+
+  .program__section {
+    @include fs.sp-size(padding, 50 0);
+  }
+
+  .program__section:first-child {
+    // padding-top: 0はそのまま
+  }
+
+  .program__section:last-child {
+    // padding-bottom: 0はそのまま
+  }
+
+  .program__section:not(:last-child) {
+    // borderはそのまま
+  }
+
+  .program__title {
+    @include fs.sp-size(gap, 10);
+  }
+
+  .program__section-note {
+    line-height: 1.87;
+    @include fs.sp-size(font-size, 15);
+  }
+
+  .program__list {
+    @include fs.sp-size(margin-top, 20);
+  }
+
+  /* Program Item */
+  .program__item {
+    flex-direction: column;
+  }
+
+  .program__item:not(:last-child) {
+    // borderはそのまま
+  }
+
+  .program__date {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid rgba(102, 140, 159, 0.3);
+    line-height: 1.77;
+    @include fs.sp-size(padding, 15);
+    @include fs.sp-size(font-size, 18);
+  }
+
+  .program__detail {
+    @include fs.sp-size(padding, 15);
+  }
+
+  .program__speaker {
+    line-height: 1.87;
+    @include fs.sp-size(font-size, 15);
+  }
+
+  .program__note,
+  .program__venue {
+    line-height: 2;
+    @include fs.sp-size(font-size, 14);
+  }
+
+  .program__venue a {
+    // text-decorationはそのまま
+  }
+
+  /* Button Wrapper */
+  .program__button {
+    @include fs.sp-size(margin-top, 30);
+  }
+
+  .program__button .button-filled {
+    max-width: none;
+  }
+}

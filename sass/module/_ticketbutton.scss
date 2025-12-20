@@ -1,0 +1,137 @@
+@use "../foundation/fluid-size" as fs;
+
+.ticket {
+  position: fixed;
+  z-index: 5;
+  will-change: transform;
+  border-radius: 50%;
+  border: 2px solid #d7ff91;
+  background-color: var(--color-primary);
+  overflow: hidden;
+  // PC表示時は初期非表示
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  @include fs.pc-size(bottom, 60);
+  @include fs.pc-size(right, 50);
+  @include fs.pc-size(width, 140);
+  @include fs.pc-size(height, 140);
+}
+
+// 表示状態
+.ticket.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+// 既存のスタイル（変更なし）
+.ticket__link {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.ticket::before {
+  position: absolute;
+  content: "";
+  background-image: url(../../assets/images/icon__ticket-text-m.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  @include fs.pc-size(width, 190);
+  @include fs.pc-size(height, 141);
+  @include fs.pc-size(right, -10);
+  @include fs.pc-size(top, 0);
+}
+
+.ticket__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @include fs.pc-size(width, 40);
+}
+
+.ticket__text {
+  color: #fff;
+  font-weight: 500;
+  font-family: var(--font-ja__bold);
+  line-height: 1.85;
+  @include fs.pc-size(font-size, 14);
+}
+
+// フッター上で停止用
+.ticket.stop-at-footer {
+  position: absolute;
+}
+
+@media screen and (max-width: 824px) {
+  .ticket {
+    bottom: 0;
+    right: 0;
+    left: 0;
+    border-radius: 0;
+    width: 100%;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    // スマホでもデフォルトは非表示
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    @include fs.sp-size(height, 70);
+  }
+
+  // トップページのみ初期非表示からフェードイン
+  .page-home .ticket {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  // showクラスが付いたら表示
+  .ticket.show {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .ticket::before {
+    background-image: url(../../assets/images/icon__ticket-text-m--sp.svg);
+    width: 100%;
+    aspect-ratio: 390 / 141;
+    left: 0;
+    right: 0;
+    @include fs.sp-size(height, 141);
+    @include fs.sp-size(top, -26);
+  }
+
+  .ticket__link {
+    flex-direction: row;
+    justify-content: start;
+    padding: 0 6.41%;
+    @include fs.sp-size(gap, 15);
+  }
+
+  .ticket__link::before {
+    position: absolute;
+    content: "";
+    background-image: url(../../assets/images/icon__arrow--white.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    right: 6.41%;
+    top: 50%;
+    transform: translateY(calc(-50% + 1px));
+    @include fs.sp-size(height, 16);
+    @include fs.sp-size(width, 8);
+  }
+
+  .ticket__icon {
+    @include fs.sp-size(width, 40);
+  }
+
+  .ticket__text {
+    line-height: 2;
+    @include fs.sp-size(font-size, 16);
+  }
+}

@@ -1,0 +1,427 @@
+@use "../foundation/fluid-size" as fs;
+
+/* ===== AUDIO GUIDE INTRO ===== */
+.audioguide-intro {
+  @include fs.pc-size(padding-top, 46);
+  @include fs.pc-size(padding-bottom, 40);
+}
+.audioguide-intro__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  @include fs.pc-size(gap, 60);
+}
+.audioguide-intro__content {
+  flex: 1;
+}
+.audioguide-intro__text {
+  line-height: 2;
+  @include fs.pc-size(margin-top, 30);
+  @include fs.pc-size(font-size, 18);
+}
+.audioguide-intro__image {
+  flex-shrink: 0;
+  background-color: #fff;
+  border-radius: 50%;
+  overflow: hidden;
+  @include fs.pc-size(width, 300);
+}
+.audioguide-intro__image img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* ===== NARRATOR ===== */
+.narrator {
+}
+.narrator__inner {
+  border-bottom: 1px solid rgba(75, 116, 163, 0.5);
+  @include fs.pc-size(padding-bottom, 80);
+}
+.narrator__header {
+  display: flex;
+  align-items: flex-start;
+  @include fs.pc-size(gap, 60);
+  @include fs.pc-size(margin-bottom, 40);
+}
+.narrator__image {
+  flex-shrink: 0;
+  @include fs.pc-size(width, 270);
+}
+.narrator__image img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+.narrator__info {
+  flex: 1;
+}
+.narrator__label {
+  font-family: var(--font-ja__normal-mincho);
+  font-weight: 600;
+  line-height: 1.78;
+  @include fs.pc-size(font-size, 18);
+}
+.narrator__name {
+  font-family: var(--font-ja__normal-mincho);
+  font-weight: 600;
+  line-height: 1.6;
+  @include fs.pc-size(font-size, 20);
+  @include fs.pc-size(margin-bottom, 15);
+}
+.narrator__text {
+  line-height: 2.133;
+  @include fs.pc-size(font-size, 15);
+}
+.narrator__profile {
+}
+.narrator__profile-title {
+  font-family: var(--font-ja__bold);
+  font-weight: 500;
+  line-height: 2;
+  @include fs.pc-size(margin-bottom, 5);
+}
+.narrator__profile-text {
+  line-height: 1.85;
+  font-feature-settings: normal;
+  @include fs.pc-size(font-size, 14);
+  @include fs.pc-size(margin-bottom, 5);
+}
+.narrator__profile-link {
+  line-height: 1.85;
+  font-feature-settings: normal;
+  @include fs.pc-size(font-size, 14);
+}
+.narrator__profile-link a {
+  text-decoration: underline;
+}
+.narrator__profile-link a:hover {
+  text-decoration: none;
+}
+
+/* ===== HOW TO USE ===== */
+.howto {
+  @include fs.pc-size(padding-top, 80);
+  @include fs.pc-size(padding-bottom, 60);
+}
+.howto__steps {
+  display: flex;
+  justify-content: space-between;
+  @include fs.pc-size(gap, 30);
+  @include fs.pc-size(margin-top, 110);
+}
+.howto__step {
+  flex: 1;
+  position: relative;
+  background-color: #fff;
+  text-align: center;
+  border-right: 3px solid rgba(75, 116, 163, 0.5);
+  @include fs.pc-size(padding, 80 20 40);
+}
+/* 右矢印 */
+.howto__step:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  right: -30px;
+  transform: translateY(calc(-50% - 9px));
+  height: 40px;
+  width: 30px;
+  background-image: url(../../assets/images/audioguide/howto__step-arrow--right.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.howto__step:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: 50%;
+  right: -25px;
+  transform: translateY(calc(-50% - 9px));
+  height: 40px;
+  width: 30px;
+  background-image: url(../../assets/images/audioguide/howto__step-arrow-white--right.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.howto__step-number {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 0.718px solid #4b74a3;
+  background: #ffffff4d;
+  backdrop-filter: blur(7px);
+  border-radius: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  @include fs.pc-size(top, -65);
+  @include fs.pc-size(width, 130);
+  @include fs.pc-size(height, 130);
+  @include fs.pc-size(margin-bottom, 30);
+}
+.howto__step-label {
+  line-height: 1.85;
+  font-weight: 500;
+  color: #4b74a3;
+  @include fs.pc-size(font-size, 14);
+}
+.howto__step-num {
+  font-family: var(--font__en);
+  color: #4b74a3;
+  line-height: 1;
+  margin-top: -5px;
+  @include fs.pc-size(font-size, 44);
+}
+.howto__step-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 0;
+}
+.howto__step-image-inner {
+  @include fs.pc-size(height, 280);
+}
+.howto__step-image img {
+  box-shadow: 4px 4px 10px 0 rgba(0, 0, 0, 0.1);
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+/* QRコード用（1:1） */
+.howto__step-image--qr {
+  margin-left: auto;
+  margin-right: auto;
+  padding: 55px 0;
+}
+.howto__step-image--qr .howto__step-image-inner {
+  @include fs.pc-size(height, 180);
+  @include fs.pc-size(width, 180);
+}
+.howto__step-image--qr img {
+  width: 100%;
+  height: 100%;
+  box-shadow: none;
+}
+.howto__step-text {
+  line-height: 2.133;
+  @include fs.pc-size(font-size, 15);
+}
+.howto__step-text a {
+  text-decoration: underline;
+}
+
+/* ===== NOTES ===== */
+.audioguide-notes {
+}
+.audioguide-notes__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  @include fs.pc-size(gap, 60);
+}
+.audioguide-notes__list {
+  width: 60%;
+  list-style: none;
+  gap: 5px;
+}
+.audioguide-notes__list li {
+  position: relative;
+  line-height: 2.133;
+  padding-left: 1.5em;
+  @include fs.pc-size(font-size, 15);
+  @include fs.pc-size(margin-bottom, 5);
+}
+.audioguide-notes__list li::before {
+  content: "";
+  position: absolute;
+  top: 1.2em;
+  left: calc(0.75em - 2px);
+  transform: translateY(-50%);
+  background-color: #353535;
+  border-radius: 50%;
+  @include fs.pc-size(width, 3);
+  @include fs.pc-size(height, 3);
+}
+.audioguide-notes__credits {
+  flex: 1;
+  @include fs.pc-size(font-size, 12);
+}
+.audioguide-notes__credits-item {
+  display: flex;
+  line-height: 1.8;
+  font-feature-settings: normal;
+}
+.audioguide-notes__credits-item dt {
+  flex-shrink: 0;
+}
+.audioguide-notes__credits-item dt::after {
+  content: "：";
+}
+.audioguide-notes__credits-item dd {
+  text-align: left;
+}
+
+/* ===== SP ===== */
+@media screen and (max-width: 824px) {
+  /* Audio Guide Intro */
+  .audioguide-intro {
+    @include fs.sp-size(padding-top, 40);
+    @include fs.sp-size(padding-bottom, 50);
+  }
+  .audioguide-intro__inner {
+    flex-direction: column;
+    @include fs.sp-size(gap, 40);
+  }
+  .audioguide-intro__content {
+    width: 100%;
+  }
+  .audioguide-intro__text {
+    @include fs.sp-size(margin-top, 20);
+    @include fs.sp-size(font-size, 16);
+  }
+  .audioguide-intro__image {
+    width: 100%;
+  }
+
+  /* Narrator */
+  .narrator {
+  }
+  .narrator__inner {
+    @include fs.sp-size(padding-bottom, 50);
+  }
+  .narrator__header {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    @include fs.sp-size(margin-bottom, 30);
+  }
+  /* SP時の順序変更: ナレーター・名前 → 画像 → 説明文 */
+  .narrator__info {
+    display: contents;
+  }
+  .narrator__label {
+    order: 1;
+    @include fs.sp-size(font-size, 16);
+    @include fs.sp-size(margin-bottom, 0);
+  }
+  .narrator__name {
+    order: 2;
+    @include fs.sp-size(font-size, 18);
+    @include fs.sp-size(margin-bottom, 20);
+  }
+  .narrator__image {
+    order: 3;
+    width: 100%;
+    @include fs.sp-size(margin-bottom, 30);
+  }
+  .narrator__text {
+    order: 4;
+    line-height: 2;
+    @include fs.sp-size(font-size, 14);
+  }
+  .narrator__profile {
+  }
+  .narrator__profile-title {
+    line-height: 1.83;
+    @include fs.sp-size(font-size, 15);
+    @include fs.sp-size(margin-bottom, 5);
+  }
+  .narrator__profile-text {
+    @include fs.sp-size(font-size, 14);
+    @include fs.sp-size(margin-bottom, 5);
+  }
+  .narrator__profile-link {
+    text-align: left;
+    @include fs.sp-size(font-size, 14);
+  }
+
+  /* How to Use */
+  .howto {
+    @include fs.sp-size(padding-top, 50);
+    @include fs.sp-size(padding-bottom, 30);
+  }
+  .howto__steps {
+    flex-direction: column;
+    @include fs.sp-size(gap, 100);
+  }
+  .howto__step {
+    border-right: none;
+    border-bottom: 3px solid rgba(75, 116, 163, 0.5);
+    @include fs.sp-size(padding, 60 20 40);
+  }
+  .howto__step:not(:last-child)::after {
+    top: inherit;
+    left: 50%;
+    transform: translateX(-50%) rotate(90deg);
+    bottom: -32px;
+  }
+  .howto__step:not(:last-child)::before {
+    top: inherit;
+    left: 50%;
+    transform: translateX(-50%) rotate(90deg);
+    bottom: -27px;
+  }
+  .howto__step-number {
+    @include fs.sp-size(top, -55);
+    @include fs.sp-size(width, 110);
+    @include fs.sp-size(height, 110);
+    @include fs.sp-size(margin-bottom, 5);
+  }
+  .howto__step-label {
+    @include fs.sp-size(font-size, 12);
+  }
+  .howto__step-num {
+    margin-top: -5px;
+    @include fs.sp-size(font-size, 37);
+  }
+  .howto__step-image {
+    padding: 20px 0;
+  }
+  .howto__step-image-inner {
+    @include fs.sp-size(height, 300);
+  }
+  .howto__step-image--qr {
+    padding: 50px 0;
+    margin-bottom: 0;
+  }
+  .howto__step-image--qr .howto__step-image-inner {
+    @include fs.sp-size(width, 180);
+    @include fs.sp-size(height, 180);
+  }
+  .howto__step-text {
+    line-height: 2;
+    @include fs.sp-size(font-size, 14);
+  }
+
+  /* Notes */
+  .audioguide-notes {
+  }
+  .audioguide-notes__inner {
+    flex-direction: column;
+    @include fs.sp-size(gap, 15);
+  }
+  .audioguide-notes__list {
+    width: 100%;
+    gap: 5px;
+  }
+  .audioguide-notes__list li {
+    line-height: 2;
+    @include fs.sp-size(font-size, 14);
+  }
+  .audioguide-notes__list li::before {
+    top: 1.1em;
+    @include fs.sp-size(width, 3);
+    @include fs.sp-size(height, 3);
+  }
+  .audioguide-notes__credits {
+    text-align: left;
+    @include fs.sp-size(font-size, 12);
+  }
+}

@@ -1,0 +1,682 @@
+@use "../foundation/fluid-size" as fs;
+
+:root {
+  --color-structure-page: #8172a8;
+}
+.sp-space {
+  display: none;
+}
+html:has(.page-structure) {
+  scroll-behavior: smooth;
+  // scroll-padding-top: 45px;
+}
+.container__structure {
+  max-width: 1600px;
+  margin: 0 auto;
+  margin-inline: auto;
+  @include fs.pc-size(margin-top, -168);
+}
+.structure {
+  display: flex;
+  position: relative;
+  @include fs.pc-size(gap, 30);
+}
+/* Sidebar */
+.structure__sidebar {
+  flex-shrink: 0;
+  position: sticky;
+  height: fit-content;
+  top: 0;
+}
+.structure__nav {
+  @include fs.pc-size(padding, 60 0 0 60);
+}
+.structure__nav-title {
+  color: var(--color-structure-page);
+  font-family: var(--font__en);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.05em;
+  @include fs.pc-size(font-size, 24);
+}
+.structure__nav-columns {
+  display: flex;
+  @include fs.pc-size(min-width, 190);
+  @include fs.pc-size(gap, 10);
+}
+.structure__nav-list {
+  position: relative;
+  flex: 1;
+  @include fs.pc-size(padding, 20 0);
+  @include fs.pc-size(margin-top, 20);
+}
+.structure__nav-list::before,
+.structure__nav-list::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--color-structure-page);
+}
+.structure__nav-list::before {
+  top: 0;
+}
+.structure__nav-list::after {
+  bottom: 0;
+}
+.structure__nav-item {
+  // 特に指定なし
+}
+.structure__nav-link {
+  position: relative;
+  color: var(--color-structure-page);
+  line-height: 1.85;
+  font-weight: 500;
+  font-family: var(--font-ja__bold);
+  @include fs.pc-size(font-size, 14);
+  @include fs.pc-size(padding, 10 20);
+}
+.structure__nav-link::before {
+  position: absolute;
+  content: "";
+  color: var(--color-structure-page);
+  line-height: 1;
+  border: 1px solid currentColor;
+  border-left: 0;
+  border-bottom: 0;
+  transform: translateX(-25%) rotate(45deg);
+  @include fs.pc-size(width, 6);
+  @include fs.pc-size(height, 6);
+  @include fs.pc-size(left, 2);
+  @include fs.pc-size(top, 19);
+}
+
+.structure__nav-item--active .structure__nav-link::before {
+  border: none;
+  background: currentColor;
+  transform: translateX(0) rotate(0deg);
+  height: 1px;
+  opacity: 1;
+  @include fs.pc-size(width, 8);
+  @include fs.pc-size(left, 0);
+  @include fs.pc-size(top, 22);
+}
+.structure__nav-item--active .structure__nav-link span {
+  opacity: 0.5;
+}
+.structure__nav-link:focus {
+  opacity: 1;
+}
+.structure__nav-dropdown {
+  display: none;
+}
+
+/* Content Area */
+.structure__content {
+  width: 85.8%;
+  display: grid;
+  margin-left: auto;
+  margin-right: 10.86%;
+  @include fs.pc-size(gap, 80);
+  @include fs.pc-size(margin-top, 210);
+}
+.structure__chapter {
+  position: relative;
+  border-bottom: 3px solid rgba(129, 114, 168, 0.3);
+  background: #fff;
+  @include fs.pc-size(padding, 60 56);
+}
+.structure__chapter--right {
+  padding-right: 0;
+}
+.structure__chapter--left {
+  padding-left: 0;
+}
+.structure__chapter-header {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  @include fs.pc-size(top, -45);
+  @include fs.pc-size(gap, 10);
+}
+.structure__chapter--odd .structure__chapter-header {
+  right: 0;
+}
+.structure__chapter--even .structure__chapter-header {
+  left: 0;
+}
+.structure__chapter-text {
+  color: var(--color-structure-page);
+  font-weight: 500;
+  line-height: 1.85;
+  font-family: var(--font-ja__bold);
+  @include fs.pc-size(font-size, 14);
+  @include fs.pc-size(margin-top, 10);
+}
+.structure__chapter-number {
+  color: var(--color-structure-page);
+  font-family: var(--font__en);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.05em;
+  @include fs.pc-size(font-size, 80);
+}
+.structure__chapter-body {
+  display: grid;
+  @include fs.pc-size(gap, 40);
+}
+.structure__chapter-flex {
+  display: flex;
+  align-items: flex-start;
+  @include fs.pc-size(gap, 40);
+  align-items: center;
+}
+.structure__chapter-flex--reverse {
+  flex-direction: row-reverse;
+}
+.structure__chapter-content {
+}
+.structure__image-container {
+  flex: 1;
+}
+.structure__image {
+  // 特に指定なし
+}
+.structure__image img {
+  object-fit: contain;
+}
+.structure__image-caption {
+  line-height: 1.83;
+  font-feature-settings: normal;
+  text-align: left;
+  @include fs.pc-size(font-size, 11.5);
+  @include fs.pc-size(margin-top, 10);
+}
+.structure__image-gallery {
+  display: grid;
+  @include fs.pc-size(gap, 25);
+}
+.structure__image-flex {
+  display: flex;
+  @include fs.pc-size(gap, 20);
+}
+.chapter5-image-left {
+  @include fs.pc-size(width, 445);
+}
+.chapter5-image-right {
+  @include fs.pc-size(width, 339);
+}
+.structure__image--width-182 {
+  @include fs.pc-size(width, 182);
+}
+.structure__image--width-188 {
+  @include fs.pc-size(width, 188);
+}
+.structure__image--width-205 {
+  @include fs.pc-size(width, 205);
+}
+.structure__image--width-220 {
+  @include fs.pc-size(width, 220);
+}
+.structure__image--width-232 {
+  @include fs.pc-size(width, 232);
+}
+.structure__image--width-246-5 {
+  @include fs.pc-size(width, 246.5);
+}
+.structure__image--width-263 {
+  @include fs.pc-size(width, 263);
+}
+.structure__image--width-319 {
+  @include fs.pc-size(width, 319);
+}
+.structure__image--width-339 {
+  @include fs.pc-size(width, 339);
+}
+.structure__image--width-344 {
+  @include fs.pc-size(width, 344);
+}
+.structure__image--width-348 {
+  @include fs.pc-size(width, 348);
+}
+.structure__image--width-351 {
+  @include fs.pc-size(width, 351);
+}
+.structure__image--width-388 {
+  @include fs.pc-size(width, 388);
+}
+.structure__image--width-397 {
+  @include fs.pc-size(width, 397);
+}
+.structure__image--width-433 {
+  @include fs.pc-size(width, 433);
+}
+.structure__image--width-437 {
+  @include fs.pc-size(width, 437);
+}
+.structure__image--width-537-5 {
+  @include fs.pc-size(width, 537.5);
+}
+.padding-left-container {
+  @include fs.pc-size(padding-left, 56);
+}
+.padding-right-container {
+  @include fs.pc-size(padding-right, 56);
+}
+.structure-box {
+  @include fs.pc-size(padding, 30);
+  border: 1px solid var(--color-structure-page);
+  @include fs.pc-size(margin-left, 56);
+}
+.structure-box__title {
+  @include fs.pc-size(font-size, 18);
+  font-weight: 600;
+  font-family: var(--font-ja__normal-mincho);
+  letter-spacing: 0.05em;
+  line-height: 1.77;
+}
+.structure-box__text {
+  @include fs.pc-size(margin-top, 5);
+  @include fs.pc-size(font-size, 14);
+  line-height: 1.85;
+  font-feature-settings: normal;
+}
+.chapter13-content {
+  @include fs.pc-size(margin-top, -42);
+}
+.chapter13-image {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: flex-end;
+  @include fs.pc-size(gap, 30);
+}
+.chapter13-image__width {
+  @include fs.pc-size(width, 247);
+}
+.chapter13-caption {
+  text-align: right;
+}
+// =================================
+// 状態による変化
+// =================================
+.structure__chapter--even .structure__chapter-content {
+  flex-direction: row-reverse;
+}
+.structure__chapter-flex .structure__chapter-content {
+  @include fs.pc-size(width, 288);
+}
+.structure__chapter--right .structure__chapter-content--add-padding {
+  @include fs.pc-size(padding-right, 56);
+}
+.structure__chapter--left .structure__chapter-content--add-padding {
+  @include fs.pc-size(padding-left, 56);
+}
+// ============================================================
+// SP版スタイル（レスポンシブ対応）
+// ============================================================
+
+@media (max-width: 824px) {
+  .sp-space {
+    display: inline-block;
+  }
+  html:has(.page-structure) {
+    // scroll-padding-top: 92px;
+  }
+  .container__structure {
+    margin-top: 0;
+    width: 87.18%;
+    padding: 0;
+  }
+  .structure {
+    flex-direction: column;
+    @include fs.sp-size(padding-top, 80);
+    @include fs.sp-size(gap, 50);
+  }
+  /* Sidebar - モバイル時の初期状態 */
+  .structure__sidebar {
+    display: none;
+  }
+
+  .structure__nav {
+    padding: 0;
+  }
+
+  .structure__nav-title {
+    @include fs.sp-size(font-size, 20);
+    @include fs.sp-size(margin-bottom, 10);
+  }
+
+  .structure__nav-columns {
+    display: none;
+  }
+
+  /* モバイル用ドロップダウンを表示 */
+  .structure__nav-dropdown {
+    position: relative;
+    width: 100%;
+    display: block;
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.15);
+    margin-top: 0;
+    width: 87.18%;
+    padding: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    // スマホでもデフォルトは非表示
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+
+  // showクラスが付いたら表示
+  .structure__nav-dropdown.show {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* ドロップダウントリガー */
+  .structure__nav-dropdown-trigger {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background: #fff;
+    border: 1px solid var(--color-structure-page);
+    line-height: 1.85;
+    color: var(--color-structure-page);
+    cursor: pointer;
+    font-weight: 500;
+    font-family: var(--font-ja__bold);
+    @include fs.sp-size(padding, 11 20 11 15);
+    @include fs.sp-size(font-size, 14);
+  }
+
+  .structure__nav-dropdown-trigger::before {
+    position: absolute;
+    content: "";
+    background-color: var(--color-structure-page);
+    width: 1px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: calc(100% - 20px);
+    @include fs.sp-size(right, 45);
+  }
+
+  .structure__nav-dropdown-arrow {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    @include fs.sp-size(width, 8);
+    @include fs.sp-size(height, 8);
+  }
+
+  .structure__nav-dropdown-arrow svg {
+    width: 100%;
+    height: 100%;
+    fill: var(--color-structure-page);
+    display: block;
+  }
+
+  /* ドロップダウンメニュー */
+  .structure__nav-dropdown-menu {
+    position: absolute;
+    bottom: 100%; /* 下から上に開く */
+    left: 0;
+    right: 0;
+    background: #fff;
+    border: 1px solid var(--color-structure-page);
+    border-bottom: none;
+    border-radius: 8px 8px 0 0;
+    box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.15);
+    overflow-y: auto;
+    z-index: 3;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px) scale(0.95);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    @include fs.sp-size(max-height, 300);
+  }
+
+  .structure__nav-dropdown-menu.is-open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+  }
+
+  .structure__nav-dropdown-item {
+    color: #333;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-bottom: 1px solid rgba(139, 115, 85, 0.1);
+    @include fs.sp-size(padding, 12 20);
+    @include fs.sp-size(font-size, 15);
+  }
+
+  .structure__nav-dropdown-item:last-child {
+    border-bottom: none;
+  }
+
+  /* Content Area */
+  .structure__content {
+    width: 100%;
+    margin-top: 0;
+    margin-right: 0;
+    @include fs.sp-size(gap, 50);
+  }
+
+  /* Chapter */
+  .structure__chapter {
+    @include fs.sp-size(padding, 40 20);
+  }
+  .structure__chapter--right {
+    padding-right: 0;
+  }
+  .structure__chapter--left {
+    padding-left: 0;
+  }
+  .structure__chapter--right-sp {
+    padding-right: 0;
+  }
+  /* Chapter Header & Number */
+  .structure__chapter-header {
+    @include fs.sp-size(top, -28);
+    @include fs.sp-size(gap, 8);
+  }
+
+  .structure__chapter--odd .structure__chapter-header {
+    // rightはそのまま
+  }
+
+  .structure__chapter--even .structure__chapter-header {
+    // leftはそのまま
+  }
+
+  .structure__chapter-text {
+    @include fs.sp-size(font-size, 14);
+    @include fs.sp-size(margin-top, 10);
+  }
+
+  .structure__chapter-number {
+    @include fs.sp-size(font-size, 50);
+  }
+
+  .structure__chapter-body {
+    @include fs.sp-size(gap, 20);
+  }
+
+  .structure__chapter-flex {
+    flex-direction: column;
+    @include fs.sp-size(gap, 20);
+  }
+  .structure__chapter-flex--reverse {
+  }
+
+  .structure__chapter-content {
+    // 特に指定なし
+  }
+
+  .structure__chapter--even .structure__chapter-content {
+    // flex-directionはそのまま
+  }
+
+  .structure__image-container {
+    // 特に指定なし
+  }
+
+  .structure__image {
+    // 特に指定なし
+  }
+
+  .structure__image img {
+    // object-fitはそのまま
+  }
+
+  .structure__image-caption {
+    @include fs.sp-size(font-size, 12);
+    @include fs.sp-size(margin-top, 10);
+  }
+
+  /* Image Grid */
+  .structure__image-gallery {
+    @include fs.sp-size(gap, 20);
+  }
+
+  .structure__image-flex {
+    flex-direction: column;
+    align-items: flex-start;
+    @include fs.sp-size(gap, 20);
+  }
+
+  .chapter5-image-left,
+  .chapter5-image-right,
+  .structure__image--width-182,
+  .structure__image--width-188,
+  .structure__image--width-205,
+  .structure__image--width-220,
+  .structure__image--width-232,
+  .structure__image--width-246-5,
+  .structure__image--width-263,
+  .structure__image--width-319,
+  .structure__image--width-339,
+  .structure__image--width-344,
+  .structure__image--width-348,
+  .structure__image--width-351,
+  .structure__image--width-388,
+  .structure__image--width-397,
+  .structure__image--width-433,
+  .structure__image--width-437,
+  .structure__image--width-537-5 {
+    width: 100%;
+  }
+  .padding-left-container--sp {
+    @include fs.sp-size(padding-left, 20);
+  }
+  .padding-right-container--sp {
+    @include fs.sp-size(padding-right, 20);
+  }
+  .padding-left-container {
+    @include fs.sp-size(padding-left, 20);
+  }
+  .padding-right-container {
+    @include fs.sp-size(padding-right, 20);
+  }
+  .structure-box {
+    @include fs.sp-size(padding, 20);
+    @include fs.sp-size(margin-left, 20);
+  }
+  .structure-box__title {
+    @include fs.sp-size(font-size, 16);
+    line-height: 1.87;
+  }
+  .structure-box__text {
+    @include fs.sp-size(font-size, 14);
+  }
+  .chapter13-content {
+    @include fs.sp-size(margin-top, 15);
+  }
+  .chapter13-image {
+    gap: 0;
+    flex-direction: column;
+  }
+  .chapter13-image__width {
+    width: 100%;
+  }
+  .chapter13-caption {
+    width: 100%;
+    text-align: left;
+  }
+  .structure__chapter--even .structure__chapter-content {
+  }
+  .structure__chapter-flex .structure__chapter-content {
+    width: calc(100% - 20px);
+  }
+  .structure__chapter--even
+    .structure__chapter-flex
+    .structure__chapter-content {
+    margin-right: auto;
+  }
+  .structure__chapter--odd
+    .structure__chapter-flex
+    .structure__chapter-content {
+    margin-left: auto;
+  }
+  #chapter09.structure__chapter--odd
+    .structure__chapter-flex
+    .structure__chapter-content {
+    margin-right: auto;
+    margin-left: inherit;
+  }
+  .structure__chapter--right .structure__chapter-content--add-padding {
+    @include fs.sp-size(padding-right, 20);
+  }
+  .structure__chapter--left .structure__chapter-content--add-padding {
+    @include fs.sp-size(padding-left, 20);
+  }
+}
+@media (max-width: 824px) {
+  .structure__nav-dropdown.is-sticky {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    background: #fff;
+    box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.15);
+    padding: 0;
+    width: 100%;
+    transition: transform 0.3s ease;
+  }
+
+  /* フッター上で停止した状態 */
+  .structure__nav-dropdown.is-sticky.is-stopped {
+    position: absolute;
+    bottom: auto;
+  }
+
+  /* スティッキー時は既存のbox-shadowを上書き */
+  .structure__nav-dropdown.is-sticky .structure__nav-dropdown-trigger {
+    box-shadow: none;
+    border-radius: 0;
+    width: 100%;
+    margin: 0;
+  }
+
+  /* スティッキー時のドロップダウンメニュー位置調整（既存の設定を維持） */
+  .structure__nav-dropdown.is-sticky .structure__nav-dropdown-menu {
+    bottom: 100%;
+    margin-bottom: 0;
+    border-radius: 8px 8px 0 0;
+  }
+
+  /* プレースホルダー（元の位置を維持するため） */
+  .structure__nav-dropdown-placeholder {
+    display: none;
+    height: 0;
+    visibility: hidden;
+  }
+
+  .structure__nav-dropdown-placeholder.is-active {
+    display: block;
+    visibility: visible;
+  }
+}

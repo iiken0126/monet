@@ -1,0 +1,109 @@
+// fluid-sizeをインポート
+@use "../foundation/fluid-size" as fs;
+
+.footer {
+  position: relative;
+  background-color: #fff;
+  @include fs.pc-size(padding, 80 50);
+  z-index: 1;
+}
+.footer__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.footer__logo {
+  @include fs.pc-size(height, 50);
+}
+.footer__logo-image {
+  height: 100%;
+  object-fit: contain;
+  width: auto;
+}
+.footer__meta {
+}
+.footer__social {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  @include fs.pc-size(gap, 25);
+}
+.footer__social-label {
+  font-weight: 500;
+  line-height: 1.85;
+  @include fs.pc-size(font-size, 14);
+}
+.footer__social-list {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  border-left: 1px solid rgba(0, 0, 0, 0.2);
+  @include fs.pc-size(padding-left, 30);
+  @include fs.pc-size(gap, 20);
+}
+.footer__social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s ease;
+  @include fs.pc-size(width, 40);
+  @include fs.pc-size(height, 40);
+}
+.footer__social-icon {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.footer__copyright {
+  line-height: 1.4;
+  color: #666;
+  letter-spacing: 0.05em;
+  text-align: left;
+  @include fs.pc-size(font-size, 10);
+  @include fs.pc-size(margin-top, 20);
+}
+@media screen and (max-width: 824px) {
+  .footer {
+    @include fs.sp-size(padding, 60 25);
+  }
+  .footer__inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .footer__logo {
+    order: 2;
+    @include fs.sp-size(height, 40);
+    @include fs.sp-size(margin-top, 30);
+  }
+  .footer__logo-image {
+  }
+  .footer__meta {
+    display: contents;
+  }
+  .footer__social {
+    justify-content: flex-start;
+    flex-direction: column;
+    order: 1;
+  }
+  .footer__social {
+    align-items: flex-start;
+    @include fs.sp-size(gap, 15);
+  }
+  .footer__social-label {
+    @include fs.sp-size(font-size, 14);
+  }
+  .footer__social-list {
+    padding-left: 0;
+    border: none;
+    @include fs.sp-size(gap, 20);
+  }
+  .footer__social-link {
+    @include fs.sp-size(width, 40);
+    @include fs.sp-size(height, 40);
+  }
+  .footer__copyright {
+    order: 3;
+    @include fs.sp-size(font-size, 10);
+    @include fs.sp-size(margin-top, 20);
+  }
+}

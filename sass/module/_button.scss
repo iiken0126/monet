@@ -1,0 +1,478 @@
+@use "../foundation/fluid-size" as fs;
+
+/* 1. 塗りボタン（外部アイコンあり） */
+.button-filled {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-primary);
+  width: 100%;
+  transition: box-shadow 0.4s ease;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  @include fs.pc-size(padding, 25 30);
+  @include fs.pc-size(max-width, 314);
+
+  // アニメーション用のCSS変数を定義
+  --ripple-size: #{fs.fpc(300)};
+  --arrow-move: #{fs.fpc(3)};
+}
+
+.button-filled::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+.button-filled__arrow {
+  position: absolute;
+  background-image: url(../../assets/images/icon__arrow--white.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 2;
+  @include fs.pc-size(width, 15);
+  @include fs.pc-size(height, 15);
+  @include fs.pc-size(top, 33);
+  @include fs.pc-size(left, 16);
+}
+
+.button-filled__text {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  z-index: 2;
+  position: relative;
+  color: white;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  line-height: 1.75;
+  font-family: var(--font-ja__normal-mincho);
+  display: flex;
+  align-items: center;
+}
+
+.button-filled__icon {
+  display: block;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 2;
+  position: relative;
+  @include fs.pc-size(width, 14);
+  @include fs.pc-size(height, 14);
+  @include fs.pc-size(margin-left, 10);
+  @include fs.pc-size(margin-bottom, 4);
+}
+
+.button-filled__icon--external {
+  background-image: url("../../assets/images/icon__blank--white.svg");
+}
+
+.button-filled__icon.button-filled__icon--download {
+  margin-bottom: 0;
+}
+
+.button-filled__icon--download {
+  background-image: url("../../assets/images/icon__download--white.svg");
+}
+
+.button-filled--thin {
+  @include fs.pc-size(padding, 15 30 15 40);
+}
+
+.button-filled--thin .button-filled__arrow {
+  @include fs.pc-size(top, 24);
+}
+
+/* 2. 塗りボタン（アイコンなし） */
+.button-filled--no-icon {
+  justify-content: center;
+  letter-spacing: 0.05em;
+  @include fs.pc-size(min-width, 200);
+}
+
+/* 3. MOREボタン（小さい文字） */
+.button-more {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--color-primary);
+  font-family: var(--font-ja__bold);
+  color: white;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  letter-spacing: 0;
+  @include fs.pc-size(padding, 12 20);
+  @include fs.pc-size(font-size, 14);
+  @include fs.pc-size(min-width, 142);
+
+  // アニメーション用のCSS変数を定義
+  --ripple-size: #{fs.fpc(200)};
+}
+
+.button-more::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+.button-more__icon {
+  position: relative;
+  transition: opacity 0.4s ease;
+  z-index: 2;
+  @include fs.pc-size(width, 12);
+  @include fs.pc-size(height, 12);
+}
+
+.button-more__icon::before,
+.button-more__icon::after {
+  content: "";
+  position: absolute;
+  background-color: #fff;
+}
+
+.button-more__icon::before {
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  transform: translateY(-50%);
+}
+
+.button-more__icon::after {
+  left: 50%;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  transform: translateX(-50%);
+  transition: 0.4s transform ease;
+}
+
+.is-close .button-more__icon::after {
+  transform: translateX(-50%) rotate(90deg);
+}
+
+/* 4. 線ボタン */
+.button-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  color: var(--color-primary);
+  font-family: var(--font-ja__normal-mincho);
+  font-weight: 600;
+  border-top: 1px solid var(--color-primary);
+  border-bottom: 1px solid var(--color-primary);
+  transition: color 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  line-height: 1.78;
+  letter-spacing: 0.05em;
+  position: relative;
+  text-align: center;
+  overflow: hidden;
+  z-index: 1;
+  @include fs.pc-size(padding, 24 30);
+
+  // アニメーション用のCSS変数を定義
+  --ripple-size: #{fs.fpc(300)};
+  --hover-expand-size: #{fs.fpc(400)};
+}
+
+.button-outline::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(74, 155, 142, 0.15);
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+.button-outline::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: var(--color-primary);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+    height 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: -1;
+}
+
+.button-outline__arrow {
+  position: absolute;
+  background-image: url("../../assets/images/icon__arrow--primary.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  z-index: 2;
+  @include fs.pc-size(left, 20);
+  @include fs.pc-size(top, 34);
+  @include fs.pc-size(width, 7);
+  @include fs.pc-size(height, 14);
+}
+
+.button-outline span:not(.button-outline__arrow) {
+  transition: opacity 0.6s ease-out;
+}
+// ============================================================
+// hover効果 & アニメーション
+// ============================================================
+@media (hover: hover) and (pointer: fine) {
+  /* 塗りボタン */
+  .button-filled:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    opacity: 1;
+  }
+  .button-filled:hover::before {
+    animation: ripple-effect 0.8s ease-out;
+  }
+  // .button-filled:hover .button-filled__arrow {
+  //   transform: translateX(var(--arrow-move));
+  // }
+  // .button-filled:hover .button-filled__icon {
+  //   transform: scale(1.1);
+  // }
+  @keyframes ripple-effect {
+    0% {
+      width: 0;
+      height: 0;
+      opacity: 0;
+    }
+    30% {
+      opacity: 1;
+    }
+    100% {
+      width: var(--ripple-size);
+      height: var(--ripple-size);
+      opacity: 0;
+    }
+  }
+
+  /* MOREボタン */
+  .button-more:hover {
+    box-shadow: 0 6px 20px rgba(74, 155, 142, 0.25);
+    opacity: 1;
+  }
+  .button-more:hover::before {
+    animation: ripple-effect-small 0.8s ease-out;
+  }
+  @keyframes ripple-effect-small {
+    0% {
+      width: 0;
+      height: 0;
+      opacity: 0;
+    }
+    30% {
+      opacity: 1;
+    }
+    100% {
+      width: var(--ripple-size);
+      height: var(--ripple-size);
+      opacity: 0;
+    }
+  }
+
+  /* 線ボタン */
+  .button-outline:hover {
+    opacity: 1;
+    transition: opacity 0.8s ease-out;
+  }
+  .button-outline:hover::before {
+  }
+  .button-outline:hover::after {
+  }
+  .button-outline:hover .button-outline__arrow {
+    opacity: 0.5;
+    transform: translateX(10px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .button-outline:hover span:not(.button-outline__arrow) {
+    opacity: 0.5;
+    transition: opacity 0.3s ease-out;
+  }
+
+  /* バリエーション */
+  .button-filled--large-ripple {
+    --ripple-size: #{fs.fpc(450)};
+  }
+  .button-filled--large-ripple:hover::before {
+    animation: ripple-effect 1s ease-out;
+  }
+
+  .button-more--fast-ripple {
+    --ripple-size: #{fs.fpc(180)};
+  }
+  .button-more--fast-ripple:hover::before {
+    animation: ripple-effect-small 0.4s ease-out;
+  }
+
+  .button-outline--strong-ripple {
+    --ripple-size: #{fs.fpc(300)};
+  }
+  .button-outline--strong-ripple:hover::before {
+    animation: ripple-effect-outline 0.9s ease-out;
+  }
+}
+@media screen and (max-width: 824px) {
+  /* 1. 塗りボタン（外部アイコンあり） */
+  .button-filled {
+    width: 100%;
+    max-width: none;
+    // paddingを明示的に指定（PCと同じ値の場合）
+    @include fs.sp-size(padding, 25 30);
+
+    // SP用のアニメーション変数
+    --ripple-size: #{fs.fsp(300)};
+    --arrow-move: #{fs.fsp(3)};
+  }
+
+  .button-filled::before {
+    // 疑似要素のアニメーション設定は変更なし
+  }
+
+  .button-filled__arrow {
+    // サイズと位置を明示的に指定
+    @include fs.sp-size(width, 15);
+    @include fs.sp-size(height, 15);
+    @include fs.sp-size(top, 33);
+    @include fs.sp-size(left, 16);
+  }
+
+  .button-filled__text {
+    line-height: 1.87;
+    @include fs.sp-size(font-size, 16);
+  }
+
+  .button-filled__icon {
+    // サイズを明示的に指定
+    @include fs.sp-size(width, 14);
+    @include fs.sp-size(height, 14);
+    @include fs.sp-size(margin-left, 10);
+    @include fs.sp-size(margin-bottom, 4);
+  }
+
+  .button-filled__icon--external {
+    // 背景画像はそのまま
+  }
+
+  .button-filled--thin {
+    @include fs.sp-size(padding, 10 20 10 30);
+  }
+
+  .button-filled--thin .button-filled__arrow {
+    @include fs.sp-size(top, 18);
+    @include fs.sp-size(left, 10);
+    @include fs.sp-size(width, 12);
+    @include fs.sp-size(height, 12);
+  }
+
+  /* 2. 塗りボタン（アイコンなし） */
+  .button-filled--no-icon {
+    // min-widthを明示的に指定
+    @include fs.sp-size(min-width, 200);
+  }
+
+  /* 3. MOREボタン（小さい文字） */
+  .button-more {
+    // サイズを明示的に指定
+    @include fs.sp-size(padding, 12 20);
+    @include fs.sp-size(font-size, 14);
+    @include fs.sp-size(min-width, 142);
+
+    // SP用のアニメーション変数
+    --ripple-size: #{fs.fsp(200)};
+  }
+
+  .button-more::before {
+    // 疑似要素のアニメーション設定は変更なし
+  }
+
+  .button-more__icon {
+    @include fs.sp-size(width, 12);
+    @include fs.sp-size(height, 12);
+  }
+
+  .button-more__icon::before,
+  .button-more__icon::after {
+    // 疑似要素の基本設定は変更なし
+  }
+
+  .button-more__icon::before {
+    // 横線は変更なし
+  }
+
+  .button-more__icon::after {
+    // 縦線は変更なし
+  }
+
+  .is-close .button-more__icon::after {
+    // 回転アニメーションは変更なし
+  }
+
+  /* 4. 線ボタン */
+  .button-outline {
+    line-height: 1.87;
+    @include fs.sp-size(font-size, 16);
+    @include fs.sp-size(padding, 20 30);
+
+    // SP用のアニメーション変数
+    --ripple-size: #{fs.fsp(300)};
+    --hover-expand-size: #{fs.fsp(400)};
+  }
+
+  .button-outline::before {
+    // 疑似要素のアニメーション設定は変更なし
+  }
+
+  .button-outline::after {
+    // 疑似要素の背景設定は変更なし
+  }
+
+  .button-outline__arrow {
+    @include fs.sp-size(top, 28);
+    @include fs.sp-size(left, 20);
+    @include fs.sp-size(width, 7);
+    @include fs.sp-size(height, 14);
+  }
+}

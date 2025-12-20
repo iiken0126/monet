@@ -1,0 +1,44 @@
+@use "../foundation/fluid-size" as fs;
+
+.simple-hero {
+  background-color: var(--color-primary);
+  @include fs.pc-size(padding-top, 60);
+}
+/* Color Variations */
+.simple-hero--special {
+  background-color: #5ea8bf;
+}
+.simple-hero--special-sub {
+  background: var(--grd_02, linear-gradient(180deg, #badce4 0%, #cfe7da 100%));
+}
+.simple-hero--goods {
+  background-color: #6c9692;
+}
+.simple-hero--museum {
+  background-color: #bf4c4c;
+}
+.simple-hero__inner {
+  @include fs.pc-size(padding-left, 60);
+  @include fs.pc-size(padding-bottom, 60);
+}
+.simple-hero__logo {
+  @include fs.pc-size(width, 240);
+}
+.simple-hero__logo img {
+  width: 100%;
+  height: auto;
+}
+
+/* ===== SP ===== */
+@media screen and (max-width: 824px) {
+  .simple-hero {
+    @include fs.sp-size(padding-top, 40);
+  }
+  .simple-hero__inner {
+    @include fs.sp-size(padding-left, 25);
+    @include fs.sp-size(padding-bottom, 40);
+  }
+  .simple-hero__logo {
+    @include fs.sp-size(width, 200);
+  }
+}

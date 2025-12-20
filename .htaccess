@@ -1,0 +1,3 @@
+RewriteEngine on
+RewriteCond %{THE_REQUEST} ^._/index.html
+RewriteRule ^(._)index.html$ https://www.artizon.museum/exhibition_sp/monet2026/$1 [R=301,L]

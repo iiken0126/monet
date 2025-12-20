@@ -1,0 +1,631 @@
+@use "../foundation/fluid-size" as fs;
+
+/* ===== 既存のCSSはそのまま維持 ===== */
+body.loading-active {
+  overflow: hidden;
+}
+
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100svh;
+  background: #fff;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Safari最適化 */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+.loading-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  /* Safari最適化 */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+
+/* 画像を包むpicture要素のスタイル追加 */
+.loading-picture {
+  // position: absolute;
+  // top: 50%;
+  // left: 50%;
+  // transform: translate(-50%, -50%);
+  // width: calc(100% + 100px);
+  // height: calc(100svh + 100px);
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
+}
+
+.image-first,
+.image-second {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  object-fit: cover;
+  /* Safari最適化 */
+  -webkit-transform: translate(-50%, -50%) translateZ(0);
+  transform: translate(-50%, -50%) translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+
+  /* ビューポートベースのサイズに修正 */
+  width: calc(100vw + 100px); /* 100%ではなく100vw */
+  height: calc(100svh + 100px); /* 100%ではなく100vh（svhでも可） */
+
+  /* 画像をビューポートより大きく配置 */
+  min-width: calc(100vw + 100px);
+  min-height: calc(100svh + 100px);
+
+  object-position: center top; /* メインビジュアルと同じ位置指定 */
+  will-change: filter, opacity, transform;
+}
+
+.loading-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%); /* Safari用プレフィックス */
+  color: var(--color-primary);
+  text-align: center;
+  font-family: var(--font-ja__normal-mincho);
+  font-weight: 600;
+  line-height: 1;
+  z-index: 10;
+  letter-spacing: 0.08em;
+  width: 100%;
+  /* Safari最適化 */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000px;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  will-change: transform, filter, opacity;
+  @include fs.pc-size(font-size, 50);
+}
+
+.loading-text span {
+  color: transparent;
+  /* Safari最適化 */
+  animation-fill-mode: forwards;
+  -webkit-animation-fill-mode: forwards;
+  display: inline-block;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+/* Safari用のキーフレーム */
+@-webkit-keyframes blur {
+  0% {
+    text-shadow: 0 0 100px #2c766b;
+    opacity: 0;
+  }
+  5% {
+    text-shadow: 0 0 90px #2c766b;
+  }
+  15% {
+    opacity: 1;
+  }
+  20% {
+    text-shadow: 0 0 0px #2c766b;
+  }
+  80% {
+    text-shadow: 0 0 0px #2c766b;
+    opacity: 1;
+  }
+  100% {
+    text-shadow: 0 0 0px #2c766b;
+    opacity: 1;
+  }
+}
+
+/* 標準のキーフレーム */
+@keyframes blur {
+  0% {
+    text-shadow: 0 0 100px #2c766b;
+    opacity: 0;
+  }
+  5% {
+    text-shadow: 0 0 90px #2c766b;
+  }
+  15% {
+    opacity: 1;
+  }
+  20% {
+    text-shadow: 0 0 0px #2c766b;
+  }
+  80% {
+    text-shadow: 0 0 0px #2c766b;
+    opacity: 1;
+  }
+  100% {
+    text-shadow: 0 0 0px #2c766b;
+    opacity: 1;
+  }
+}
+
+/* メインビジュアル */
+.home-bg {
+  position: fixed;
+  top: -50px;
+  left: -50px;
+  z-index: -2;
+  width: calc(100vw + 100px); /* vwに統一 */
+  height: calc(100svh + 100px);
+}
+
+.home-bg-swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.home-bg-swiper .swiper-slide {
+  width: 100%;
+  height: 100%;
+}
+
+.home-bg__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+.home__main {
+  position: relative;
+  z-index: 2;
+}
+
+.home__content {
+  background-color: var(--color-cream);
+}
+
+.main-visual {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: transparent;
+}
+
+/* 左上のミュージアム情報 */
+.main-visual__museum-info {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.main-visual__logo {
+  width: 32.8%;
+  @include fs.pc-size(margin, 30);
+}
+
+.main-visual__logo-image {
+  // 特に指定なし
+}
+
+/* 右上の展覧会情報ボックス */
+.main-visual__exhibition-box {
+  width: 56.25%;
+  background-color: #fffce4b2;
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  align-self: start;
+  @include fs.pc-size(padding, 40);
+}
+
+.main-visual__exhibition-texts {
+  width: 43.59%;
+}
+
+.main-visual__exhibition-subtitle {
+  width: 85.7%;
+}
+
+.main-visual__exhibition-subtitle-image {
+  display: block;
+}
+
+.main-visual__exhibition-title {
+  @include fs.pc-size(margin-top, 12);
+}
+
+.main-visual__exhibition-title-image {
+  // 特に指定なし
+}
+
+.main-visual__exhibition-date {
+  width: 51.79%;
+}
+
+.main-visual__exhibition-date-image {
+  // 特に指定なし
+}
+
+/* メインタイトル */
+.main-visual__main-title {
+  position: absolute;
+  left: 0;
+  width: 89.14%;
+  @include fs.pc-size(bottom, 18);
+}
+
+.main-visual__main-title-image {
+  // 特に指定なし
+}
+
+/* 左下のキャプション */
+.main-visual__caption {
+  margin-top: auto;
+  width: 100vw;
+}
+
+.main-visual__caption-details {
+  font-weight: 500;
+  color: var(--color-cream);
+  font-feature-settings: normal;
+  text-align: left;
+  @include fs.pc-size(font-size, 10);
+  @include fs.pc-size(padding, 20);
+  width: 100vw;
+}
+
+/* 右下のスクロール */
+.main-visual__scroll {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin-left: auto;
+  margin-top: auto;
+  z-index: 2;
+  @include fs.pc-size(padding, 20);
+}
+
+.main-visual__scroll-image {
+  @include fs.pc-size(width, 32);
+}
+
+.banner {
+  position: relative;
+  z-index: 3;
+  @include fs.pc-size(padding-bottom, 120);
+}
+
+.banner-grid {
+  display: grid;
+  @include fs.pc-size(gap, 30);
+}
+
+.banner__link {
+  display: block;
+}
+
+.banner__image {
+  background-color: #dddddd;
+  width: 100%;
+  display: block;
+}
+
+.banner--double {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  @include fs.pc-size(gap, 30);
+}
+
+.banner--double .banner__image {
+  width: 100%;
+}
+
+.introduction {
+  position: relative;
+  z-index: 3;
+  @include fs.pc-size(padding, 120 0);
+}
+
+.introduction__content {
+  // 特に指定なし
+}
+
+.introduction__video {
+  @include fs.pc-size(margin-top, 60);
+}
+
+.introduction__video iframe {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+}
+
+.introduction__buttons {
+  @include fs.pc-size(margin-top, 80);
+}
+
+.introduction__button-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  @include fs.pc-size(gap, 30);
+}
+
+.top-articles {
+  position: relative;
+  z-index: 3;
+  @include fs.pc-size(padding, 120 0 200);
+  background-color: var(--color-cream);
+}
+.top-articles::before,
+.top-articles::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+}
+.top-articles::before {
+  opacity: 0.15;
+  background: linear-gradient(0deg, #2c766b 0%, rgba(44, 118, 107, 0) 100%);
+  @include fs.pc-size(height, 664);
+  @include fs.pc-size(bottom, 600);
+}
+.top-articles::after {
+  opacity: 0.15;
+  bottom: 0;
+  background: #2c766b;
+  @include fs.pc-size(height, 600);
+}
+.top-articles__title {
+  position: absolute;
+  left: 0;
+  color: var(--color-primary);
+  @include fs.pc-size(top, -25);
+}
+.top-article-lists {
+  position: relative;
+  z-index: 5;
+}
+.more {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.top-articles__button {
+  text-align: center;
+  @include fs.pc-size(margin-top, 80);
+  position: relative;
+  z-index: 5;
+}
+
+// ============================================================
+// SP版スタイル（レスポンシブ対応）
+// ============================================================
+
+@media screen and (max-width: 824px) {
+  /* イントロローディング*/
+  body.loading-active {
+    // overflowはそのまま
+  }
+
+  .loading-overlay {
+    width: 160%;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+
+  .loading-container {
+    // 特に指定なし
+  }
+
+  .image-first,
+  .image-second {
+    // 特に指定なし
+  }
+
+  .image-first {
+    // width: 170%はそのまま
+  }
+
+  .image-second {
+    // width/height: 100%はそのまま
+  }
+
+  .loading-text {
+    @include fs.sp-size(font-size, 24);
+  }
+
+  .loading-text span {
+    // 特に指定なし
+  }
+
+  /* メインビジュアル */
+  .home-bg {
+    // width: 160%;
+    left: 50%;
+    right: inherit;
+    transform: translateX(-50%);
+  }
+
+  .home-bg__image {
+    // object設定はそのまま
+  }
+
+  .home__content {
+    // 背景色はそのまま
+  }
+
+  .main-visual {
+    flex-direction: column;
+    min-height: 650px;
+    height: 100dvh;
+    aspect-ratio: inherit;
+    background-size: cover;
+    background-position: center center;
+  }
+
+  /* 左上のミュージアム情報 */
+  .main-visual__museum-info {
+    display: contents;
+  }
+
+  .main-visual__logo {
+    order: 0;
+    width: 52.2%;
+    @include fs.sp-size(margin, 25);
+  }
+
+  .main-visual__logo-image {
+    // 特に指定なし
+  }
+
+  /* 右上の展覧会情報ボックス */
+  .main-visual__exhibition-box {
+    order: 2;
+    width: 100%;
+    padding: 25px 6.41%; // パーセンテージはそのまま、固定値のみ変換
+    flex-direction: column;
+    align-items: center;
+    @include fs.sp-size(gap, 20);
+  }
+
+  .main-visual__exhibition-texts {
+    width: 79.4%;
+  }
+
+  .main-visual__exhibition-subtitle {
+    width: 85.55%;
+  }
+
+  .main-visual__exhibition-subtitle-image {
+    // 特に指定なし
+  }
+
+  .main-visual__exhibition-title {
+    @include fs.sp-size(margin-top, 12);
+  }
+
+  .main-visual__exhibition-title-image {
+    // 特に指定なし
+  }
+
+  .main-visual__exhibition-date {
+    width: 79.4%;
+  }
+
+  .main-visual__exhibition-date-image {
+    // 特に指定なし
+  }
+
+  /* メインタイトル */
+  .main-visual__main-title {
+    position: static;
+    width: 100%;
+    order: 1;
+    margin-top: auto;
+  }
+
+  .main-visual__main-title-image {
+    // 特に指定なし
+  }
+
+  /* 左下のキャプション */
+  .main-visual__caption {
+    display: none;
+  }
+
+  .main-visual__caption-details {
+    // displayがnoneなので変換不要
+  }
+
+  /* 右下のスクロール */
+  .main-visual__scroll {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include fs.sp-size(width, 45);
+    @include fs.sp-size(height, 51);
+  }
+
+  .main-visual__scroll-image {
+    width: 100%;
+    height: 100%;
+  }
+
+  .banner {
+    @include fs.sp-size(padding-bottom, 60);
+  }
+
+  .banner-grid {
+    @include fs.sp-size(gap, 30);
+  }
+
+  .banner__image {
+  }
+
+  .banner--double {
+    grid-template-columns: 1fr;
+    @include fs.sp-size(gap, 30);
+  }
+  .banner--double .banner__image {
+  }
+
+  .introduction {
+    @include fs.sp-size(padding, 60 0);
+  }
+
+  .introduction__content {
+    // 特に指定なし
+  }
+
+  .introduction__video {
+    @include fs.sp-size(margin-top, 30);
+  }
+
+  .introduction__video-iframe {
+    // aspect-ratioはそのまま
+  }
+
+  .introduction__buttons {
+    @include fs.sp-size(margin-top, 50);
+  }
+
+  .introduction__button-group {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .introduction__button-group .button-outline:not(:first-child) {
+    border-top: none;
+  }
+
+  .top-articles {
+    @include fs.sp-size(padding, 60 0 170);
+  }
+
+  .top-articles__title {
+    @include fs.sp-size(top, -30);
+  }
+  .more {
+    // positionはそのまま
+  }
+
+  .top-articles__button {
+    @include fs.sp-size(margin-top, 50);
+  }
+}

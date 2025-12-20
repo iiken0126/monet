@@ -1,0 +1,226 @@
+@use "../foundation/fluid-size" as fs;
+
+// ===== MUSEUM SECTION =====
+.museum-section {
+  position: relative;
+  @include fs.pc-size(margin-top, 87);
+  @include fs.pc-size(padding-bottom, 250);
+}
+.museum-section::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  height: 100%;
+  background: rgba(44, 118, 107, 0.1);
+  z-index: -1;
+  @include fs.pc-size(top, 33);
+}
+.museum-section__title {
+  font-family: var(--font__en);
+  color: var(--color-primary);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.05em;
+  @include fs.pc-size(font-size, 50);
+  @include fs.pc-size(margin-bottom, 103);
+}
+.museum-section__content {
+  display: flex;
+  @include fs.pc-size(gap, 60);
+}
+.museum-section__body {
+  flex: 1;
+}
+.museum-section__intro {
+  display: flex;
+  flex-direction: column;
+  @include fs.pc-size(margin-bottom, 40);
+  @include fs.pc-size(gap, 10);
+}
+.museum-section__text {
+  line-height: 2.133;
+  @include fs.pc-size(font-size, 15);
+}
+.museum-section__note {
+  line-height: 1.833;
+  @include fs.pc-size(font-size, 12);
+}
+
+// ===== MUSEUM INFO =====
+.museum-info {
+  display: grid;
+  @include fs.pc-size(gap, 10);
+  @include fs.pc-size(margin-bottom, 45);
+}
+.museum-info__item {
+  display: flex;
+  @include fs.pc-size(gap, 30);
+}
+.museum-info__term {
+  flex-shrink: 0;
+  font-family: var(--font-ja__bold);
+  font-weight: 500;
+  line-height: 2;
+  @include fs.pc-size(font-size, 16);
+  @include fs.pc-size(width, 67);
+}
+.museum-info__desc {
+  flex: 1;
+  line-height: 2.133;
+  display: grid;
+  @include fs.pc-size(gap, 10);
+  @include fs.pc-size(font-size, 15);
+}
+
+// ----- MUSEUM INFO TEXT -----
+.museum-info__text {
+  flex: 1;
+  line-height: 2.133;
+  @include fs.pc-size(font-size, 15);
+}
+
+// ----- MUSEUM INFO SUB LIST -----
+.museum-info__sub-list {
+  display: grid;
+}
+.museum-info__sub-item {
+  display: flex;
+  @include fs.pc-size(gap, 10);
+}
+.museum-info__sub-term {
+  flex-shrink: 0;
+  @include fs.pc-size(width, 60);
+}
+.museum-info__sub-desc {
+  flex: 1;
+}
+
+// ===== MUSEUM BUTTONS =====
+.museum-section__buttons {
+  display: flex;
+  border-top: 1px solid rgba(0, 0, 0, 0.15);
+  @include fs.pc-size(gap, 30);
+}
+.museum-section__buttons .button-outline {
+  flex: 1;
+  @include fs.pc-size(padding, 19 30);
+}
+.museum-section__buttons .button-outline__arrow {
+  @include fs.pc-size(top, 29);
+}
+.museum-section__buttons .button-filled__icon--external {
+  background-image: url(../../assets/images/icon__blank--primary.svg);
+}
+
+// ===== MUSEUM IMAGE =====
+.museum-section__image {
+  flex-shrink: 0;
+  width: 39.92%;
+}
+.museum-section__image img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+@media screen and (max-width: 824px) {
+  // ----- MUSEUM SECTION -----
+  .museum-section {
+    @include fs.sp-size(margin-top, 30);
+    @include fs.sp-size(padding-bottom, 170);
+  }
+  .museum-section::before {
+    @include fs.sp-size(top, 30);
+  }
+  .museum-section__title {
+    margin-left: -7.41%;
+    @include fs.sp-size(font-size, 44);
+    @include fs.sp-size(margin-bottom, 36);
+  }
+  .museum-section__content {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .museum-section__body {
+    display: contents;
+  }
+  .museum-section__intro {
+    @include fs.sp-size(margin-bottom, 30);
+    @include fs.sp-size(gap, 10);
+  }
+  .museum-section__text {
+    order: 1;
+    line-height: 2;
+    @include fs.sp-size(font-size, 14);
+  }
+  .museum-section__note {
+    order: 2;
+    display: flex;
+    @include fs.sp-size(font-size, 12);
+  }
+  .museum-section__note-mark {
+    flex-shrink: 0;
+  }
+  .museum-section__note-text {
+    flex: 1;
+  }
+  // ----- MUSEUM IMAGE -----
+  .museum-section__image {
+    order: 3;
+    width: 100%;
+    @include fs.sp-size(margin-bottom, 30);
+  }
+  // ----- MUSEUM INFO -----
+  .museum-info {
+    order: 4;
+    @include fs.sp-size(gap, 10);
+    @include fs.sp-size(margin-bottom, 40);
+  }
+  .museum-info__item {
+    flex-direction: column;
+    gap: 0;
+  }
+  .museum-info__term {
+    width: auto;
+    @include fs.sp-size(font-size, 14);
+  }
+  .museum-info__desc {
+    line-height: 2;
+    @include fs.sp-size(gap, 5);
+    @include fs.sp-size(font-size, 14);
+  }
+
+  // ----- MUSEUM INFO TEXT -----
+  .museum-info__text {
+    line-height: 2;
+    @include fs.sp-size(font-size, 14);
+  }
+  // ----- MUSEUM INFO SUB LIST -----
+  .museum-info__sub-list {
+  }
+  .museum-info__sub-item {
+    @include fs.sp-size(gap, 10);
+  }
+  .museum-info__sub-term {
+    @include fs.sp-size(width, 55);
+  }
+  .museum-info__sub-desc {
+  }
+
+  // ----- MUSEUM BUTTONS -----
+  .museum-section__buttons {
+    order: 5;
+    flex-direction: column;
+    gap: 0;
+    padding-top: 0;
+    border-top: none;
+  }
+  .museum-section__buttons .button-outline {
+    @include fs.sp-size(padding, 19 30);
+  }
+  .museum-section__buttons .button-outline:last-child {
+    border-top: none;
+  }
+}

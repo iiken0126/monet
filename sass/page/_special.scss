@@ -1,0 +1,193 @@
+@use "../foundation/fluid-size" as fs;
+
+/* ===== SPECIAL LIST ===== */
+.special-list {
+}
+.special-list__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  @include fs.pc-size(gap, 140 60);
+  @include fs.pc-size(padding-top, 92);
+}
+
+/* ===== SPECIAL CARD ===== */
+.special-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: visible;
+}
+.special-card--link {
+  text-decoration: none;
+}
+.special-card__inner {
+  text-align: center;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, #badce4 0%, #cfe7da 100%);
+  @include fs.pc-size(padding-top, 92);
+  @include fs.pc-size(padding, 110 30 40);
+}
+.special-card__number {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #4f94a9;
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  border-radius: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  @include fs.pc-size(top, -91);
+  @include fs.pc-size(width, 181);
+  @include fs.pc-size(height, 181);
+}
+.special-card__number-num {
+  font-family: var(--font__en);
+  color: #4f94a9;
+  line-height: 1;
+  @include fs.pc-size(font-size, 60);
+}
+.special-card__title {
+  font-family: var(--font-ja__normal-mincho);
+  font-weight: 600;
+  line-height: 1.75;
+  text-align: center;
+  letter-spacing: 0.08em;
+  @include fs.pc-size(font-size, 23);
+  @include fs.pc-size(margin-bottom, 10);
+}
+.special-card__text {
+  line-height: 2.133;
+  @include fs.pc-size(font-size, 15);
+}
+.special-card__links {
+  list-style: none;
+  width: 100%;
+  @include fs.pc-size(margin-top, 30);
+}
+.special-card__links--grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  @include fs.pc-size(gap, 0 10);
+}
+.special-card__links--grid li {
+  text-align: left;
+  border-top: 1px solid rgba(51, 51, 51, 0.2);
+}
+.special-card__links--grid li:nth-of-type(3),
+.special-card__links--grid li:nth-of-type(4) {
+  border-bottom: 1px solid rgba(51, 51, 51, 0.2);
+}
+
+/* 1カラム（04用） */
+.special-card__links--single {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid rgba(51, 51, 51, 0.2);
+}
+.special-card__links--single li {
+  text-align: left;
+  border-top: 1px solid rgba(51, 51, 51, 0.2);
+}
+.special-card__links a {
+  display: inline-block;
+  font-family: var(--font-ja__bold);
+  position: relative;
+  font-weight: 500;
+  line-height: 1.85;
+  width: 100%;
+  font-feature-settings: normal;
+  @include fs.pc-size(font-size, 14);
+  @include fs.pc-size(padding, 9 0 9 30);
+}
+.special-card__links a::before {
+  content: "";
+  position: absolute;
+  left: 10px;
+  background-image: url(../../assets/images/icon__arrow--black.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  @include fs.pc-size(top, 17);
+  @include fs.pc-size(width, 8);
+  @include fs.pc-size(height, 10);
+}
+.special-card__images {
+  display: flex;
+  overflow: hidden;
+}
+.special-card__images img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* ===== SP ===== */
+@media screen and (max-width: 824px) {
+  .special-list {
+  }
+  .special-list__grid {
+    grid-template-columns: 1fr;
+    @include fs.sp-size(gap, 100);
+    @include fs.sp-size(padding-top, 75);
+  }
+  /* Special Card */
+  .special-card {
+  }
+  .special-card__number {
+    @include fs.sp-size(top, -75);
+    @include fs.sp-size(width, 151);
+    @include fs.sp-size(height, 151);
+  }
+  .special-card__number-num {
+    @include fs.sp-size(font-size, 50);
+  }
+  .special-card__inner {
+    @include fs.sp-size(padding, 100 20 40);
+  }
+  .special-card__title {
+    line-height: 1.66;
+    @include fs.sp-size(font-size, 21);
+    @include fs.sp-size(margin-bottom, 10);
+  }
+  .special-card__text {
+    line-height: 2;
+    @include fs.sp-size(font-size, 14);
+  }
+  .special-card__links {
+    @include fs.sp-size(margin-top, 30);
+  }
+  /* SP時は両方とも1カラム */
+  .special-card__links--grid,
+  .special-card__links--single {
+    display: flex;
+    flex-direction: column;
+  }
+  .special-card__links--single {
+    width: calc(100% - 20px);
+  }
+  .special-card__links--grid li,
+  .special-card__links--single li {
+    border-right: none;
+  }
+  .special-card__links--grid li:nth-of-type(3),
+  .special-card__links--single li:last-child {
+    border-bottom: none;
+  }
+  .special-card__links a {
+    @include fs.sp-size(font-size, 14);
+    @include fs.sp-size(padding, 9 0 10 30);
+  }
+  .special-card__links a::before {
+    @include fs.sp-size(top, 16);
+    @include fs.sp-size(width, 8);
+    @include fs.sp-size(height, 10);
+  }
+  .special-card__images {
+  }
+}

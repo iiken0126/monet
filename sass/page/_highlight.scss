@@ -1,0 +1,310 @@
+@use "../foundation/fluid-size" as fs;
+
+.exhibition-overview {
+  @include fs.pc-size(padding, 46 0 120);
+}
+
+/* Highlights List */
+.highlights-list {
+  display: grid;
+  @include fs.pc-size(gap, 100);
+  @include fs.pc-size(padding-bottom, 150);
+}
+
+/* Highlight Item */
+.highlight-item {
+  position: relative;
+}
+
+.highlight-item:last-child {
+  // 特に指定なし
+}
+
+.highlight-item__inner {
+  position: relative;
+}
+
+/* Highlight Number Circle */
+.highlight-item__number {
+  position: absolute;
+  border: 1px solid var(--color-primary);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  @include fs.pc-size(left, -60);
+  @include fs.pc-size(top, -60);
+  @include fs.pc-size(width, 220);
+  @include fs.pc-size(height, 220);
+}
+
+.highlight-item--reverse .highlight-item__number {
+  left: auto;
+  @include fs.pc-size(right, -60);
+}
+
+.highlight-item__number-label {
+  color: #6c9692;
+  line-height: 1.85;
+  font-weight: 500;
+  @include fs.pc-size(font-size, 14);
+}
+
+.highlight-item__number-text {
+  color: #6c9692;
+  font-family: var(--font__en);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.05em;
+  @include fs.pc-size(font-size, 60);
+  @include fs.pc-size(margin-top, -5);
+}
+
+.highlight-box {
+  background-color: #ffffff;
+  border-bottom: 3px solid rgba(108, 150, 146, 0.3);
+  @include fs.pc-size(padding, 60 56 60 196);
+}
+
+.highlight-item--reverse .highlight-box {
+  @include fs.pc-size(padding, 60 196 60 56);
+}
+
+/* Featured Artworks Slider */
+.featured-artworks {
+  // 特に指定なし
+}
+
+.swiper {
+  // 特に指定なし
+}
+
+.swiper-wrapper {
+  transition-timing-function: linear;
+}
+
+.swiper-slide {
+  width: auto;
+}
+
+.artwork-item {
+  // 特に指定なし
+}
+
+.artwork-item__image {
+  width: 100%;
+  background-color: #fff;
+  object-fit: contain;
+  display: block;
+  @include fs.pc-size(height, 600);
+}
+
+.artwork-item__caption {
+  width: 0;
+  line-height: 1.83;
+  min-width: 100%;
+  word-break: break-all;
+  font-feature-settings: normal;
+  text-align: left;
+  @include fs.pc-size(margin-top, 20);
+  @include fs.pc-size(font-size, 12);
+}
+
+.artwork-item__info {
+  // 特に指定なし
+}
+
+.special-info {
+  @include fs.pc-size(padding-top, 130);
+}
+
+.spacial-info__inner {
+  display: flex;
+  @include fs.pc-size(gap, 60);
+}
+
+.special-info__content {
+  @include fs.pc-size(margin-top, -4);
+  flex: 1;
+}
+
+.special-info__image {
+  width: 50%;
+}
+
+.special-info__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media screen and (max-width: 824px) {
+  .exhibition-overview {
+    @include fs.sp-size(padding, 40 0 120);
+  }
+
+  /* Highlights List */
+  .highlights-list {
+    @include fs.sp-size(gap, 100);
+    @include fs.sp-size(padding-bottom, 60);
+  }
+
+  /* Highlight Item */
+  .highlight-item {
+    // 特に指定なし
+  }
+
+  .highlight-item:last-child {
+    // 特に指定なし
+  }
+
+  .highlight-item__inner {
+    // 特に指定なし
+    display: flex;
+    justify-content: center;
+  }
+
+  /* Highlight Number Circle */
+  .highlight-item__number {
+    left: auto;
+    right: auto;
+    @include fs.sp-size(width, 150);
+    @include fs.sp-size(height, 150);
+    @include fs.sp-size(top, -75);
+  }
+
+  .highlight-item--reverse .highlight-item__number {
+    left: auto;
+    right: auto;
+  }
+
+  .highlight-item__number-label {
+    @include fs.sp-size(font-size, 14);
+  }
+
+  .highlight-item__number-text {
+    @include fs.sp-size(font-size, 50);
+    // margin-topも明示的に指定
+    @include fs.sp-size(margin-top, -5);
+  }
+
+  .highlight-box {
+    @include fs.sp-size(padding, 100 20 40);
+  }
+
+  .highlight-item--reverse .highlight-box {
+    @include fs.sp-size(padding, 100 20 40);
+  }
+
+  /* Featured Artworks Slider */
+  .featured-artworks {
+    // 特に指定なし
+  }
+
+  .swiper {
+    // 特に指定なし
+  }
+
+  .swiper-wrapper {
+    // 特に指定なし
+  }
+
+  .swiper-slide {
+    // 特に指定なし
+  }
+
+  .artwork-item {
+    // 特に指定なし
+  }
+
+  .artwork-item__image {
+    @include fs.sp-size(height, 280);
+  }
+
+  .artwork-item__caption {
+    @include fs.sp-size(margin-top, 20);
+    @include fs.sp-size(font-size, 12);
+  }
+
+  .artwork-item__info {
+    // 特に指定なし
+  }
+
+  .special-info {
+    @include fs.sp-size(padding-top, 40);
+  }
+
+  .spacial-info__inner {
+    flex-direction: column;
+    @include fs.sp-size(gap, 40);
+  }
+
+  .special-info__content {
+    margin-top: 0;
+  }
+
+  .special-info__image {
+    width: 100%;
+  }
+
+  .special-info__image img {
+    // width/height: 100%はそのまま
+  }
+}
+/* 元のCSSに最小限の修正を加えたバージョン */
+.featured-artworks {
+  overflow: hidden;
+}
+
+.swiper-wrapper {
+  transition-timing-function: linear;
+}
+
+.swiper-slide {
+  width: auto;
+}
+
+.artwork-item__image {
+  width: auto;
+  /* 白い背景問題の修正 */
+  background-color: transparent; /* #fffから変更 */
+  object-fit: contain;
+  display: block;
+  height: 600px; /* PC用の高さ */
+
+  /* 古いSafari用のフォールバック追加 */
+  -webkit-background-clip: content-box;
+  background-clip: content-box;
+}
+
+/* 古いWebkit向けの追加対策 */
+@supports not (object-fit: contain) {
+  .artwork-item__image {
+    width: auto;
+    max-width: 100%;
+    max-height: 600px;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+  }
+}
+
+/* モバイル対応 */
+@media screen and (max-width: 824px) {
+  .artwork-item__image {
+    height: 280px; /* モバイル用の高さ */
+  }
+
+  @supports not (object-fit: contain) {
+    .artwork-item__image {
+      max-height: 280px;
+    }
+  }
+
+  .artwork-item__caption {
+    margin-top: 20px;
+    font-size: 12px;
+  }
+}

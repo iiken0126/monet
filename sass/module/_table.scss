@@ -1,0 +1,78 @@
+// fluid-sizeをインポート
+@use "../foundation/fluid-size" as fs;
+
+.table {
+  border-collapse: collapse;
+  width: 100%;
+  @include fs.pc-size(margin-top, 25);
+  @include fs.pc-size(font-size, 16);
+}
+.table__title {
+  background-color: #ddd;
+  text-align: center;
+}
+.table th,
+.table td {
+  border: 1px solid #bf4c4c4d;
+  vertical-align: middle;
+  width: calc(100% / 3);
+  line-height: 2;
+  @include fs.pc-size(padding, 19);
+}
+.table th {
+  font-weight: 500;
+  font-family: var(--font-ja__bold);
+  background-color: rgba(191, 76, 76, 0.12);
+  font-feature-settings: normal;
+}
+.table td {
+  background-color: #fff;
+  font-weight: 500;
+  font-family: var(--font-ja__bold);
+}
+.table tbody th {
+}
+.table tbody td {
+}
+.table__note {
+  line-height: 2;
+  font-family: var(--font-ja__normal);
+  display: block;
+  @include fs.pc-size(font-size, 12);
+}
+
+@media screen and (max-width: 824px) {
+  .table {
+    table-layout: fixed;
+    min-width: 100%;
+    width: auto;
+    @include fs.sp-size(margin-top, 20);
+    @include fs.sp-size(font-size, 16);
+  }
+  .table__title {
+  }
+  .table th,
+  .table td {
+    line-height: 1.85;
+    width: auto;
+    @include fs.sp-size(padding, 10);
+    @include fs.sp-size(font-size, 14);
+  }
+  .table th {
+  }
+  .table td {
+  }
+  .table thead th:first-child {
+    @include fs.sp-size(width, 120);
+  }
+  .table thead th:not(:first-child) {
+    @include fs.sp-size(width, 110);
+  }
+  .table tbody th {
+  }
+  .table tbody td {
+  }
+  .table__note {
+    @include fs.sp-size(font-size, 12);
+  }
+}

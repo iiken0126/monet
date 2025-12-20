@@ -1,0 +1,45 @@
+// fluid-sizeをインポート
+@use "../foundation/fluid-size" as fs;
+
+.section-title {
+  @include fs.pc-size(font-size, 32);
+}
+.section-title.--news,
+.section-title.--media {
+  font-family: var(--font-ja__normal-mincho);
+}
+.section-title.--news {
+}
+.section-title.--media {
+}
+.section-content {
+  display: grid;
+  @include fs.pc-size(gap, 15);
+  @include fs.pc-size(margin-top, 30);
+}
+.section-text {
+  line-height: 2;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 824px) {
+  .section-title {
+    line-height: 1.66;
+    @include fs.sp-size(font-size, 24);
+  }
+  .section-title.--news {
+    @include fs.sp-size(width, 100);
+    @include fs.sp-size(font-size, 38);
+  }
+  .section-title.--media {
+    @include fs.sp-size(width, 116);
+    @include fs.sp-size(font-size, 38);
+  }
+  .section-content {
+    @include fs.sp-size(margin-top, 20);
+    @include fs.sp-size(gap, 10);
+  }
+  .section-text {
+    @include fs.sp-size(font-size, 16);
+  }
+}

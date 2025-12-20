@@ -1,0 +1,147 @@
+@use "../foundation/fluid-size" as fs;
+
+/* ===== COLLAB LIST ===== */
+.collab-list {
+  display: grid;
+  @include fs.pc-size(margin-top, 60);
+  @include fs.pc-size(gap, 80);
+}
+/* ===== COLLAB ITEM ===== */
+.collab-item {
+  display: flex;
+  border-bottom: 3px solid rgba(79, 148, 169, 0.3);
+}
+.collab-item__media {
+  position: relative;
+  flex-shrink: 0;
+  aspect-ratio: 1 / 1;
+  width: 50%;
+}
+.collab-item__logo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  @include fs.pc-size(width, 110);
+  @include fs.pc-size(height, 110);
+}
+.collab-item__logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.collab-swiper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.collab-swiper .swiper-wrapper {
+  height: 100%;
+}
+.collab-swiper .swiper-slide {
+  height: 100%;
+}
+.collab-swiper .swiper-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.collab-swiper .swiper-pagination {
+  @include fs.pc-size(bottom, 20);
+}
+.collab-swiper .swiper-pagination-bullet {
+  background-color: #333;
+  opacity: 0.2;
+  border-radius: 0;
+  @include fs.pc-size(width, 20);
+  @include fs.pc-size(height, 3);
+  @include fs.pc-size(margin, 0 10);
+}
+.collab-swiper .swiper-pagination-bullet-active {
+  opacity: 1;
+  background-color: #666;
+}
+.collab-item__body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #fff;
+  flex: 1;
+  @include fs.pc-size(padding, 60 56);
+}
+.collab-item__shop {
+  font-family: var(--font-ja__normal-mincho);
+  font-weight: 600;
+  line-height: 1.77;
+  letter-spacing: 0.05em;
+  @include fs.pc-size(font-size, 18);
+}
+.collab-item__title {
+  font-family: var(--font-ja__normal-mincho);
+  font-weight: 600;
+  line-height: 1.6;
+  letter-spacing: 0.05em;
+  @include fs.pc-size(font-size, 20);
+  @include fs.pc-size(margin-bottom, 20);
+}
+.collab-item__text {
+  line-height: 2.133;
+  @include fs.pc-size(font-size, 15);
+  @include fs.pc-size(margin-bottom, 40);
+}
+.collab-action {
+  text-align: right;
+  margin-top: auto;
+}
+
+/* ===== SP ===== */
+@media screen and (max-width: 824px) {
+  .collab-list {
+    margin-top: 0;
+    @include fs.sp-size(gap, 50);
+  }
+  .collab-item {
+    flex-direction: column;
+  }
+  .collab-item__media {
+    width: 100%;
+  }
+  .collab-item__logo {
+    @include fs.sp-size(width, 100);
+    @include fs.sp-size(height, 100);
+  }
+  .collab-swiper .swiper-pagination {
+    @include fs.sp-size(bottom, 20);
+  }
+  .collab-swiper .swiper-pagination-bullet {
+    @include fs.sp-size(width, 20);
+    @include fs.sp-size(height, 3);
+    @include fs.sp-size(margin, 0 10);
+  }
+  .collab-item__body {
+    @include fs.sp-size(padding, 40 20);
+  }
+  .collab-item__shop {
+    line-height: 1.87;
+    @include fs.sp-size(font-size, 16);
+  }
+  .collab-item__title {
+    line-height: 1.77;
+    @include fs.sp-size(font-size, 18);
+    @include fs.sp-size(margin-bottom, 10);
+  }
+  .collab-item__text {
+    line-height: 2;
+    @include fs.sp-size(font-size, 14);
+    @include fs.sp-size(margin-bottom, 30);
+  }
+  .collab-action {
+    text-align: center;
+  }
+}

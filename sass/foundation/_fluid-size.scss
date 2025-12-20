@@ -1,0 +1,184 @@
+@use "sass:math";
+@use "sass:meta";
+@use "sass:list";
+
+// ============================================================
+// 共通: 変換対象外を判定
+// ============================================================
+@function is-fluid-excluded($val) {
+  // 0 / auto は除外
+  @if $val == 0 or $val == auto {
+    @return true;
+  }
+
+  // 単位が % / vw / vh / vmin / vmax の場合も除外
+  @if (math.unit($val) == "%") or
+    (math.unit($val) == "vw") or
+    (math.unit($val) == "vh") or
+    (math.unit($val) == "vmin") or
+    (math.unit($val) == "vmax")
+  {
+    @return true;
+  }
+
+  // aspect-ratio っぽい値 (例: 16/9) → 型が number かつ除算式
+  @if meta.type-of($val) == "number" and math.is-unitless($val) == false {
+    // → ここは必要ならさらに正確にチェック可能
+    @return false;
+  }
+
+  @return false;
+}
+
+// ============================================================
+// PC用関数
+// ============================================================
+@function fluid-pc($px, $property: null) {
+  // 除外チェック
+  @if is-fluid-excluded($px) {
+    @return $px;
+  }
+
+  $design-width: 1280;
+  $min-width: 900;
+  $max-width: 1600;
+
+  $sign: if($px < 0, -1, 1);
+  $px-unitless: if(math.is-unitless($px), abs($px), math.div(abs($px), 1px));
+
+  $min-value: $px-unitless * math.div($min-width, $design-width);
+  $max-value: $px-unitless * math.div($max-width, $design-width);
+
+  // font-sizeプロパティの場合のみ10px未満にならないよう調整
+  @if $sign == 1 and $property == "font-size" {
+    $min-value: if($min-value < 10, 10, $min-value);
+    $max-value: if($max-value < 10, 10, $max-value);
+  }
+
+  $diff: $max-value - $min-value;
+  $range: $max-width - $min-width;
+  $preferred: calc(
+    #{$min-value}px + #{$diff} * (100vw - #{$min-width}px) / #{$range}
+  );
+
+  @if $sign == -1 {
+    // 負の値の場合: clampの第1引数 ≤ 第3引数となるように
+    // -75px ≤ 計算値 ≤ -42px
+    @return clamp(
+      #{$max-value * -1}px,
+      calc(#{$min-value}px + #{$diff} * (100vw - #{$min-width}px) / #{$range}) *
+        -1,
+      #{$min-value * -1}px
+    );
+  } @else {
+    // 正の値の場合: 42px ≤ 計算値 ≤ 75px
+    @return clamp(#{$min-value}px, #{$preferred}, #{$max-value}px);
+  }
+}
+
+// ============================================================
+// SP用関数
+// ============================================================
+@function fluid-sp($px, $property: null) {
+  // 除外チェック
+  @if is-fluid-excluded($px) {
+    @return $px;
+  }
+
+  $base-width: 390;
+  $min-width: 375;
+  $max-width: 824;
+
+  $sign: if($px < 0, -1, 1);
+  $px-unitless: if(math.is-unitless($px), abs($px), math.div(abs($px), 1px));
+
+  $min-value: $px-unitless * math.div($min-width, $base-width);
+  $max-value: $px-unitless * math.div($max-width, $base-width);
+
+  // font-sizeプロパティの場合のみ10px未満にならないよう調整
+  @if $sign == 1 and $property == "font-size" {
+    $min-value: if($min-value < 10, 10, $min-value);
+    $max-value: if($max-value < 10, 10, $max-value);
+  }
+
+  $diff: $max-value - $min-value;
+  $range: $max-width - $min-width;
+  $preferred: calc(
+    #{$min-value}px + #{$diff} * (100vw - #{$min-width}px) / #{$range}
+  );
+
+  @if $sign == -1 {
+    // 負の値の場合: clampの第1引数 ≤ 第3引数となるように
+    @return clamp(
+      #{$max-value * -1}px,
+      calc(#{$min-value}px + #{$diff} * (100vw - #{$min-width}px) / #{$range}) *
+        -1,
+      #{$min-value * -1}px
+    );
+  } @else {
+    // 正の値の場合
+    @return clamp(#{$min-value}px, #{$preferred}, #{$max-value}px);
+  }
+}
+
+// ============================================================
+// PC/SP用Mixin
+// ============================================================
+@mixin pc-size($property, $values) {
+  // PCファーストなので、メディアクエリなしで直接出力
+  @if meta.type-of($values) == "list" {
+    $list-length: list.length($values);
+    $output: ();
+    @for $i from 1 through $list-length {
+      // プロパティ名を関数に渡す
+      $output: list.append($output, fluid-pc(list.nth($values, $i), $property));
+    }
+    #{$property}: $output;
+  } @else {
+    // プロパティ名を関数に渡す
+    #{$property}: fluid-pc($values, $property);
+  }
+}
+
+@mixin sp-size($property, $values) {
+  // メディアクエリを削除 - 呼び出し側で制御
+  @if meta.type-of($values) == "list" {
+    $list-length: list.length($values);
+    $output: ();
+    @for $i from 1 through $list-length {
+      // プロパティ名を関数に渡す
+      $output: list.append($output, fluid-sp(list.nth($values, $i), $property));
+    }
+    #{$property}: $output;
+  } @else {
+    // プロパティ名を関数に渡す
+    #{$property}: fluid-sp($values, $property);
+  }
+}
+
+// ============================================================
+// レスポンシブMixin
+// ============================================================
+@mixin responsive-size($property, $sp-px, $pc-px: null) {
+  $pc-value: if($pc-px, $pc-px, $sp-px);
+
+  // PCファースト: PCサイズを先に出力（メディアクエリなし）
+  @include pc-size($property, $pc-value);
+  // SPサイズはメディアクエリで上書き
+  @media screen and (max-width: 824px) {
+    @include sp-size($property, $sp-px);
+  }
+}
+
+// ============================================================
+// ショートハンド関数
+// ============================================================
+// 注意: ショートハンド関数ではプロパティ名を渡せないため、
+// font-sizeの10px制限は適用されません
+@function fpc($px) {
+  @return fluid-pc($px, null);
+}
+
+@function fsp($px) {
+  @return fluid-sp($px, null);
+}

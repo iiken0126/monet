@@ -1,0 +1,157 @@
+// fluid-sizeをインポート
+@use "../foundation/fluid-size" as fs;
+
+.gallery-wrapper {
+  position: relative;
+  /* 動的に計算されるため、min-heightは削除またはフォールバック値に */
+}
+.gallery-container {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+.artwork {
+  position: absolute;
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  @include fs.pc-size(gap, 60);
+}
+.artwork:nth-child(1) {
+  background: linear-gradient(180deg, #d7dbeb 0%, #e5e6ee 100%);
+  z-index: 1;
+}
+.artwork:nth-child(2) {
+  background: linear-gradient(180deg, #badce4 0%, #cfe7da 100%);
+  z-index: 2;
+}
+.artwork:nth-child(3) {
+  background: linear-gradient(180deg, #c0b1d5 0%, #e3cfe7 100%);
+  z-index: 3;
+}
+.artwork:nth-child(4) {
+  background: linear-gradient(180deg, #c3d0ad 0%, #d4f4e6 100%);
+  z-index: 4;
+}
+// データ属性で段階的に制御
+.artwork[data-container-size="small"] .artwork__inner {
+  @include fs.pc-size(gap, 40);
+}
+
+.artwork[data-container-size="medium"] .artwork__inner {
+  @include fs.pc-size(gap, 50);
+}
+
+.artwork[data-container-size="large"] .artwork__inner {
+  @include fs.pc-size(gap, 60);
+}
+.artwork__container {
+}
+.artwork__inner {
+  display: flex;
+  @include fs.pc-size(gap, 60);
+}
+.artwork-card {
+  height: 100%;
+  max-height: 73%;
+}
+.artwork:nth-child(1) .artwork-card:first-child {
+  width: 39.8%;
+}
+.artwork:nth-child(1) .artwork-card:last-child {
+  width: 60.2%;
+}
+
+.artwork:nth-child(2) .artwork-card:first-child {
+  width: 73%;
+}
+.artwork:nth-child(2) .artwork-card:last-child {
+  width: 38%;
+}
+
+.artwork:nth-child(3) .artwork-card:first-child {
+  width: 33.2%;
+}
+.artwork:nth-child(3) .artwork-card:last-child {
+  width: 66.8%;
+}
+
+.artwork:nth-child(4) .artwork-card:first-child {
+  width: 67.3%;
+}
+.artwork:nth-child(4) .artwork-card:last-child {
+  width: 32.7%;
+}
+
+.artwork-image {
+  height: 22%;
+  object-fit: contain;
+  height: 100%;
+}
+.artwork-info {
+  line-height: 1.83;
+  font-feature-settings: normal;
+  text-align: left;
+  @include fs.pc-size(margin-top, 10);
+  @include fs.pc-size(font-size, 11.5);
+}
+.first-badge {
+  @include fs.pc-size(padding-top, 5);
+}
+.first-badge__text {
+  display: inline-block;
+  font-weight: 500;
+  color: #fff;
+  line-height: 1.833;
+  background-color: var(--color-primary);
+  @include fs.pc-size(padding, 5 15);
+  @include fs.pc-size(font-size, 12);
+  @include fs.pc-size(margin-bottom, 10);
+}
+.page-structure .first-badge__text {
+  background-color: var(--color-structure-page);
+}
+
+@media (max-width: 824px) {
+  .gallery-wrapper {
+  }
+  .gallery-container {
+  }
+  .artwork {
+    height: auto;
+    @include fs.sp-size(padding, 60 0 100);
+  }
+  .artwork:nth-child(1) {
+  }
+  .artwork:nth-child(2) {
+  }
+  .artwork:nth-child(3) {
+  }
+  .artwork:nth-child(4) {
+  }
+  .artwork__inner {
+    flex-direction: column;
+    @include fs.sp-size(gap, 40);
+  }
+  .artwork-card {
+    width: 100% !important;
+  }
+  .artwork-image {
+    height: 100%;
+  }
+  .artwork-info {
+    @include fs.sp-size(margin-top, 10);
+    @include fs.sp-size(font-size, 12);
+  }
+  .first-badge {
+    @include fs.sp-size(padding-top, 5);
+  }
+  .first-badge__text {
+    @include fs.sp-size(padding, 5 15);
+    @include fs.sp-size(font-size, 12);
+    @include fs.sp-size(margin-bottom, 10);
+  }
+}

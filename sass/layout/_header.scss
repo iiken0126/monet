@@ -1,0 +1,372 @@
+// fluid-sizeをインポート
+@use "../foundation/fluid-size" as fs;
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  transition: transform 0.2s ease-out, background-color 0.4s ease;
+  will-change: transform;
+}
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+/* ===== HEADER CONTROLS ===== */
+.header__controls {
+  display: flex;
+  margin-left: auto;
+}
+/* Language Switch */
+.header__lang {
+  color: var(--color-primary);
+  background-color: #fffce4b2;
+  position: relative;
+  z-index: 1002;
+  @include fs.pc-size(height, 65);
+  @include fs.pc-size(width, 65);
+}
+.header__lang-link {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 2;
+  font-weight: 500;
+  font-family: var(--font-ja__bold);
+  text-decoration: none;
+  @include fs.pc-size(font-size, 16);
+}
+.header__lang-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Hamburger Menu Button */
+.header__menu-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  position: relative;
+  z-index: 1002;
+  background-color: var(--color-primary);
+  @include fs.pc-size(height, 65);
+  @include fs.pc-size(width, 65);
+}
+.header__menu-line {
+  display: block;
+  background-color: #fff;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.3s ease;
+  height: 2px;
+  @include fs.pc-size(width, 26);
+}
+.header__menu-line:nth-child(1) {
+  transform: translate(-50%, -50%) translateY(-8px);
+}
+.header__menu-line:nth-child(3) {
+  transform: translate(-50%, -50%) translateY(8px);
+}
+/* Menu Open State - X Button */
+.header--menu-open .header__menu-button .header__menu-line:nth-child(1) {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+.header--menu-open .header__menu-button .header__menu-line:nth-child(2) {
+  opacity: 0;
+}
+.header--menu-open .header__menu-button .header__menu-line:nth-child(3) {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+/* ===== NAVIGATION ===== */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  background-color: var(--color-cream);
+  opacity: 0;
+  // visibility: hidden;
+  z-index: 1001;
+  // transition: opacity 0.6s ease;
+  // pointer-events: none;
+}
+.header--menu-open .nav {
+  // opacity: 1;
+  // visibility: visible;
+  // pointer-events: auto;
+}
+.nav__scroll {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.nav__content-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+.nav__inner-wrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+.nav__inner {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  @include fs.pc-size(padding, 160 139 80);
+  @include fs.pc-size(gap, 60);
+}
+.nav__background {
+  position: absolute;
+  content: "";
+  object-fit: contain;
+  width: 100%;
+  aspect-ratio: 1280 / 462;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+}
+/* ===== EXHIBITION INFO ===== */
+.exhibition {
+  width: 40%;
+}
+.exhibition__subtitle {
+  width: 85.5%;
+}
+.exhibition__subtitle__image {
+}
+.exhibition__title {
+  width: 100%;
+  @include fs.pc-size(margin-top, 17);
+}
+.exhibition__title__image {
+}
+.exhibition__date {
+  width: 100%;
+  @include fs.pc-size(margin-top, 40);
+}
+.exhibition__date__image {
+}
+/* ===== NAVIGATION LISTS ===== */
+.nav__lists {
+  width: 48.5%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  @include fs.pc-size(gap, 20);
+}
+.nav__list-column {
+  border-top: 1px solid var(--color-primary);
+  border-bottom: 1px solid var(--color-primary);
+  @include fs.pc-size(padding, 20 0);
+}
+.nav__list {
+  list-style: none;
+}
+.nav__item {
+  position: relative;
+}
+.nav__link {
+  display: block;
+  text-decoration: none;
+  color: var(--color-primary);
+  font-family: var(--font-ja__bold);
+  font-weight: 500;
+  line-height: 2;
+  font-feature-settings: normal;
+  @include fs.pc-size(font-size, 16);
+  @include fs.pc-size(padding, 10 0 10 50);
+}
+.nav__link::before {
+  position: absolute;
+  content: "";
+  background-image: url(../../assets/images/icon__navi-arrow--primary.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  @include fs.pc-size(width, 7);
+  @include fs.pc-size(height, 10);
+  @include fs.pc-size(left, 20);
+  @include fs.pc-size(top, 22);
+}
+.nav__link:hover {
+  color: var(--color-primary);
+}
+.nav__link[href=""] {
+  opacity: 0.3;
+  pointer-events: none;
+  cursor: default;
+}
+.nav__link.is-current::before {
+  background-image: none;
+  background-color: var(--color-primary);
+  height: 1px;
+  @include fs.pc-size(width, 8);
+  @include fs.pc-size(left, 18);
+  @include fs.pc-size(top, 26);
+}
+.nav__sns {
+  display: flex;
+  align-items: center;
+  align-self: flex-end;
+  position: relative;
+  z-index: 1;
+  @include fs.pc-size(margin, 0 40 40 0);
+  @include fs.pc-size(gap, 30);
+}
+.nav__sns-label {
+  font-weight: 500;
+  color: var(--color-primary);
+  @include fs.pc-size(font-size, 14);
+}
+.nav__sns-list {
+  display: flex;
+  align-items: center;
+  border-left: 1px solid rgba(44, 118, 107, 0.2);
+  @include fs.pc-size(padding-left, 24);
+  @include fs.pc-size(gap, 20);
+}
+.nav__sns-list a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s ease;
+  @include fs.pc-size(width, 40);
+  @include fs.pc-size(height, 40);
+}
+.nav__sns-list img {
+  display: block;
+}
+@media screen and (max-width: 824px) {
+  .header {
+  }
+  .header__inner {
+  }
+  /* ===== HEADER CONTROLS ===== */
+  .header__controls {
+  }
+  /* Language Switch */
+  .header__lang {
+    @include fs.sp-size(height, 65);
+    @include fs.sp-size(width, 65);
+  }
+  .header__lang-link {
+    @include fs.sp-size(font-size, 15);
+  }
+  .header__lang-link:hover {
+  }
+  /* Hamburger Menu Button */
+  .header__menu-button {
+    @include fs.sp-size(height, 65);
+    @include fs.sp-size(width, 65);
+  }
+  .header__menu-line {
+    @include fs.sp-size(width, 26);
+  }
+  .header__menu-line:nth-child(1) {
+  }
+  .header__menu-line:nth-child(3) {
+  }
+  /* Menu Open State - X Button */
+  .header--menu-open .header__menu-button .header__menu-line:nth-child(1) {
+  }
+  .header--menu-open .header__menu-button .header__menu-line:nth-child(2) {
+  }
+  .header--menu-open .header__menu-button .header__menu-line:nth-child(3) {
+  }
+
+  /* ===== NAVIGATION ===== */
+  .nav {
+  }
+  .header--menu-open .nav {
+  }
+  .nav__scroll {
+  }
+  .nav__inner {
+    flex-direction: column;
+    @include fs.sp-size(padding, 110 25 30);
+    @include fs.sp-size(gap, 40);
+  }
+  /* ===== EXHIBITION INFO ===== */
+  .exhibition {
+    width: 70.6%;
+  }
+  .exhibition__subtitle {
+    width: 86%;
+  }
+  .exhibition__subtitle__image {
+  }
+  .exhibition__title {
+    width: 100%;
+    @include fs.sp-size(margin-top, 10);
+  }
+  .exhibition__title__image {
+  }
+  .exhibition__date {
+    width: 100%;
+    @include fs.sp-size(margin-top, 24);
+  }
+  .exhibition__date__image {
+  }
+  /* ===== NAVIGATION LISTS ===== */
+  .nav__lists {
+    width: 100%;
+    @include fs.sp-size(gap, 20);
+  }
+  .nav__list-column {
+    @include fs.sp-size(padding, 20 0);
+  }
+  .nav__list {
+  }
+  .nav__item {
+  }
+  .nav__link {
+    line-height: 1.85;
+    @include fs.sp-size(font-size, 14);
+    @include fs.sp-size(padding-left, 25);
+  }
+  .nav__link::before {
+    @include fs.sp-size(left, 10);
+    @include fs.sp-size(top, 17);
+    @include fs.sp-size(width, 6);
+  }
+  .nav__link:hover {
+  }
+  .nav__item--disabled .nav__link {
+  }
+  .nav__link--disabled:hover {
+  }
+  .nav__link.is-current::before {
+    @include fs.sp-size(left, 8);
+    @include fs.sp-size(top, 22);
+    @include fs.sp-size(width, 8);
+  }
+
+  .nav__sns {
+    @include fs.sp-size(margin, 0 25 85 0);
+  }
+  .nav__sns-label {
+    @include fs.sp-size(font-size, 14);
+  }
+  .nav__sns-list {
+    @include fs.sp-size(padding-left, 20);
+    @include fs.sp-size(gap, 15);
+  }
+  .nav__sns-list a {
+    @include fs.sp-size(width, 30);
+    @include fs.sp-size(height, 30);
+  }
+}

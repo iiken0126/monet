@@ -1,0 +1,654 @@
+@use "../foundation/fluid-size" as fs;
+
+// ============================================================
+// GOODS PAGE STYLES
+// ============================================================
+.page-goods main {
+  padding-bottom: 0;
+}
+.page-goods .page-section-header__text {
+  line-height: 1.85;
+  font-feature-settings: normal;
+  @include fs.pc-size(font-size, 14);
+  @include fs.pc-size(padding, 10 0);
+}
+.container__goods {
+  max-width: 1600px;
+  margin: 0 auto;
+  margin-inline: auto;
+}
+.page-goods .structure__nav {
+  @include fs.pc-size(padding-top, 70);
+}
+.page-goods .structure__nav-title {
+  color: #6c9692;
+}
+.page-goods .structure__nav-list {
+  width: 100%;
+  @include fs.pc-size(width, 191);
+}
+.page-goods .structure__nav-list::before,
+.page-goods .structure__nav-list::after {
+  background: #6c9692;
+}
+.page-goods .structure__nav-link {
+  color: #6c9692;
+}
+.page-goods .structure__nav-link::before {
+  border-color: #6c9692;
+}
+.page-goods .structure__nav-item--active .structure__nav-link::before {
+  background-color: #6c9692;
+}
+.page-goods .structure__content {
+  width: 67.1875%;
+  gap: 0;
+  @include fs.pc-size(margin-top, 60);
+}
+
+// ===== GOODS SECTION =====
+.goods-section {
+  @include fs.pc-size(padding, 100 0);
+}
+.goods-section:first-child {
+  padding-top: 0;
+}
+.goods-section--collab {
+  @include fs.pc-size(padding, 100 0);
+}
+.goods-other-section {
+  // @include fs.pc-size(padding, 100 0);
+}
+
+// ===== GOODS SECTION HEADER =====
+.goods-section__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  @include fs.pc-size(margin-bottom, 30);
+}
+.goods-section__title {
+  font-family: var(--font-ja__normal-mincho);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  @include fs.pc-size(font-size, 32);
+}
+.goods-section__header-left {
+}
+.goods-section__subtitle {
+  font-family: var(--font-ja__normal-mincho);
+  font-weight: 600;
+  line-height: 1.8;
+  letter-spacing: 0.05em;
+  @include fs.pc-size(font-size, 20);
+  @include fs.pc-size(margin-top, 5);
+}
+.goods-section__badge {
+  display: inline-flex;
+  align-items: center;
+  background-color: #ae9a4d;
+  color: #fff;
+  font-family: var(--font-ja__bold);
+  font-weight: 500;
+  line-height: 1.85;
+  white-space: nowrap;
+  font-feature-settings: normal;
+  @include fs.pc-size(font-size, 14);
+  @include fs.pc-size(padding, 5 15);
+}
+.goods-section__badge-label {
+  position: relative;
+  @include fs.pc-size(padding-right, 8);
+  @include fs.pc-size(margin-right, 8);
+}
+.goods-section__badge-label::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  width: 1px;
+  background-color: #fff;
+  opacity: 0.5;
+  @include fs.pc-size(height, 14);
+}
+.goods-section__badge-text {
+}
+// ----- グレーバリエーション -----
+.goods-section__badge--gray {
+  background-color: #999;
+}
+// ===== GOODS SECTION COLORED =====
+.goods-section--colored {
+  position: relative;
+}
+.goods-section--colored::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -100vw;
+  right: -100vw;
+  background: linear-gradient(
+    180deg,
+    rgba(244, 230, 160, 0.6) 0%,
+    rgba(255, 244, 187, 0.6) 100%
+  );
+  z-index: -1;
+}
+
+// ===== GOODS LIST =====
+.goods-list {
+  display: grid;
+  @include fs.pc-size(gap, 60);
+}
+
+// ===== GOODS ITEM (図録用カード) =====
+.goods-item {
+}
+.goods-item__content {
+  display: flex;
+  @include fs.pc-size(gap, 56);
+}
+.goods-item__media {
+  flex-shrink: 0;
+  width: 43.488%;
+  align-self: flex-start;
+  background-color: #fff;
+  aspect-ratio: 1 / 1;
+  position: relative;
+}
+.goods-item__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.goods-item__name {
+  font-family: var(--font-ja__normal-mincho);
+  letter-spacing: 0.05em;
+  font-weight: 600;
+  line-height: 1.8;
+  @include fs.pc-size(font-size, 20);
+  @include fs.pc-size(margin-bottom, 5);
+}
+.goods-item__price {
+  font-family: var(--font-ja__normal-mincho);
+  letter-spacing: 0.05em;
+  font-weight: 600;
+  line-height: 1.77;
+  @include fs.pc-size(font-size, 18);
+  @include fs.pc-size(margin-bottom, 20);
+}
+.goods-item__text {
+  line-height: 2.133;
+  @include fs.pc-size(font-size, 15);
+  @include fs.pc-size(margin-bottom, 15);
+}
+.goods-item__text:last-of-type {
+  margin-bottom: 0;
+}
+.goods-item__button {
+  margin-left: auto;
+  margin-right: auto;
+  @include fs.pc-size(margin-top, 50);
+  @include fs.pc-size(max-width, 228);
+}
+
+// ===== GOODS SWIPER (共通) =====
+.goods-swiper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.goods-item .goods-swiper .swiper-wrapper {
+  height: 100%;
+}
+.goods-swiper .swiper-slide {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.goods-swiper .swiper-slide img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+.goods-swiper .swiper-pagination {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @include fs.pc-size(gap, 10);
+  @include fs.pc-size(bottom, 20);
+}
+.goods-swiper .swiper-pagination-bullet {
+  display: block;
+  flex-shrink: 0;
+  background-color: #333;
+  opacity: 0.2;
+  border-radius: 0;
+  margin: 0 !important;
+  height: 3px;
+  @include fs.pc-size(width, 20);
+}
+.goods-swiper .swiper-pagination-bullet-active {
+  opacity: 1;
+  background-color: #666;
+}
+
+// ===== GOODS ACCORDION =====
+.goods-accordion {
+  @include fs.pc-size(margin-top, 40);
+}
+.goods-accordion__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+  border-bottom: 1px solid rgba(44, 118, 107, 0.2);
+  padding: 0;
+  @include fs.pc-size(gap, 30);
+}
+.goods-accordion__trigger:focus {
+  outline: none;
+}
+.goods-accordion__trigger-text {
+  font-family: var(--font-ja__bold);
+  font-weight: 500;
+  line-height: 2;
+  @include fs.pc-size(font-size, 16);
+}
+.goods-accordion__trigger-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-primary);
+  @include fs.pc-size(width, 52);
+  @include fs.pc-size(height, 52);
+}
+.goods-accordion__trigger-icon::before,
+.goods-accordion__trigger-icon::after {
+  content: "";
+  position: absolute;
+  background-color: #fff;
+  transition: transform 0.3s ease;
+}
+.goods-accordion__trigger-icon::before {
+  height: 1px;
+  @include fs.pc-size(width, 12);
+}
+.goods-accordion__trigger-icon::after {
+  width: 1px;
+  @include fs.pc-size(height, 12);
+}
+.goods-accordion.is-open .goods-accordion__trigger-icon::after {
+  transform: rotate(90deg);
+}
+.goods-accordion__content {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.4s ease;
+}
+.goods-accordion.is-open .goods-accordion__content {
+  grid-template-rows: 1fr;
+}
+.goods-accordion__content-inner {
+  overflow: hidden;
+}
+.goods-accordion__content-body {
+  border-bottom: 1px solid rgba(44, 118, 107, 0.2);
+  @include fs.pc-size(padding, 40 0);
+}
+// ===== GOODS DETAIL =====
+.goods-detail__item {
+  display: flex;
+  line-height: 1.8;
+  @include fs.pc-size(gap, 10);
+  @include fs.pc-size(font-size, 12);
+}
+.goods-detail__term {
+  flex-shrink: 0;
+  font-feature-settings: normal;
+  @include fs.pc-size(width, 54);
+}
+.goods-detail__desc {
+  position: relative;
+  text-indent: -0.8em;
+}
+.goods-detail__desc::before {
+  content: "：";
+}
+// ===== GOODS SECTION BUTTON =====
+.goods-section__button {
+  display: flex;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  border-top: 1px solid rgba(44, 118, 107, 0.2);
+  @include fs.pc-size(margin-top, 40);
+  @include fs.pc-size(padding-top, 50);
+}
+
+// ===== GOODS GRID =====
+.goods-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  @include fs.pc-size(gap, 30);
+  @include fs.pc-size(margin-top, 30);
+}
+.goods-grid--cols-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+// ===== GOODS CARD =====
+.goods-card__media {
+  position: relative;
+  width: 100%;
+  background-color: #f5f5f5;
+  aspect-ratio: 1 / 1;
+}
+.goods-card .goods-swiper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.goods-card .goods-swiper .swiper-wrapper {
+  height: 100%;
+}
+.goods-card .goods-swiper .swiper-slide {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.goods-card .goods-swiper .swiper-slide img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+.goods-card .goods-swiper .swiper-pagination {
+  position: absolute;
+  @include fs.pc-size(bottom, 20);
+}
+.goods-card .goods-swiper .swiper-pagination-bullet {
+  background-color: #333;
+  opacity: 0.2;
+  border-radius: 0;
+  @include fs.pc-size(width, 20);
+  @include fs.pc-size(height, 3);
+}
+.goods-card .goods-swiper .swiper-pagination-bullet-active {
+  opacity: 1;
+  background-color: #666;
+}
+// ===== GOODS CARD BODY =====
+.goods-card__body {
+  @include fs.pc-size(padding-top, 20);
+}
+.goods-card__row {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  @include fs.pc-size(gap, 16);
+}
+.goods-card__name {
+  color: #000;
+  font-family: var(--font-ja__bold);
+  font-feature-settings: normal;
+  font-weight: 500;
+}
+.goods-card__price {
+  color: #000;
+  font-family: var(--font-ja__normal);
+  font-feature-settings: normal;
+  font-weight: 400;
+}
+
+// ----- 2カラム用サイズ -----
+.goods-grid .goods-card__name {
+  line-height: 2;
+  @include fs.pc-size(font-size, 16);
+}
+.goods-grid .goods-card__price {
+  line-height: 2.133;
+  @include fs.pc-size(font-size, 15);
+}
+
+// ----- 3カラム用サイズ -----
+.goods-grid--cols-3 .goods-card__row {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+}
+.goods-grid--cols-3 .goods-card__name {
+  line-height: 1.85;
+  @include fs.pc-size(font-size, 14);
+}
+.goods-grid--cols-3 .goods-card__price {
+  line-height: 1.85;
+  @include fs.pc-size(font-size, 14);
+}
+
+// ============================================================
+// SP版スタイル
+// ============================================================
+@media screen and (max-width: 824px) {
+  .page-goods main {
+  }
+  .page-goods .page-section-header__text {
+    display: grid;
+    padding: 0;
+    @include fs.sp-size(margin-top, 10);
+    @include fs.sp-size(gap, 5);
+    @include fs.sp-size(font-size, 14);
+  }
+  .container__goods {
+    margin-top: 0;
+    width: 87.18%;
+    padding: 0;
+  }
+  .page-goods .structure__nav-dropdown-trigger {
+    border-color: #6c9692;
+    color: #6c9692;
+  }
+  .page-goods .structure__nav-dropdown-trigger::before {
+    background-color: #6c9692;
+  }
+  .page-goods .structure__nav-dropdown-arrow svg {
+    fill: #6c9692;
+  }
+  .page-goods .structure__nav-dropdown-menu {
+    border-color: #6c9692;
+  }
+  .page-goods .structure__content {
+    width: 100%;
+    margin-right: 0;
+    @include fs.sp-size(margin-top, 20);
+  }
+
+  // ----- GOODS SECTION -----
+  .goods-section {
+    @include fs.sp-size(padding, 50 0);
+  }
+  .goods-section__title {
+    line-height: 1.66;
+    @include fs.sp-size(font-size, 24);
+  }
+
+  // ----- GOODS SECTION HEADER -----
+  .goods-section__header {
+    flex-direction: column;
+    @include fs.sp-size(margin-bottom, 20);
+  }
+  .goods-section__header-left {
+    width: 100%;
+  }
+  .goods-section__subtitle {
+    @include fs.sp-size(font-size, 18);
+    @include fs.sp-size(margin-top, 5);
+  }
+  .goods-section__badge {
+    @include fs.sp-size(font-size, 14);
+    @include fs.sp-size(padding, 5 15);
+    @include fs.sp-size(margin-top, 15);
+  }
+  .goods-section__badge-label {
+    @include fs.sp-size(padding-right, 8);
+    @include fs.sp-size(margin-right, 8);
+  }
+  .goods-section__badge-label::after {
+    @include fs.sp-size(height, 14);
+  }
+
+  // ----- GOODS SECTION COLORED -----
+  .goods-section--colored {
+  }
+
+  // ----- GOODS LIST -----
+  .goods-list {
+    @include fs.sp-size(gap, 40);
+  }
+
+  // ----- GOODS ITEM -----
+  .goods-item {
+  }
+  .goods-item__content {
+    flex-direction: column;
+    @include fs.sp-size(gap, 40);
+  }
+  .goods-item__media {
+    width: 100%;
+  }
+  .goods-item__name {
+    line-height: 1.778;
+    @include fs.sp-size(font-size, 18);
+    @include fs.sp-size(margin-bottom, 5);
+  }
+  .goods-item__price {
+    line-height: 1.875;
+    @include fs.sp-size(font-size, 16);
+    @include fs.sp-size(margin-bottom, 15);
+  }
+  .goods-item__text {
+    line-height: 2;
+    @include fs.sp-size(font-size, 14);
+    @include fs.sp-size(margin-bottom, 10);
+  }
+  .goods-item__button {
+    max-width: none;
+    @include fs.sp-size(margin-top, 40);
+    @include fs.sp-size(max-width, 228);
+  }
+
+  // ----- GOODS SWIPER -----
+  .goods-swiper .swiper-pagination {
+    @include fs.sp-size(gap, 10);
+    @include fs.sp-size(bottom, 20);
+  }
+  .goods-swiper .swiper-pagination-bullet {
+    @include fs.sp-size(width, 20);
+    @include fs.sp-size(height, 3);
+  }
+
+  // ----- GOODS ACCORDION -----
+  .goods-accordion {
+    @include fs.sp-size(margin-top, 20);
+  }
+  .goods-accordion__trigger {
+    @include fs.sp-size(gap, 20);
+  }
+  .goods-accordion__trigger-text {
+    @include fs.sp-size(font-size, 15);
+  }
+  .goods-accordion__trigger-icon {
+    @include fs.sp-size(width, 52);
+    @include fs.sp-size(height, 52);
+  }
+  .goods-accordion__trigger-icon::before {
+    @include fs.sp-size(width, 12);
+  }
+  .goods-accordion__trigger-icon::after {
+    @include fs.sp-size(height, 12);
+  }
+  .goods-accordion__content-body {
+    @include fs.sp-size(padding, 30 0);
+  }
+  // ----- GOODS DETAIL -----
+  .goods-detail__item {
+    margin-bottom: 0;
+    line-height: 1.83;
+    @include fs.sp-size(gap, 10);
+  }
+  .goods-detail__term {
+    @include fs.sp-size(font-size, 12);
+    @include fs.sp-size(width, 55);
+  }
+  .goods-detail__desc {
+    @include fs.sp-size(font-size, 12);
+  }
+  // ----- GOODS SECTION BUTTON -----
+  .goods-section__button {
+    max-width: none;
+    @include fs.sp-size(margin-top, 30);
+    @include fs.sp-size(padding-top, 40);
+  }
+
+  // ----- GOODS GRID -----
+  .goods-grid {
+    grid-template-columns: 1fr;
+    @include fs.sp-size(gap, 30);
+    @include fs.sp-size(margin-top, 30);
+  }
+  .goods-grid--cols-3 {
+    grid-template-columns: repeat(2, 1fr);
+    @include fs.sp-size(gap, 20);
+  }
+  // ----- GOODS CARD -----
+  .goods-card .goods-swiper .swiper-pagination {
+    @include fs.sp-size(bottom, 20);
+  }
+  .goods-card .goods-swiper .swiper-pagination-bullet {
+    @include fs.sp-size(width, 20);
+    @include fs.sp-size(height, 3);
+  }
+  .goods-card__body {
+    @include fs.sp-size(padding-top, 15);
+  }
+  .goods-card__row {
+    @include fs.sp-size(gap, 16);
+  }
+
+  // ----- SP 2カラム用サイズ -----
+  .goods-grid .goods-card__name {
+    line-height: 1.86;
+    @include fs.sp-size(font-size, 15);
+  }
+  .goods-grid .goods-card__price {
+    line-height: 2;
+    @include fs.sp-size(font-size, 14);
+  }
+
+  // ----- SP 3カラム→2カラム表示 -----
+  .goods-grid--cols-3 .goods-card__row {
+  }
+  .goods-grid--cols-3 .goods-card__name {
+    line-height: 1.85;
+    @include fs.sp-size(font-size, 14);
+  }
+  .goods-grid--cols-3 .goods-card__price {
+    line-height: 1.85;
+    @include fs.sp-size(font-size, 14);
+  }
+}

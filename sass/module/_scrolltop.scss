@@ -1,0 +1,40 @@
+// fluid-sizeをインポート
+@use "../foundation/fluid-size" as fs;
+
+.scroll-to-top {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  color: white;
+  border: none;
+  cursor: pointer;
+  opacity: 0;
+  padding: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+  z-index: 5;
+  @include fs.pc-size(width, 70);
+  @include fs.pc-size(height, 70);
+}
+.scroll-to-top.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.scroll-to-top:focus {
+  outline: none;
+}
+// キーボード操作時のフォーカス効果
+.scroll-to-top:focus-visible {
+  box-shadow: 0 0 0 2px var(--color-primary);
+}
+// フッター上で停止用
+.scroll-to-top.stop-at-footer {
+  position: absolute;
+}
+
+@media screen and (max-width: 824px) {
+  .scroll-to-top {
+    display: none;
+  }
+}

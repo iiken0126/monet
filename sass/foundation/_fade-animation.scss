@@ -1,0 +1,232 @@
+@use "../foundation/fluid-size" as fs;
+
+/* 基本的なフェードイン - blur + opacity + visibility */
+.js-fadein {
+  opacity: 0;
+  filter: blur(10px);
+  visibility: hidden;
+  transition: opacity 0.6s ease-out, filter 0.6s ease-out, visibility 0.6s;
+}
+
+.js-fadein.in-fadein {
+  opacity: 1;
+  filter: none;
+  visibility: visible;
+}
+
+/* Safari用のキーフレーム */
+@-webkit-keyframes blur {
+  0% {
+    text-shadow: 0 0 100px currentColor;
+    opacity: 0;
+    color: transparent;
+  }
+  5% {
+    text-shadow: 0 0 90px currentColor;
+    color: transparent;
+  }
+  15% {
+    opacity: 1;
+    color: inherit;
+  }
+  20% {
+    text-shadow: 0 0 0px currentColor;
+    color: inherit;
+  }
+  80% {
+    text-shadow: 0 0 0px currentColor;
+    opacity: 1;
+    color: inherit;
+  }
+  100% {
+    text-shadow: 0 0 0px currentColor;
+    opacity: 1;
+    color: inherit;
+  }
+}
+
+/* 標準のキーフレーム */
+@keyframes blur {
+  0% {
+    text-shadow: 0 0 100px currentColor;
+    opacity: 0;
+    color: transparent;
+  }
+  5% {
+    text-shadow: 0 0 90px currentColor;
+    color: transparent;
+  }
+  15% {
+    opacity: 1;
+    color: inherit;
+  }
+  20% {
+    text-shadow: 0 0 0px currentColor;
+    color: inherit;
+  }
+  80% {
+    text-shadow: 0 0 0px currentColor;
+    opacity: 1;
+    color: inherit;
+  }
+  100% {
+    text-shadow: 0 0 0px currentColor;
+    opacity: 1;
+    color: inherit;
+  }
+}
+
+/* =======================================================
+ * 見出しテキストアニメーション追加
+ * loading-textと同じブラーアニメーション
+ * ======================================================= */
+
+/* 見出しアニメーション基本スタイル */
+.js-heading-text-anim {
+  font-family: var(--font-ja__normal-mincho);
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0.08em;
+
+  /* Safari最適化 */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000px;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  will-change: transform, filter, opacity;
+
+  /* GPU最適化 */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+.js-heading-text-anim span {
+  color: transparent;
+  display: inline-block;
+  animation-fill-mode: forwards;
+  -webkit-animation-fill-mode: forwards;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  filter: none !important;
+
+  /* Safari最適化を追加 */
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  will-change: transform, opacity, filter;
+}
+
+.js-heading-text-anim.is-visible span {
+  filter: none !important;
+}
+
+/* Safari用のキーフレーム（黒色版 - loading-textと同じブラー効果） */
+@-webkit-keyframes blur-heading {
+  0% {
+    text-shadow: 0 0 100px var(--color-cream);
+    opacity: 0;
+  }
+  5% {
+    text-shadow: 0 0 90px var(--color-cream);
+  }
+  15% {
+    opacity: 1;
+  }
+  20% {
+    text-shadow: 0 0 0px var(--color-cream);
+  }
+  80% {
+    text-shadow: 0 0 0px var(--color-cream);
+    opacity: 1;
+  }
+  100% {
+    text-shadow: 0 0 0px var(--color-cream);
+    opacity: 1;
+  }
+}
+
+/* 標準のキーフレーム（loading-textと同じ） */
+@keyframes blur-heading {
+  0% {
+    text-shadow: 0 0 100px var(--color-cream);
+    opacity: 0;
+  }
+  5% {
+    text-shadow: 0 0 90px var(--color-cream);
+  }
+  15% {
+    opacity: 1;
+  }
+  20% {
+    text-shadow: 0 0 0px var(--color-cream);
+  }
+  80% {
+    text-shadow: 0 0 0px var(--color-cream);
+    opacity: 1;
+  }
+  100% {
+    text-shadow: 0 0 0px var(--color-cream);
+    opacity: 1;
+  }
+}
+
+/* is-visibleクラス（ScrollTriggerで追加される） */
+.js-heading-text-anim.is-visible {
+}
+
+/* パフォーマンス最適化：reducedMotion対応 */
+@media (prefers-reduced-motion: reduce) {
+  .js-heading-text-anim span {
+    animation: none !important;
+    -webkit-animation: none !important;
+    color: var(--color-primary) !important;
+    opacity: 1 !important;
+    transform: none !important;
+    -webkit-transform: none !important;
+  }
+}
+
+/* 汎用ページ読み込みアニメーション */
+.js-page-load {
+  opacity: 0;
+  filter: blur(10px);
+  visibility: hidden;
+  transition: opacity 0.6s ease-out, filter 0.6s ease-out, visibility 0.6s;
+}
+
+.js-page-load.page-loaded {
+  opacity: 1;
+  filter: blur(0px);
+  visibility: visible;
+}
+
+/* =======================================================
+ * ボックス要素用フェードインアニメーション（Y軸移動 + ブラー）
+ * ======================================================= */
+.js-fade-box {
+  opacity: 0;
+  filter: blur(10px);
+  transform: translateY(30px);
+  visibility: hidden;
+  transition: opacity 0.8s ease-out, filter 0.8s ease-out,
+    transform 0.8s ease-out, visibility 0.8s;
+  will-change: transform, opacity, filter; // パフォーマンス改善
+}
+
+.js-fade-box.in-fade-box {
+  opacity: 1;
+  filter: blur(0px);
+  transform: translateY(0);
+  visibility: visible;
+  will-change: auto; // アニメーション後はリセット
+}
+
+// リサイズ中のちらつき防止
+@media screen and (prefers-reduced-motion: no-preference) {
+  .resizing .js-fade-box {
+    transition-duration: 0s !important;
+  }
+}

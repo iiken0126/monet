@@ -1,0 +1,33 @@
+@use "../foundation/fluid-size" as fs;
+
+.exhibition-notice {
+  position: fixed;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #555;
+  z-index: 5;
+  @include fs.pc-size(padding, 15 0);
+}
+.exhibition-notice__text {
+  line-height: 1.85;
+  color: #fff;
+  @include fs.pc-size(font-size, 14);
+}
+.exhibition-notice + .header.is-fixed {
+  top: 0;
+}
+.exhibition-notice + .header.header--menu-open {
+  top: 0;
+}
+@media screen and (max-width: 824px) {
+  .exhibition-notice {
+    @include fs.sp-size(padding, 15 25);
+  }
+  .exhibition-notice__text {
+    @include fs.sp-size(font-size, 14);
+  }
+  .exhibition-notice + .header {
+  }
+}

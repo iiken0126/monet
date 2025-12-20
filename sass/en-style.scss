@@ -1,0 +1,158 @@
+@use "foundation/fluid-size" as fs;
+
+body {
+  font-feature-settings: unset;
+  text-align: left;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  letter-spacing: 0 !important;
+}
+/* デフォルト（1700px未満）では表示 */
+.tb {
+  display: block;
+}
+/* 1700px以上では非表示 */
+@media (min-width: 1700px) {
+  .tb {
+    display: none;
+  }
+}
+.page-hero__title {
+  text-align: left;
+}
+.button-filled--en {
+  @include fs.pc-size(max-width, 450);
+}
+.nav__lists {
+  align-items: center;
+}
+@media (min-width: 825px) {
+  .main-visual .swiper-wrapper {
+    align-items: flex-end;
+  }
+  .main-visual__caption-details {
+    max-width: 34%;
+  }
+}
+.first-badge__text {
+  display: inline-block;
+  font-weight: 500;
+  color: #fff;
+  line-height: 1.833;
+  background-color: var(--color-primary);
+  @include fs.pc-size(padding, 5 10);
+  @include fs.pc-size(font-size, 11);
+}
+@media (max-width: 824px) {
+  .first-badge__text {
+    @include fs.sp-size(padding, 5 10);
+    @include fs.sp-size(font-size, 11);
+  }
+}
+// ========================================
+// TicketPage
+// ========================================
+.ticket-nav {
+  width: 60%;
+  @include fs.pc-size(max-width, 760);
+}
+
+.ticket-title {
+  display: block;
+}
+.ticket-title__text {
+}
+.ticket-title__status {
+  white-space: nowrap;
+  margin-left: 1em;
+}
+.ticket-info-list__term {
+  @include fs.pc-size(width, 145);
+}
+
+@media (max-width: 824px) {
+  .ticket-nav {
+    width: 87.18%;
+  }
+  .ticket-info-list__term {
+    width: 100%;
+  }
+}
+// ========================================
+// HighlightPage
+// ========================================
+.item-title {
+  text-align: left;
+}
+// ========================================
+// Structureage
+// ========================================
+.structure__nav-link {
+  @include fs.pc-size(font-size, 12);
+  white-space: nowrap;
+}
+.structure__nav-link {
+  @include fs.pc-size(padding, 10 10 10 15);
+}
+.chapter5-image-left {
+  width: 100%;
+}
+.chapter5-image-right {
+  width: 100%;
+}
+@media (min-width: 825px) {
+  .structure__chapter-flex {
+    align-items: start;
+  }
+  #chapter02 .item-description,
+  #chapter03 .item-description,
+  #chapter09 .item-description {
+    margin-top: 0;
+  }
+  #chapter02 .structure__chapter-body,
+  #chapter03 .structure__chapter-body,
+  #chapter09 .structure__chapter-body {
+    @include fs.pc-size(gap, 20);
+  }
+  #chapter02 .structure__image-container,
+  #chapter03 .structure__image-container,
+  #chapter09 .structure__image-container {
+    @include fs.pc-size(margin-top, 9);
+  }
+  .chapter5-image-left {
+    @include fs.pc-size(width, 456);
+  }
+  .chapter5-image-right {
+    @include fs.pc-size(width, 329);
+  }
+}
+
+// ========================================
+// Overview
+// ========================================
+.outline-list__term {
+  @include fs.pc-size(width, 220);
+}
+.outline-list__term {
+  line-height: 1.7;
+}
+.outline-list__description {
+  line-height: 1.7;
+}
+.table th,
+.table td {
+  line-height: 1.7;
+}
+.table__note {
+  line-height: 1.7;
+}
+@media (max-width: 824px) {
+  .outline-list__term {
+    width: 100%;
+  }
+}

@@ -1,0 +1,203 @@
+@use "../foundation/fluid-size" as fs;
+
+.article-lists {
+  position: relative;
+  display: grid;
+  @include fs.pc-size(gap, 80);
+}
+
+.article-list {
+  position: relative;
+  background-color: #fff;
+  border-bottom: 3px solid rgba(44, 118, 107, 0.2);
+}
+
+.article-list__inner {
+  overflow: hidden;
+  transition: height 0.4s ease-in-out;
+  @include fs.pc-size(padding, 40 56);
+}
+
+.article-item {
+  display: flex;
+  transition: visibility 0.3s ease, opacity 0.3s ease;
+  @include fs.pc-size(padding, 30 0);
+  @include fs.pc-size(gap, 60);
+}
+
+.article-item:not(:last-child) {
+  border-bottom: 1px solid #ddd;
+}
+
+.article-item__head {
+  display: flex;
+  flex-direction: column;
+  @include fs.pc-size(gap, 10);
+  @include fs.pc-size(width, 84);
+}
+
+.article-item__category {
+  display: inline-block;
+  line-height: 2;
+  background-color: #eee;
+  text-align: center;
+  @include fs.pc-size(font-size, 12);
+  @include fs.pc-size(border-radius, 50);
+  @include fs.pc-size(width, 58);
+}
+
+.article-item__date {
+  color: #333;
+  line-height: 1.85;
+  @include fs.pc-size(font-size, 14);
+}
+
+.article-item__body {
+  flex: 1;
+  display: grid;
+  @include fs.pc-size(gap, 5);
+}
+
+.article-item__link {
+  display: flex;
+  flex-direction: column;
+  font-feature-settings: normal;
+  text-align: left;
+}
+
+.article-item__title {
+  line-height: 2;
+  align-self: baseline;
+  font-weight: 500;
+  font-family: var(--font-ja__bold);
+}
+
+.article-item a {
+  text-decoration: underline;
+}
+
+.article-item__link[target="_blank"] {
+  display: inline;
+  align-items: baseline;
+}
+
+.article-item__link-single[target="_blank"] .article-item__sublink-inner,
+.article-item__link[target="_blank"] .article-item__sublink-inner {
+  display: inline;
+  background: url("../../assets/images/icon__blank.svg") no-repeat right
+    center/#{fs.fpc(14)};
+  @include fs.pc-size(padding-right, 24);
+}
+
+.article-item__text {
+  line-height: 1.85;
+  font-feature-settings: normal;
+  text-align: left;
+  @include fs.pc-size(font-size, 14);
+}
+
+.article-item__sublink {
+  line-height: 1.85;
+  font-feature-settings: normal;
+  text-align: left;
+  @include fs.pc-size(font-size, 14);
+}
+
+/* 機能追加: 4個目以降の記事を初期状態で非表示 */
+.article-item:nth-child(n + 4) {
+  visibility: hidden;
+  opacity: 0;
+}
+
+/* 機能追加: is-closeクラスが追加された時の4個目以降の記事表示 */
+.article-list__inner.is-close .article-item:nth-child(n + 4) {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* 機能追加: 3記事目のborder-bottomを非表示（展開時は表示） */
+.article-item:nth-child(3) {
+  border-bottom: none;
+}
+
+.article-list__inner.is-close .article-item:nth-child(3) {
+  border-bottom: 1px solid #ddd;
+}
+
+@media screen and (max-width: 824px) {
+  .article-lists {
+    @include fs.sp-size(gap, 50);
+  }
+
+  .article-list {
+    padding: 0;
+  }
+
+  .article-list__inner {
+    @include fs.sp-size(padding, 30 20 60);
+  }
+
+  .article-item {
+    flex-direction: column;
+    @include fs.sp-size(padding, 20 0);
+    @include fs.sp-size(gap, 5);
+  }
+
+  .article-item:not(:last-child) {
+    // border-bottomは既に親で設定済み
+  }
+
+  .article-item__head {
+    width: auto;
+    flex-direction: row-reverse;
+    width: 100%;
+    justify-content: flex-end;
+    @include fs.sp-size(gap, 15);
+  }
+
+  .article-item__category {
+    @include fs.sp-size(margin-bottom, 7);
+    // font-size, border-radius, widthも明示的に指定
+    @include fs.sp-size(font-size, 12);
+    @include fs.sp-size(border-radius, 50);
+    @include fs.sp-size(width, 58);
+  }
+
+  .article-item__date {
+    // font-sizeを明示的に指定
+    flex: 1;
+    @include fs.sp-size(font-size, 14);
+  }
+
+  .article-item__body {
+    // gapを明示的に指定
+    @include fs.sp-size(gap, 5);
+  }
+
+  .article-item__title {
+    // 特に変更なし
+  }
+
+  .article-item__link[target="_blank"] {
+    display: inline-flex;
+    align-items: baseline;
+  }
+
+  .article-item__link-single[target="_blank"] .article-item__sublink-inner,
+  .article-item__link[target="_blank"] .article-item__sublink-inner {
+    display: block;
+    // padding-rightとbackground-sizeを明示的に指定
+    @include fs.sp-size(padding-right, 24);
+    background-size: #{fs.fsp(14)};
+  }
+
+  .article-item__text {
+    // font-sizeを明示的に指定
+    @include fs.sp-size(font-size, 14);
+  }
+
+  .article-item__sublink {
+    // font-sizeを明示的に指定
+    @include fs.sp-size(font-size, 14);
+  }
+}

@@ -1,0 +1,41 @@
+// fluid-sizeをインポート
+@use "../foundation/fluid-size" as fs;
+
+.notes {
+  list-style: none;
+  @include fs.pc-size(margin-top, 20);
+}
+.notes__item {
+  line-height: 1.83;
+  font-feature-settings: normal;
+  display: flex;
+  @include fs.pc-size(font-size, 12);
+}
+.notes__item a {
+  text-decoration: underline;
+  display: inline-block;
+  text-underline-offset: 4px;
+}
+.notes__item-head {
+  display: inline-block;
+}
+.notes__item-text {
+  display: inline-block;
+}
+.notes__item--caution {
+  @include fs.pc-size(margin-top, 10);
+  @include fs.pc-size(font-size, 14);
+  font-weight: 600;
+}
+@media screen and (max-width: 824px) {
+  .notes {
+    @include fs.sp-size(margin-top, 20);
+  }
+  .notes__item {
+    @include fs.sp-size(font-size, 12);
+  }
+  .notes__item--caution {
+    @include fs.sp-size(margin-top, 10);
+    @include fs.sp-size(font-size, 12);
+  }
+}

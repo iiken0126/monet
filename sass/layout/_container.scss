@@ -1,0 +1,41 @@
+// fluid-sizeをインポート
+@use "../foundation/fluid-size" as fs;
+
+.container {
+  // 1080px未満：比率で縮小
+  width: 87.18%; // モバイル用のデフォルト比率
+  max-width: 1002px;
+  margin: 0 auto;
+}
+
+// 1080px〜1280px：左右の余白が100px〜139pxで変化
+@media (min-width: 1080px) {
+  .container {
+    width: calc(100% - 200px); // 左右100pxずつ
+    max-width: 1002px;
+  }
+}
+
+// 1280px〜1600px：比率維持
+@media (min-width: 1280px) {
+  .container {
+    width: 78.28125%; // 1002/1280 = 0.7828125
+    max-width: none;
+  }
+}
+
+// 1600px以上：幅固定
+@media (min-width: 1600px) {
+  .container {
+    width: 1252px; // 1600 × 0.7828125 ≈ 1252px
+    max-width: 1252px;
+  }
+}
+
+// モバイル（824px以下）
+@media screen and (max-width: 824px) {
+  .container {
+    width: 87.18%;
+    padding: 0;
+  }
+}

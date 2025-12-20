@@ -1,0 +1,123 @@
+@use "../foundation/fluid-size" as fs;
+
+/* ===== PRESENT SECTION ===== */
+.present-section {
+  @include fs.pc-size(margin-top, 60);
+}
+.present-section__image {
+  width: 100%;
+}
+.present-section__image img {
+  width: 100%;
+  height: auto;
+}
+.present-section__content {
+  background-color: #fff;
+  border-bottom: 3px solid rgba(79, 148, 169, 0.3);
+  @include fs.pc-size(padding, 60 56);
+}
+
+/* ===== PRESENT HEAD ===== */
+.present-head {
+  @include fs.pc-size(margin-bottom, 20);
+}
+.present-head__title {
+  display: flex;
+  align-items: center;
+  font-family: var(--font-ja__normal-mincho);
+  font-weight: 600;
+  line-height: 1.75;
+  letter-spacing: 0.08em;
+  @include fs.pc-size(font-size, 24);
+  @include fs.pc-size(gap, 20);
+}
+.present-head__status {
+  font-weight: 500;
+  line-height: 2;
+  letter-spacing: 0.02em;
+  font-family: var(--font-ja__bold);
+  color: var(--color-primary);
+  @include fs.pc-size(font-size, 18);
+}
+
+/* ===== PRESENT TEXT ===== */
+.present-text {
+  line-height: 2.133;
+  @include fs.pc-size(font-size, 15);
+  @include fs.pc-size(margin-bottom, 30);
+}
+
+/* ===== PRESENT INFO ===== */
+.present-info {
+  display: grid;
+  background-color: rgba(79, 148, 169, 0.1);
+  @include fs.pc-size(padding, 40);
+  @include fs.pc-size(margin-bottom, 30);
+  @include fs.pc-size(gap, 10);
+}
+.present-info__item {
+  display: flex;
+  @include fs.pc-size(gap, 10);
+}
+.present-info__term {
+  flex-shrink: 0;
+  font-weight: 500;
+  font-family: var(--font-ja__bold);
+  line-height: 2;
+  @include fs.pc-size(width, 130);
+  @include fs.pc-size(font-size, 16);
+}
+.present-info__desc {
+  flex: 1;
+  line-height: 2.133;
+  @include fs.pc-size(font-size, 15);
+}
+
+/* ===== SP ===== */
+@media screen and (max-width: 824px) {
+  .present-section {
+    margin-top: 0;
+  }
+  .present-section__image {
+  }
+
+  .present-section__content {
+    @include fs.sp-size(padding, 40 20);
+  }
+  .present-head {
+    @include fs.sp-size(margin-bottom, 20);
+  }
+  .present-head__title {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    @include fs.sp-size(font-size, 21);
+  }
+  .present-head__status {
+    line-height: 2;
+    @include fs.sp-size(font-size, 16);
+    @include fs.sp-size(margin-top, 10);
+  }
+  .present-text {
+    line-height: 2;
+    @include fs.sp-size(font-size, 14);
+    @include fs.sp-size(margin-bottom, 30);
+  }
+  .present-info {
+    @include fs.sp-size(padding, 20);
+    @include fs.sp-size(margin-bottom, 30);
+  }
+  .present-info__item {
+    flex-direction: column;
+    @include fs.sp-size(gap, 5);
+  }
+  .present-info__term {
+    width: 100%;
+    line-height: 1.87;
+    @include fs.sp-size(font-size, 15);
+  }
+  .present-info__desc {
+    line-height: 2;
+    @include fs.sp-size(font-size, 14);
+  }
+}

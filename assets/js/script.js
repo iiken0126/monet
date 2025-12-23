@@ -58,7 +58,8 @@
       title,
       date,
       navColumns,
-      navInner;
+      navInner,
+      navSns;
     let scrollPosition = 0;
     let isMenuOpen = false;
     let openTl, closeTl;
@@ -80,6 +81,13 @@
           filter: "blur(10px)",
         });
       });
+
+      if (navSns) {
+        gsap.set(navSns, {
+          autoAlpha: 0,
+          filter: "blur(10px)",
+        });
+      }
     }
 
     /**
@@ -87,6 +95,9 @@
      */
     function setupOpenAnimation() {
       openTl = gsap.timeline({ paused: true });
+      const animElements = [subtitle, title, date, ...navColumns];
+      if (navSns) animElements.push(navSns);
+
       openTl
         .set(nav, {
           visibility: "visible",
@@ -103,7 +114,7 @@
           }
         )
         .to(
-          [subtitle, title, date, ...navColumns],
+          animElements,
           {
             autoAlpha: 1,
             filter: "blur(0px)",
@@ -119,9 +130,15 @@
      */
     function setupCloseAnimation() {
       closeTl = gsap.timeline({ paused: true });
+      const closeElements = [navColumns, date, title, subtitle];
+      if (navSns) closeElements.unshift(navSns);
+
+      const clearElements = [navInner, subtitle, title, date, navColumns];
+      if (navSns) clearElements.push(navSns);
+
       closeTl
         .to(
-          [navColumns, date, title, subtitle],
+          closeElements,
           {
             autoAlpha: 0,
             filter: "blur(10px)",
@@ -144,7 +161,7 @@
                 pointerEvents: "none",
               });
               // 他の要素のスタイルをクリア
-              gsap.set([navInner, subtitle, title, date, navColumns], {
+              gsap.set(clearElements, {
                 clearProps: "all",
               });
             },
@@ -329,6 +346,7 @@
       date = document.querySelector(".exhibition__date");
       navColumns = document.querySelectorAll(".nav__list-column");
       navInner = document.querySelector(".nav__inner");
+      navSns = document.querySelector(".nav__sns");
 
       if (!menuButton || !nav) return;
 

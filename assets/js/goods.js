@@ -2,11 +2,10 @@
   "use strict";
 
   // ============================================================
-  // 設定値（composition/structure.jsと同じ値を使用）
+  // 設定値
   // ============================================================
-  const SP_ADDITIONAL_OFFSET = 40; // スマホ用追加オフセット値
   const PC_FALLBACK_OFFSET = 80; // PC用フォールバック値
-  const SP_FALLBACK_OFFSET = 100; // SP用フォールバック基本値
+  const SP_FALLBACK_OFFSET = 50; // SP用フォールバック値
 
   document.addEventListener("DOMContentLoaded", function () {
     // ============================================================
@@ -63,10 +62,10 @@
       return window.innerWidth <= 824;
     }
 
-    // 動的オフセットを取得（composition/structure.jsと同じロジック）
+    // 動的オフセットを取得
     function getDynamicOffset() {
       if (isMobile()) {
-        return SP_FALLBACK_OFFSET + SP_ADDITIONAL_OFFSET;
+        return SP_FALLBACK_OFFSET;
       }
       return PC_FALLBACK_OFFSET;
     }
@@ -293,23 +292,26 @@
 
     // ============================================================
     // Museum Section での Dropdown 非表示制御
+    // showクラスの追加はscript.jsのFooterControlModuleが担当
+    // ここではmuseum-section内に入った時の非表示のみを制御
     // ============================================================
     const museumSection = document.querySelector(".museum-section");
 
     if (museumSection && dropdown) {
+      // museum-sectionが画面内にあるかどうかを追跡
+      let isInMuseumSection = false;
+
       const museumObserver = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
+            isInMuseumSection = entry.isIntersecting;
             if (entry.isIntersecting) {
               // museum-sectionが画面内に入ったらdropdownを非表示
               dropdown.classList.remove("show");
+              dropdown.classList.add("hide-in-museum");
             } else {
-              // museum-sectionが画面外に出たらdropdownを表示（スクロール位置が上の場合）
-              const rect = museumSection.getBoundingClientRect();
-              // museum-sectionより上にスクロールしている場合のみshowを追加
-              if (rect.top > window.innerHeight) {
-                dropdown.classList.add("show");
-              }
+              // museum-sectionから出たらフラグを解除（showの追加はFooterControlModuleに任せる）
+              dropdown.classList.remove("hide-in-museum");
             }
           });
         },
@@ -318,25 +320,15 @@
 
       museumObserver.observe(museumSection);
 
-      // スクロールイベントで追加制御（より確実な表示制御）
+      // スクロールイベントでmuseum-section内の場合は常にshowを削除
+      // （FooterControlModuleがshowを追加しても上書きする）
       let scrollTicking = false;
       window.addEventListener(
         "scroll",
         function () {
-          if (!scrollTicking) {
+          if (!scrollTicking && isInMuseumSection) {
             window.requestAnimationFrame(function () {
-              const rect = museumSection.getBoundingClientRect();
-              const windowHeight = window.innerHeight;
-
-              // museum-sectionが画面内に入っているかチェック
-              if (rect.top < windowHeight && rect.bottom > 0) {
-                dropdown.classList.remove("show");
-              } else if (rect.top >= windowHeight) {
-                // museum-sectionより上にいる場合は表示
-                dropdown.classList.add("show");
-              }
-              // museum-sectionより下にスクロールした場合は非表示のまま
-
+              dropdown.classList.remove("show");
               scrollTicking = false;
             });
             scrollTicking = true;

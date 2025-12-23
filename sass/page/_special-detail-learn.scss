@@ -216,6 +216,11 @@
   display: inline;
 }
 
+.enjoy-guide .button-filled,
+.tv-section .button-filled {
+  @include fs.pc-size(max-width, 258);
+}
+
 /* ===== SP ===== */
 @media screen and (max-width: 824px) {
   /* Enjoy Section */
@@ -325,5 +330,9 @@
   }
   .enjoy-tv__date-label {
     display: block;
+  }
+  .enjoy-guide .button-filled,
+  .tv-section .button-filled {
+    max-width: none;
   }
 }

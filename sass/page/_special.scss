@@ -17,9 +17,6 @@
   flex-direction: column;
   overflow: visible;
 }
-.special-card--link {
-  text-decoration: none;
-}
 .special-card__inner {
   text-align: center;
   flex: 1;
@@ -30,6 +27,12 @@
   background: linear-gradient(180deg, #badce4 0%, #cfe7da 100%);
   @include fs.pc-size(padding-top, 92);
   @include fs.pc-size(padding, 110 30 40);
+}
+.special-card__link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 .special-card__number {
   position: absolute;

@@ -108,6 +108,9 @@
   text-align: right;
   margin-top: auto;
 }
+.collab-action .button-filled {
+  @include fs.pc-size(max-width, 258);
+}
 
 /* ===== SP ===== */
 @media screen and (max-width: 824px) {
@@ -152,5 +155,8 @@
   }
   .collab-action {
     text-align: center;
+  }
+  .collab-action .button-filled {
+    max-width: none;
   }
 }

@@ -2,11 +2,10 @@
   "use strict";
 
   // ============================================================
-  // 設定値（composition/structure.jsと同じ値を使用）
+  // 設定値
   // ============================================================
-  const SP_ADDITIONAL_OFFSET = 40; // スマホ用追加オフセット値
   const PC_FALLBACK_OFFSET = 80; // PC用フォールバック値
-  const SP_FALLBACK_OFFSET = 100; // SP用フォールバック基本値
+  const SP_FALLBACK_OFFSET = 50; // SP用フォールバック値
 
   document.addEventListener("DOMContentLoaded", function () {
     // ============================================================
@@ -63,10 +62,10 @@
       return window.innerWidth <= 824;
     }
 
-    // 動的オフセットを取得（composition/structure.jsと同じロジック）
+    // 動的オフセットを取得
     function getDynamicOffset() {
       if (isMobile()) {
-        return SP_FALLBACK_OFFSET + SP_ADDITIONAL_OFFSET;
+        return SP_FALLBACK_OFFSET;
       }
       return PC_FALLBACK_OFFSET;
     }
@@ -83,8 +82,13 @@
     const dropdownArrow = document.querySelector(
       ".structure__nav-dropdown-arrow"
     );
+    const dropdownItems = dropdownMenu
+      ? dropdownMenu.querySelectorAll(".structure__nav-dropdown-item")
+      : [];
 
     let isMenuOpen = false;
+    let isManualSelection = false; // 手動選択フラグ
+    let manualSelectionTimeout = null;
 
     // メニューの開閉を制御
     function toggleMenu() {
@@ -141,16 +145,20 @@
       );
 
       // ドロップダウンアイテムのクリック処理
-      const dropdownItems = dropdownMenu.querySelectorAll(
-        ".structure__nav-dropdown-item"
-      );
-
       dropdownItems.forEach(function (item) {
         item.addEventListener("click", function (e) {
           e.stopPropagation();
 
           const value = this.dataset.value;
           const label = this.dataset.label;
+
+          // 手動選択フラグを立てる
+          isManualSelection = true;
+
+          // 既存のタイムアウトをクリア
+          if (manualSelectionTimeout) {
+            clearTimeout(manualSelectionTimeout);
+          }
 
           // 表示テキストを更新
           if (dropdownCurrent) {
@@ -191,6 +199,12 @@
                 "structure__nav-item--active"
               );
             }
+
+            // スクロール完了後に自動更新を再開
+            manualSelectionTimeout = setTimeout(function () {
+              isManualSelection = false;
+              updateCurrentSection();
+            }, 1500);
           }
         });
       });
@@ -203,6 +217,14 @@
     pcNavLinks.forEach(function (link) {
       link.addEventListener("click", function (e) {
         e.preventDefault();
+
+        // 手動選択フラグを立てる
+        isManualSelection = true;
+
+        // 既存のタイムアウトをクリア
+        if (manualSelectionTimeout) {
+          clearTimeout(manualSelectionTimeout);
+        }
 
         const href = this.getAttribute("href");
         if (href && href.startsWith("#")) {
@@ -221,9 +243,6 @@
 
             // SP側のドロップダウンも同期
             if (dropdownCurrent && dropdownMenu) {
-              const dropdownItems = dropdownMenu.querySelectorAll(
-                ".structure__nav-dropdown-item"
-              );
               dropdownItems.forEach(function (item) {
                 item.classList.remove("is-selected");
                 if (item.getAttribute("data-value") === targetId) {
@@ -243,73 +262,125 @@
               top: targetPosition,
               behavior: "smooth",
             });
+
+            // スクロール完了後に自動更新を再開
+            manualSelectionTimeout = setTimeout(function () {
+              isManualSelection = false;
+              updateCurrentSection();
+            }, 1500);
           }
         }
       });
     });
 
     // ============================================================
-    // Sidebar Active State on Scroll
+    // 現在のセクションを監視して自動更新（structure.jsと同様のロジック）
     // ============================================================
-    const sections = document.querySelectorAll(".goods-section[id], .goods-section__header[id]");
+    const sections = document.querySelectorAll(".goods-section__header[id]");
     const navItems = document.querySelectorAll(".structure__nav-item");
 
-    if (sections.length && navItems.length) {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              const id = entry.target.id;
+    function updateCurrentSection() {
+      // 手動選択中は自動更新をスキップ
+      if (isManualSelection) return;
 
-              // サイドバーのアクティブ状態を更新
-              navItems.forEach((item) => {
-                item.classList.remove("structure__nav-item--active");
-                if (item.querySelector(`a[href="#${id}"]`)) {
-                  item.classList.add("structure__nav-item--active");
-                }
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const windowHeight = window.innerHeight;
+      const viewportMiddle = scrollTop + windowHeight / 3;
+
+      let currentSection = null;
+
+      sections.forEach(function (section) {
+        const rect = section.getBoundingClientRect();
+        const sectionTop = rect.top + scrollTop;
+        const sectionBottom = sectionTop + section.offsetHeight;
+
+        // ビューポートの上部1/3にセクションが入っている場合
+        if (sectionTop <= viewportMiddle && sectionBottom > scrollTop) {
+          currentSection = section;
+        }
+      });
+
+      if (currentSection) {
+        const sectionId = currentSection.getAttribute("id");
+
+        // PC版：ナビゲーションのアクティブ状態を更新
+        const targetNavLink = document.querySelector(
+          `.structure__nav-link[href="#${sectionId}"]`
+        );
+
+        if (targetNavLink) {
+          const targetNavItem = targetNavLink.parentElement;
+
+          // 現在のアクティブ状態と異なる場合のみ更新
+          if (!targetNavItem.classList.contains("structure__nav-item--active")) {
+            navItems.forEach(function (navItem) {
+              navItem.classList.remove("structure__nav-item--active");
+            });
+            targetNavItem.classList.add("structure__nav-item--active");
+          }
+        }
+
+        // SP版：ドロップダウンの表示を更新
+        if (dropdownCurrent && dropdownMenu) {
+          const activeItem = dropdownMenu.querySelector(
+            `[data-value="${sectionId}"]`
+          );
+          if (activeItem) {
+            const currentLabel = dropdownCurrent.textContent;
+            const newLabel = activeItem.dataset.label;
+
+            // 表示が異なる場合のみ更新
+            if (currentLabel !== newLabel) {
+              dropdownCurrent.textContent = newLabel;
+              dropdownItems.forEach(function (item) {
+                item.classList.remove("is-selected");
               });
-
-              // モバイルドロップダウンも更新
-              if (dropdownCurrent && dropdownMenu) {
-                const activeItem = dropdownMenu.querySelector(
-                  `[data-value="${id}"]`
-                );
-                if (activeItem) {
-                  dropdownCurrent.textContent = activeItem.dataset.label;
-                  dropdownMenu
-                    .querySelectorAll(".structure__nav-dropdown-item")
-                    .forEach((i) => i.classList.remove("is-selected"));
-                  activeItem.classList.add("is-selected");
-                }
-              }
+              activeItem.classList.add("is-selected");
             }
-          });
-        },
-        { rootMargin: "-20% 0px -60% 0px" }
-      );
-
-      sections.forEach((section) => observer.observe(section));
+          }
+        }
+      }
     }
+
+    // スクロール時に現在のセクションを更新
+    let updateTicking = false;
+    function requestUpdateTick() {
+      if (!updateTicking) {
+        window.requestAnimationFrame(function () {
+          updateCurrentSection();
+          updateTicking = false;
+        });
+        updateTicking = true;
+      }
+    }
+
+    window.addEventListener("scroll", requestUpdateTick, { passive: true });
+
+    // 初期表示時に現在のセクションを設定
+    updateCurrentSection();
 
     // ============================================================
     // Museum Section での Dropdown 非表示制御
+    // showクラスの追加はscript.jsのFooterControlModuleが担当
+    // ここではmuseum-section内に入った時の非表示のみを制御
     // ============================================================
     const museumSection = document.querySelector(".museum-section");
 
     if (museumSection && dropdown) {
+      // museum-sectionが画面内にあるかどうかを追跡
+      let isInMuseumSection = false;
+
       const museumObserver = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
+            isInMuseumSection = entry.isIntersecting;
             if (entry.isIntersecting) {
               // museum-sectionが画面内に入ったらdropdownを非表示
               dropdown.classList.remove("show");
+              dropdown.classList.add("hide-in-museum");
             } else {
-              // museum-sectionが画面外に出たらdropdownを表示（スクロール位置が上の場合）
-              const rect = museumSection.getBoundingClientRect();
-              // museum-sectionより上にスクロールしている場合のみshowを追加
-              if (rect.top > window.innerHeight) {
-                dropdown.classList.add("show");
-              }
+              // museum-sectionから出たらフラグを解除（showの追加はFooterControlModuleに任せる）
+              dropdown.classList.remove("hide-in-museum");
             }
           });
         },
@@ -318,25 +389,15 @@
 
       museumObserver.observe(museumSection);
 
-      // スクロールイベントで追加制御（より確実な表示制御）
+      // スクロールイベントでmuseum-section内の場合は常にshowを削除
+      // （FooterControlModuleがshowを追加しても上書きする）
       let scrollTicking = false;
       window.addEventListener(
         "scroll",
         function () {
-          if (!scrollTicking) {
+          if (!scrollTicking && isInMuseumSection) {
             window.requestAnimationFrame(function () {
-              const rect = museumSection.getBoundingClientRect();
-              const windowHeight = window.innerHeight;
-
-              // museum-sectionが画面内に入っているかチェック
-              if (rect.top < windowHeight && rect.bottom > 0) {
-                dropdown.classList.remove("show");
-              } else if (rect.top >= windowHeight) {
-                // museum-sectionより上にいる場合は表示
-                dropdown.classList.add("show");
-              }
-              // museum-sectionより下にスクロールした場合は非表示のまま
-
+              dropdown.classList.remove("show");
               scrollTicking = false;
             });
             scrollTicking = true;

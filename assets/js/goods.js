@@ -26,10 +26,6 @@ document.addEventListener("DOMContentLoaded", function () {
       new Swiper(swiperElement, {
         loop: true,
         speed: 600,
-        autoplay: {
-          delay: 4000,
-          disableOnInteraction: false,
-        },
         effect: "fade",
         fadeEffect: {
           crossFade: true,

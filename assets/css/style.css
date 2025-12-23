@@ -776,6 +776,14 @@ img {
  * 見出しテキストアニメーション追加
  * loading-textと同じブラーアニメーション
  * ======================================================= */
+/* カラー変数追加 */
+:root {
+  --color-special: #5ea8bf;
+  --color-special-sub: #4f94a9;
+  --color-goods: #6c9692;
+  --color-cafe: #bf4c4c;
+}
+
 /* 見出しアニメーション基本スタイル */
 .js-heading-text-anim {
   font-family: var(--font-ja__normal-mincho);
@@ -810,8 +818,10 @@ img {
   filter: none !important;
 }
 
-/* Safari用のキーフレーム（黒色版 - loading-textと同じブラー効果） */
-/* 標準のキーフレーム（loading-textと同じ） */
+/* =======================================================
+ * キーフレーム定義
+ * ======================================================= */
+/* Cream（デフォルト） */
 @keyframes blur-heading {
   0% {
     text-shadow: 0 0 100px var(--color-cream);
@@ -835,16 +845,156 @@ img {
     opacity: 1;
   }
 }
-/* is-visibleクラス（ScrollTriggerで追加される） */
-/* パフォーマンス最適化：reducedMotion対応 */
+/* Primary (#2c766b) */
+@keyframes blur-heading-primary {
+  0% {
+    text-shadow: 0 0 100px var(--color-primary);
+    opacity: 0;
+  }
+  5% {
+    text-shadow: 0 0 90px var(--color-primary);
+  }
+  15% {
+    opacity: 1;
+  }
+  20% {
+    text-shadow: 0 0 0px var(--color-primary);
+  }
+  80% {
+    text-shadow: 0 0 0px var(--color-primary);
+    opacity: 1;
+  }
+  100% {
+    text-shadow: 0 0 0px var(--color-primary);
+    opacity: 1;
+  }
+}
+/* Special (#5EA8BF) */
+@keyframes blur-heading-special {
+  0% {
+    text-shadow: 0 0 100px var(--color-special);
+    opacity: 0;
+  }
+  5% {
+    text-shadow: 0 0 90px var(--color-special);
+  }
+  15% {
+    opacity: 1;
+  }
+  20% {
+    text-shadow: 0 0 0px var(--color-special);
+  }
+  80% {
+    text-shadow: 0 0 0px var(--color-special);
+    opacity: 1;
+  }
+  100% {
+    text-shadow: 0 0 0px var(--color-special);
+    opacity: 1;
+  }
+}
+/* Special Sub (#4F94A9) */
+@keyframes blur-heading-special-sub {
+  0% {
+    text-shadow: 0 0 100px var(--color-special-sub);
+    opacity: 0;
+  }
+  5% {
+    text-shadow: 0 0 90px var(--color-special-sub);
+  }
+  15% {
+    opacity: 1;
+  }
+  20% {
+    text-shadow: 0 0 0px var(--color-special-sub);
+  }
+  80% {
+    text-shadow: 0 0 0px var(--color-special-sub);
+    opacity: 1;
+  }
+  100% {
+    text-shadow: 0 0 0px var(--color-special-sub);
+    opacity: 1;
+  }
+}
+/* Goods (#6C9692) */
+@keyframes blur-heading-goods {
+  0% {
+    text-shadow: 0 0 100px var(--color-goods);
+    opacity: 0;
+  }
+  5% {
+    text-shadow: 0 0 90px var(--color-goods);
+  }
+  15% {
+    opacity: 1;
+  }
+  20% {
+    text-shadow: 0 0 0px var(--color-goods);
+  }
+  80% {
+    text-shadow: 0 0 0px var(--color-goods);
+    opacity: 1;
+  }
+  100% {
+    text-shadow: 0 0 0px var(--color-goods);
+    opacity: 1;
+  }
+}
+/* Cafe (#BF4C4C) */
+@keyframes blur-heading-cafe {
+  0% {
+    text-shadow: 0 0 100px var(--color-cafe);
+    opacity: 0;
+  }
+  5% {
+    text-shadow: 0 0 90px var(--color-cafe);
+  }
+  15% {
+    opacity: 1;
+  }
+  20% {
+    text-shadow: 0 0 0px var(--color-cafe);
+  }
+  80% {
+    text-shadow: 0 0 0px var(--color-cafe);
+    opacity: 1;
+  }
+  100% {
+    text-shadow: 0 0 0px var(--color-cafe);
+    opacity: 1;
+  }
+}
+/* =======================================================
+ * パフォーマンス最適化：reducedMotion対応
+ * ======================================================= */
 @media (prefers-reduced-motion: reduce) {
   .js-heading-text-anim span {
     animation: none !important;
     -webkit-animation: none !important;
-    color: var(--color-primary) !important;
     opacity: 1 !important;
     transform: none !important;
     -webkit-transform: none !important;
+  }
+  /* デフォルト（cream） */
+  .js-heading-text-anim:not([data-color]) span {
+    color: var(--color-cream) !important;
+  }
+  /* 各カラー対応 */
+  .js-heading-text-anim[data-color=primary] span {
+    color: var(--color-primary) !important;
+  }
+  .js-heading-text-anim[data-color=special] span {
+    color: var(--color-special) !important;
+  }
+  .js-heading-text-anim[data-color=special-sub] span {
+    color: var(--color-special-sub) !important;
+  }
+  .js-heading-text-anim[data-color=goods] span {
+    color: var(--color-goods) !important;
+  }
+  .js-heading-text-anim[data-color=cafe] span {
+    color: var(--color-cafe) !important;
   }
 }
 /* 汎用ページ読み込みアニメーション */
@@ -6194,16 +6344,25 @@ html:has(.page-ticket) {
 }
 
 .collab-swiper .swiper-pagination {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(7.03125px, calc(7.03125px + 5.46875 * (100vw - 900px) / 700), 12.5px);
   bottom: clamp(14.0625px, calc(14.0625px + 10.9375 * (100vw - 900px) / 700), 25px);
 }
 
 .collab-swiper .swiper-pagination-bullet {
+  display: block;
+  flex-shrink: 0;
   background-color: #333;
   opacity: 0.2;
   border-radius: 0;
+  margin: 0 !important;
+  height: 3px;
   width: clamp(14.0625px, calc(14.0625px + 10.9375 * (100vw - 900px) / 700), 25px);
-  height: clamp(2.109375px, calc(2.109375px + 1.640625 * (100vw - 900px) / 700), 3.75px);
-  margin: 0 clamp(7.03125px, calc(7.03125px + 5.46875 * (100vw - 900px) / 700), 12.5px);
 }
 
 .collab-swiper .swiper-pagination-bullet-active {
@@ -6265,12 +6424,12 @@ html:has(.page-ticket) {
     height: clamp(96.1538461538px, calc(96.1538461538px + 115.1282051282 * (100vw - 375px) / 449), 211.2820512821px);
   }
   .collab-swiper .swiper-pagination {
+    gap: clamp(9.6153846154px, calc(9.6153846154px + 11.5128205128 * (100vw - 375px) / 449), 21.1282051282px);
     bottom: clamp(19.2307692308px, calc(19.2307692308px + 23.0256410256 * (100vw - 375px) / 449), 42.2564102564px);
   }
   .collab-swiper .swiper-pagination-bullet {
     width: clamp(19.2307692308px, calc(19.2307692308px + 23.0256410256 * (100vw - 375px) / 449), 42.2564102564px);
     height: clamp(2.8846153846px, calc(2.8846153846px + 3.4538461538 * (100vw - 375px) / 449), 6.3384615385px);
-    margin: 0 clamp(9.6153846154px, calc(9.6153846154px + 11.5128205128 * (100vw - 375px) / 449), 21.1282051282px);
   }
   .collab-item__body {
     padding: clamp(38.4615384615px, calc(38.4615384615px + 46.0512820513 * (100vw - 375px) / 449), 84.5128205128px) clamp(19.2307692308px, calc(19.2307692308px + 23.0256410256 * (100vw - 375px) / 449), 42.2564102564px);
@@ -6472,12 +6631,14 @@ html:has(.page-ticket) {
   margin-top: clamp(42.1875px, calc(42.1875px + 32.8125 * (100vw - 900px) / 700), 75px);
 }
 
-.goods-section {
-  padding: clamp(70.3125px, calc(70.3125px + 54.6875 * (100vw - 900px) / 700), 125px) 0;
+.goods-catalog-section {
+  padding-bottom: clamp(70.3125px, calc(70.3125px + 54.6875 * (100vw - 900px) / 700), 125px);
 }
 
-.goods-section:first-child {
-  padding-top: 0;
+.goods-other-sections {
+  display: grid;
+  gap: clamp(70.3125px, calc(70.3125px + 54.6875 * (100vw - 900px) / 700), 125px);
+  padding-top: clamp(70.3125px, calc(70.3125px + 54.6875 * (100vw - 900px) / 700), 125px);
 }
 
 .goods-section--collab {
@@ -6928,6 +7089,16 @@ html:has(.page-ticket) {
     margin-top: clamp(19.2307692308px, calc(19.2307692308px + 23.0256410256 * (100vw - 375px) / 449), 42.2564102564px);
   }
   .goods-section {
+    padding: clamp(48.0769230769px, calc(48.0769230769px + 57.5641025641 * (100vw - 375px) / 449), 105.641025641px) 0;
+  }
+  .goods-catalog-section {
+    padding: clamp(48.0769230769px, calc(48.0769230769px + 57.5641025641 * (100vw - 375px) / 449), 105.641025641px) 0;
+  }
+  .goods-other-sections {
+    padding-top: clamp(48.0769230769px, calc(48.0769230769px + 57.5641025641 * (100vw - 375px) / 449), 105.641025641px);
+    gap: clamp(48.0769230769px, calc(48.0769230769px + 57.5641025641 * (100vw - 375px) / 449), 105.641025641px);
+  }
+  .goods-section--collab {
     padding: clamp(48.0769230769px, calc(48.0769230769px + 57.5641025641 * (100vw - 375px) / 449), 105.641025641px) 0;
   }
   .goods-section__title {

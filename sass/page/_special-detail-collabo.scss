@@ -53,15 +53,24 @@
   object-fit: cover;
 }
 .collab-swiper .swiper-pagination {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @include fs.pc-size(gap, 10);
   @include fs.pc-size(bottom, 20);
 }
 .collab-swiper .swiper-pagination-bullet {
+  display: block;
+  flex-shrink: 0;
   background-color: #333;
   opacity: 0.2;
   border-radius: 0;
+  margin: 0 !important;
+  height: 3px;
   @include fs.pc-size(width, 20);
-  @include fs.pc-size(height, 3);
-  @include fs.pc-size(margin, 0 10);
 }
 .collab-swiper .swiper-pagination-bullet-active {
   opacity: 1;
@@ -117,12 +126,12 @@
     @include fs.sp-size(height, 100);
   }
   .collab-swiper .swiper-pagination {
+    @include fs.sp-size(gap, 10);
     @include fs.sp-size(bottom, 20);
   }
   .collab-swiper .swiper-pagination-bullet {
     @include fs.sp-size(width, 20);
     @include fs.sp-size(height, 3);
-    @include fs.sp-size(margin, 0 10);
   }
   .collab-item__body {
     @include fs.sp-size(padding, 40 20);

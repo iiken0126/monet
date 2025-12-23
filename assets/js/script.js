@@ -1352,20 +1352,14 @@
       const targets = document.querySelectorAll(".js-heading-text-anim");
 
       targets.forEach((target) => {
-        // 元のHTMLコンテンツを取得
         const originalHTML = target.innerHTML;
-
-        // 処理済みHTMLを構築
         let processedHTML = "";
         let spanIndex = 0;
 
-        // テキストノードとBRタグを保持しながら処理
         const processNode = (node, isFirstNode = false) => {
           if (node.nodeType === Node.TEXT_NODE) {
-            // テキストノードの場合
             let text = node.textContent;
 
-            // 最初のノードの場合、先頭の空白を削除
             if (isFirstNode) {
               text = text.trimStart();
             }
@@ -1373,24 +1367,17 @@
             for (let i = 0; i < text.length; i++) {
               const char = text[i];
 
-              // 改行文字はスキップ
               if (char === "\n" || char === "\r") {
                 continue;
-              }
-              // スペースを保持（連続スペースも維持）
-              else if (char === " ") {
+              } else if (char === " ") {
                 processedHTML +=
                   '<span class="char-span" style="white-space: pre;">&nbsp;</span>';
                 spanIndex++;
-              }
-              // タブ文字
-              else if (char === "\t") {
+              } else if (char === "\t") {
                 processedHTML +=
                   '<span class="char-span" style="white-space: pre;">&#9;</span>';
                 spanIndex++;
-              }
-              // 通常の文字
-              else {
+              } else {
                 processedHTML += `<span class="char-span">${escapeHtml(
                   char
                 )}</span>`;
@@ -1398,13 +1385,48 @@
               }
             }
           } else if (node.nodeType === Node.ELEMENT_NODE) {
-            // 要素ノードの場合
-            if (node.tagName.toLowerCase() === "br") {
+            const tagName = node.tagName.toLowerCase();
+
+            if (tagName === "br") {
               // BRタグはそのまま保持
               const classes = node.className
                 ? ` class="${node.className}"`
                 : "";
               processedHTML += `<br${classes}>`;
+            } else if (tagName === "span" && node.className) {
+              // クラス付きspan要素は保持して中身を処理
+              const attributes = [];
+
+              // クラス属性
+              if (node.className) {
+                attributes.push(`class="${node.className}"`);
+              }
+
+              // style属性があれば保持
+              if (node.getAttribute("style")) {
+                attributes.push(`style="${node.getAttribute("style")}"`);
+              }
+
+              // その他のdata属性も保持
+              Array.from(node.attributes).forEach((attr) => {
+                if (attr.name.startsWith("data-")) {
+                  attributes.push(`${attr.name}="${attr.value}"`);
+                }
+              });
+
+              const attrString =
+                attributes.length > 0 ? " " + attributes.join(" ") : "";
+
+              // 開始タグ
+              processedHTML += `<span${attrString}>`;
+
+              // 子ノードを再帰的に処理
+              node.childNodes.forEach((child, index) =>
+                processNode(child, index === 0)
+              );
+
+              // 終了タグ
+              processedHTML += `</span>`;
             } else {
               // その他の要素の子ノードを再帰的に処理
               node.childNodes.forEach((child, index) =>
@@ -1414,7 +1436,6 @@
           }
         };
 
-        // HTMLをエスケープする関数
         function escapeHtml(text) {
           const map = {
             "&": "&amp;",
@@ -1426,36 +1447,39 @@
           return text.replace(/[&<>"']/g, (m) => map[m]);
         }
 
-        // 一時的なコンテナを作成して元のHTMLをパース
         const tempContainer = document.createElement("div");
-        // HTMLの前後の空白を削除してからパース
         tempContainer.innerHTML = originalHTML.trim();
 
-        // 各子ノードを処理
         tempContainer.childNodes.forEach((node) => processNode(node));
 
-        // 処理済みHTMLを設定
         target.innerHTML = processedHTML;
 
-        // data-start-delay属性から開始遅延を取得（ミリ秒）
         const startDelay = parseFloat(target.dataset.startDelay) || 0;
 
-        // char-spanクラスを持つspan要素のみを選択してアニメーションを設定
+        // カラータイプに応じてアニメーション名を決定
+        const colorType = target.dataset.color || "cream";
+        const animationMap = {
+          cream: "blur-heading",
+          primary: "blur-heading-primary",
+          special: "blur-heading-special",
+          "special-sub": "blur-heading-special-sub",
+          goods: "blur-heading-goods",
+          cafe: "blur-heading-cafe",
+        };
+        const animationName = animationMap[colorType] || "blur-heading";
+
         const spans = target.querySelectorAll("span.char-span");
 
         spans.forEach((span, index) => {
-          // 開始遅延 + 文字ごとの遅延
-          const delay = startDelay / 1000 + index * 0.05; // 0.1から0.05に変更してより滑らかに
+          const delay = startDelay / 1000 + index * 0.05;
 
-          // アニメーション設定
-          span.style.animation = `blur-heading 3s ease-out ${delay}s 1 forwards`;
-          span.style.webkitAnimation = `blur-heading 3s ease-out ${delay}s 1 forwards`;
+          span.style.animation = `${animationName} 3s ease-out ${delay}s 1 forwards`;
+          span.style.webkitAnimation = `${animationName} 3s ease-out ${delay}s 1 forwards`;
           span.style.opacity = "0";
           span.style.filter = "blur(4px)";
-          span.style.display = "inline-block"; // アニメーションのために必要
+          span.style.display = "inline-block";
         });
 
-        // ScrollTriggerで発火
         if (typeof ScrollTrigger !== "undefined") {
           ScrollTrigger.create({
             trigger: target,
@@ -1472,7 +1496,6 @@
     return { init };
   })();
 
-  // 初期化
   document.addEventListener("DOMContentLoaded", function () {
     HeadingAnimationModule.init();
   });

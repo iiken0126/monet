@@ -47,17 +47,16 @@
 }
 
 // ===== GOODS SECTION =====
-.goods-section {
-  @include fs.pc-size(padding, 100 0);
+.goods-catalog-section {
+  @include fs.pc-size(padding-bottom, 100);
 }
-.goods-section:first-child {
-  padding-top: 0;
+.goods-other-sections {
+  display: grid;
+  @include fs.pc-size(gap, 100);
+  @include fs.pc-size(padding-top, 100);
 }
 .goods-section--collab {
   @include fs.pc-size(padding, 100 0);
-}
-.goods-other-section {
-  // @include fs.pc-size(padding, 100 0);
 }
 
 // ===== GOODS SECTION HEADER =====
@@ -480,6 +479,16 @@
 
   // ----- GOODS SECTION -----
   .goods-section {
+    @include fs.sp-size(padding, 50 0);
+  }
+  .goods-catalog-section {
+    @include fs.sp-size(padding, 50 0);
+  }
+  .goods-other-sections {
+    @include fs.sp-size(padding-top, 50);
+    @include fs.sp-size(gap, 50);
+  }
+  .goods-section--collab {
     @include fs.sp-size(padding, 50 0);
   }
   .goods-section__title {

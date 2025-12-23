@@ -81,6 +81,14 @@
  * loading-textと同じブラーアニメーション
  * ======================================================= */
 
+/* カラー変数追加 */
+:root {
+  --color-special: #5ea8bf;
+  --color-special-sub: #4f94a9;
+  --color-goods: #6c9692;
+  --color-cafe: #bf4c4c;
+}
+
 /* 見出しアニメーション基本スタイル */
 .js-heading-text-anim {
   font-family: var(--font-ja__normal-mincho);
@@ -123,7 +131,11 @@
   filter: none !important;
 }
 
-/* Safari用のキーフレーム（黒色版 - loading-textと同じブラー効果） */
+/* =======================================================
+ * キーフレーム定義
+ * ======================================================= */
+
+/* Cream（デフォルト） */
 @-webkit-keyframes blur-heading {
   0% {
     text-shadow: 0 0 100px var(--color-cream);
@@ -147,8 +159,6 @@
     opacity: 1;
   }
 }
-
-/* 標準のキーフレーム（loading-textと同じ） */
 @keyframes blur-heading {
   0% {
     text-shadow: 0 0 100px var(--color-cream);
@@ -173,22 +183,280 @@
   }
 }
 
-/* is-visibleクラス（ScrollTriggerで追加される） */
-.js-heading-text-anim.is-visible {
+/* Primary (#2c766b) */
+@-webkit-keyframes blur-heading-primary {
+  0% {
+    text-shadow: 0 0 100px var(--color-primary);
+    opacity: 0;
+  }
+  5% {
+    text-shadow: 0 0 90px var(--color-primary);
+  }
+  15% {
+    opacity: 1;
+  }
+  20% {
+    text-shadow: 0 0 0px var(--color-primary);
+  }
+  80% {
+    text-shadow: 0 0 0px var(--color-primary);
+    opacity: 1;
+  }
+  100% {
+    text-shadow: 0 0 0px var(--color-primary);
+    opacity: 1;
+  }
+}
+@keyframes blur-heading-primary {
+  0% {
+    text-shadow: 0 0 100px var(--color-primary);
+    opacity: 0;
+  }
+  5% {
+    text-shadow: 0 0 90px var(--color-primary);
+  }
+  15% {
+    opacity: 1;
+  }
+  20% {
+    text-shadow: 0 0 0px var(--color-primary);
+  }
+  80% {
+    text-shadow: 0 0 0px var(--color-primary);
+    opacity: 1;
+  }
+  100% {
+    text-shadow: 0 0 0px var(--color-primary);
+    opacity: 1;
+  }
 }
 
-/* パフォーマンス最適化：reducedMotion対応 */
+/* Special (#5EA8BF) */
+@-webkit-keyframes blur-heading-special {
+  0% {
+    text-shadow: 0 0 100px var(--color-special);
+    opacity: 0;
+  }
+  5% {
+    text-shadow: 0 0 90px var(--color-special);
+  }
+  15% {
+    opacity: 1;
+  }
+  20% {
+    text-shadow: 0 0 0px var(--color-special);
+  }
+  80% {
+    text-shadow: 0 0 0px var(--color-special);
+    opacity: 1;
+  }
+  100% {
+    text-shadow: 0 0 0px var(--color-special);
+    opacity: 1;
+  }
+}
+@keyframes blur-heading-special {
+  0% {
+    text-shadow: 0 0 100px var(--color-special);
+    opacity: 0;
+  }
+  5% {
+    text-shadow: 0 0 90px var(--color-special);
+  }
+  15% {
+    opacity: 1;
+  }
+  20% {
+    text-shadow: 0 0 0px var(--color-special);
+  }
+  80% {
+    text-shadow: 0 0 0px var(--color-special);
+    opacity: 1;
+  }
+  100% {
+    text-shadow: 0 0 0px var(--color-special);
+    opacity: 1;
+  }
+}
+
+/* Special Sub (#4F94A9) */
+@-webkit-keyframes blur-heading-special-sub {
+  0% {
+    text-shadow: 0 0 100px var(--color-special-sub);
+    opacity: 0;
+  }
+  5% {
+    text-shadow: 0 0 90px var(--color-special-sub);
+  }
+  15% {
+    opacity: 1;
+  }
+  20% {
+    text-shadow: 0 0 0px var(--color-special-sub);
+  }
+  80% {
+    text-shadow: 0 0 0px var(--color-special-sub);
+    opacity: 1;
+  }
+  100% {
+    text-shadow: 0 0 0px var(--color-special-sub);
+    opacity: 1;
+  }
+}
+@keyframes blur-heading-special-sub {
+  0% {
+    text-shadow: 0 0 100px var(--color-special-sub);
+    opacity: 0;
+  }
+  5% {
+    text-shadow: 0 0 90px var(--color-special-sub);
+  }
+  15% {
+    opacity: 1;
+  }
+  20% {
+    text-shadow: 0 0 0px var(--color-special-sub);
+  }
+  80% {
+    text-shadow: 0 0 0px var(--color-special-sub);
+    opacity: 1;
+  }
+  100% {
+    text-shadow: 0 0 0px var(--color-special-sub);
+    opacity: 1;
+  }
+}
+
+/* Goods (#6C9692) */
+@-webkit-keyframes blur-heading-goods {
+  0% {
+    text-shadow: 0 0 100px var(--color-goods);
+    opacity: 0;
+  }
+  5% {
+    text-shadow: 0 0 90px var(--color-goods);
+  }
+  15% {
+    opacity: 1;
+  }
+  20% {
+    text-shadow: 0 0 0px var(--color-goods);
+  }
+  80% {
+    text-shadow: 0 0 0px var(--color-goods);
+    opacity: 1;
+  }
+  100% {
+    text-shadow: 0 0 0px var(--color-goods);
+    opacity: 1;
+  }
+}
+@keyframes blur-heading-goods {
+  0% {
+    text-shadow: 0 0 100px var(--color-goods);
+    opacity: 0;
+  }
+  5% {
+    text-shadow: 0 0 90px var(--color-goods);
+  }
+  15% {
+    opacity: 1;
+  }
+  20% {
+    text-shadow: 0 0 0px var(--color-goods);
+  }
+  80% {
+    text-shadow: 0 0 0px var(--color-goods);
+    opacity: 1;
+  }
+  100% {
+    text-shadow: 0 0 0px var(--color-goods);
+    opacity: 1;
+  }
+}
+
+/* Cafe (#BF4C4C) */
+@-webkit-keyframes blur-heading-cafe {
+  0% {
+    text-shadow: 0 0 100px var(--color-cafe);
+    opacity: 0;
+  }
+  5% {
+    text-shadow: 0 0 90px var(--color-cafe);
+  }
+  15% {
+    opacity: 1;
+  }
+  20% {
+    text-shadow: 0 0 0px var(--color-cafe);
+  }
+  80% {
+    text-shadow: 0 0 0px var(--color-cafe);
+    opacity: 1;
+  }
+  100% {
+    text-shadow: 0 0 0px var(--color-cafe);
+    opacity: 1;
+  }
+}
+@keyframes blur-heading-cafe {
+  0% {
+    text-shadow: 0 0 100px var(--color-cafe);
+    opacity: 0;
+  }
+  5% {
+    text-shadow: 0 0 90px var(--color-cafe);
+  }
+  15% {
+    opacity: 1;
+  }
+  20% {
+    text-shadow: 0 0 0px var(--color-cafe);
+  }
+  80% {
+    text-shadow: 0 0 0px var(--color-cafe);
+    opacity: 1;
+  }
+  100% {
+    text-shadow: 0 0 0px var(--color-cafe);
+    opacity: 1;
+  }
+}
+
+/* =======================================================
+ * パフォーマンス最適化：reducedMotion対応
+ * ======================================================= */
 @media (prefers-reduced-motion: reduce) {
   .js-heading-text-anim span {
     animation: none !important;
     -webkit-animation: none !important;
-    color: var(--color-primary) !important;
     opacity: 1 !important;
     transform: none !important;
     -webkit-transform: none !important;
   }
-}
 
+  /* デフォルト（cream） */
+  .js-heading-text-anim:not([data-color]) span {
+    color: var(--color-cream) !important;
+  }
+
+  /* 各カラー対応 */
+  .js-heading-text-anim[data-color="primary"] span {
+    color: var(--color-primary) !important;
+  }
+  .js-heading-text-anim[data-color="special"] span {
+    color: var(--color-special) !important;
+  }
+  .js-heading-text-anim[data-color="special-sub"] span {
+    color: var(--color-special-sub) !important;
+  }
+  .js-heading-text-anim[data-color="goods"] span {
+    color: var(--color-goods) !important;
+  }
+  .js-heading-text-anim[data-color="cafe"] span {
+    color: var(--color-cafe) !important;
+  }
+}
 /* 汎用ページ読み込みアニメーション */
 .js-page-load {
   opacity: 0;

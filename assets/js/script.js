@@ -1198,7 +1198,7 @@
    * =======================================================
    */
   const FooterControlModule = (function () {
-    let footer, ticketButton, scrollToTopButton, dropdown, pageRelated;
+    let footer, ticketButton, scrollToTopButton, dropdown;
     const MOBILE_BREAKPOINT = 824;
     const DROPDOWN_OFFSET_FROM_TICKET = 25; // チケットボタンからの間隔(px)
     const SCROLL_THRESHOLD = 200; // 表示開始スクロール位置
@@ -1240,33 +1240,20 @@
       const isMobile = window.innerWidth <= MOBILE_BREAKPOINT;
       const shouldShow = window.pageYOffset > SCROLL_THRESHOLD;
 
-      // page-relatedがある場合はそちらを基準にする
-      let stopElement = footer;
-      let stopElementRect = footerRect;
-      let stopElementHeight = footer.offsetHeight;
-
-      if (pageRelated) {
-        const pageRelatedRect = pageRelated.getBoundingClientRect();
-        // page-relatedが画面内に見えているかチェック
-        if (pageRelatedRect.top < windowHeight) {
-          stopElement = pageRelated;
-          stopElementRect = pageRelatedRect;
-          stopElementHeight = footer.offsetHeight + pageRelated.offsetHeight;
-        }
-      }
-
-      const isStopElementVisible = stopElementRect.top < windowHeight;
+      // footerのみを基準にする（page-relatedは通過する）
+      const isFooterVisible = footerRect.top < windowHeight;
+      const footerHeight = footer.offsetHeight;
 
       // レスポンシブな位置を取得
       const positions = getResponsivePosition();
 
       // チケットボタンの制御
-      if (ticketButton && isStopElementVisible) {
+      if (ticketButton && isFooterVisible) {
         ticketButton.classList.add("stop-at-footer");
         ticketButton.style.position = "absolute";
         ticketButton.style.top = "auto";
         ticketButton.style.right = `${positions.right}px`;
-        ticketButton.style.bottom = `${stopElementHeight + positions.bottom}px`;
+        ticketButton.style.bottom = `${footerHeight + positions.bottom}px`;
       } else if (ticketButton) {
         ticketButton.classList.remove("stop-at-footer");
         ticketButton.style.position = "fixed";
@@ -1289,13 +1276,13 @@
         const dropdownBottom =
           positions.bottom + ticketHeight + DROPDOWN_OFFSET_FROM_TICKET;
 
-        if (isStopElementVisible) {
+        if (isFooterVisible) {
           // フッターが見えている場合：absolute配置でフッターの上に固定
           dropdown.classList.add("stop-at-footer");
           dropdown.style.position = "absolute";
           dropdown.style.top = "auto";
           dropdown.style.right = `${positions.right}px`;
-          dropdown.style.bottom = `${stopElementHeight + dropdownBottom}px`;
+          dropdown.style.bottom = `${footerHeight + dropdownBottom}px`;
         } else {
           // 通常時：fixed配置でチケットボタンの上に表示
           dropdown.classList.remove("stop-at-footer");
@@ -1323,14 +1310,14 @@
       // トップへ戻るボタンの制御（PCのみ）
       if (scrollToTopButton && !isMobile) {
         if (
-          isStopElementVisible &&
+          isFooterVisible &&
           scrollToTopButton.classList.contains("show")
         ) {
           scrollToTopButton.classList.add("stop-at-footer");
           scrollToTopButton.style.position = "absolute";
           scrollToTopButton.style.top = "auto";
           scrollToTopButton.style.right = "0";
-          scrollToTopButton.style.bottom = `${stopElementHeight}px`;
+          scrollToTopButton.style.bottom = `${footerHeight}px`;
         } else {
           scrollToTopButton.classList.remove("stop-at-footer");
           scrollToTopButton.style.position = "fixed";
@@ -1348,7 +1335,6 @@
       ticketButton = document.querySelector(".ticket");
       scrollToTopButton = document.getElementById("scrollToTop");
       dropdown = document.querySelector(".structure__nav-dropdown");
-      pageRelated = document.querySelector(".page-related"); // page-related要素を取得
 
       if (!footer) return;
 

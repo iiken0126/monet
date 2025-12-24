@@ -1,14 +1,16 @@
 /**
  * =======================================================
  * ハッシュスクロール防止（最初に実行）
- * ブラウザのデフォルトハッシュスクロールより先に実行
+ * ブラウザのデフォルトハッシュスクロールを完全に防止
  * =======================================================
  */
 (function () {
   if (window.location.hash) {
-    if ("scrollRestoration" in history) {
-      history.scrollRestoration = "manual";
-    }
+    // ハッシュを一時保存
+    window.__savedHash = window.location.hash;
+    // URLからハッシュを削除（ブラウザのスクロールを防止）
+    history.replaceState(null, "", window.location.pathname + window.location.search);
+    // 念のためトップへ
     window.scrollTo(0, 0);
   }
 })();
@@ -1895,9 +1897,10 @@
    */
   (function () {
     window.addEventListener("load", function () {
-      if (window.location.hash) {
-        const hash = window.location.hash;
-        const targetElement = document.querySelector(hash);
+      // 保存されたハッシュを取得
+      const savedHash = window.__savedHash;
+      if (savedHash) {
+        const targetElement = document.querySelector(savedHash);
 
         if (targetElement) {
           // レイアウトが安定するまで少し待つ
@@ -1907,8 +1910,12 @@
               behavior: "smooth",
               block: "start",
             });
+            // ハッシュをURLに戻す（履歴には追加しない）
+            history.replaceState(null, "", window.location.pathname + window.location.search + savedHash);
           }, 100);
         }
+        // クリーンアップ
+        delete window.__savedHash;
       }
     });
   })();

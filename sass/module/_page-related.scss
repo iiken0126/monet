@@ -50,6 +50,7 @@
 /* ===== SP ===== */
 @media screen and (max-width: 824px) {
   .page-related {
+    @include fs.sp-size(padding-bottom, 70);
   }
   .page-related__inner {
     flex-direction: column;

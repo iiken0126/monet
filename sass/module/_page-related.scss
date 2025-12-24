@@ -49,6 +49,10 @@
 
 /* ===== SP ===== */
 @media screen and (max-width: 824px) {
+  /* page-relatedがあるページのmainにpadding-bottom追加 */
+  body:has(.page-related) main {
+    @include fs.sp-size(padding-bottom, 100);
+  }
   .page-related {
     @include fs.sp-size(padding-bottom, 70);
   }

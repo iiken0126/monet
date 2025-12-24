@@ -3192,6 +3192,10 @@ img {
 
 /* ===== SP ===== */
 @media screen and (max-width: 824px) {
+  /* page-relatedがあるページのmainにpadding-bottom追加 */
+  body:has(.page-related) main {
+    padding-bottom: clamp(96.1538461538px, calc(96.1538461538px + 115.1282051282 * (100vw - 375px) / 449), 211.2820512821px);
+  }
   .page-related {
     padding-bottom: clamp(67.3076923077px, calc(67.3076923077px + 80.5897435897 * (100vw - 375px) / 449), 147.8974358974px);
   }
@@ -3436,6 +3440,9 @@ img {
   }
   .museum-section__buttons .button-outline:last-child {
     border-top: none;
+  }
+  .museum-section__buttons .button-outline__arrow {
+    top: 26px;
   }
 }
 /* ===== 既存のCSSはそのまま維持 ===== */

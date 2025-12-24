@@ -6169,6 +6169,14 @@ html:has(.page-ticket) {
     height: clamp(9.6153846154px, calc(9.6153846154px + 11.5128205128 * (100vw - 375px) / 449), 21.1282051282px);
   }
 }
+/* ===== Anchor scroll offset for fixed header ===== */
+#movie,
+#junior-guide,
+#comic-guide,
+#tv {
+  scroll-margin-top: 100px;
+}
+
 /* ===== ENJOY SECTION ===== */
 .enjoy-section__header {
   display: flex;
@@ -6384,6 +6392,12 @@ html:has(.page-ticket) {
 
 /* ===== SP ===== */
 @media screen and (max-width: 824px) {
+  #movie,
+  #junior-guide,
+  #comic-guide,
+  #tv {
+    scroll-margin-top: 80px;
+  }
   /* Enjoy Section */
   .movie-section {
     margin-top: clamp(9.6153846154px, calc(9.6153846154px + 11.5128205128 * (100vw - 375px) / 449), 21.1282051282px);

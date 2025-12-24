@@ -1,5 +1,13 @@
 @use "../foundation/fluid-size" as fs;
 
+/* ===== Anchor scroll offset for fixed header ===== */
+#movie,
+#junior-guide,
+#comic-guide,
+#tv {
+  scroll-margin-top: 100px;
+}
+
 /* ===== ENJOY SECTION ===== */
 .enjoy-section {
 }
@@ -223,6 +231,13 @@
 
 /* ===== SP ===== */
 @media screen and (max-width: 824px) {
+  #movie,
+  #junior-guide,
+  #comic-guide,
+  #tv {
+    scroll-margin-top: 80px;
+  }
+
   /* Enjoy Section */
   .movie-section {
     @include fs.sp-size(margin-top, 10);

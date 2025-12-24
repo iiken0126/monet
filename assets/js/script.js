@@ -1873,6 +1873,33 @@
 
   /**
    * =======================================================
+   * ハッシュスクロール補正モジュール
+   * ページ読み込み完了後にハッシュアンカーへ正確にスクロール
+   * =======================================================
+   */
+  (function () {
+    window.addEventListener("load", function () {
+      // URLにハッシュがある場合
+      if (window.location.hash) {
+        const hash = window.location.hash;
+        const targetElement = document.querySelector(hash);
+
+        if (targetElement) {
+          // レイアウトが安定するまで少し待つ
+          setTimeout(function () {
+            // scroll-margin-topを考慮してスクロール
+            targetElement.scrollIntoView({
+              behavior: "instant",
+              block: "start",
+            });
+          }, 300);
+        }
+      }
+    });
+  })();
+
+  /**
+   * =======================================================
    * グローバルリサイズ処理
    * =======================================================
    */

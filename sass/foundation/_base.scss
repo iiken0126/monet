@@ -42,7 +42,9 @@ html {
 }
 body {
   position: relative;
-  overflow: clip;
+  // overflow: clip はiOS Safariで慣性スクロールを妨げる可能性がある
+  overflow-x: hidden;
+  overflow-y: visible;
   line-height: 1.5;
   font-family: var(--font-ja__normal);
   background-color: var(--color-cream);

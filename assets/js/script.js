@@ -29,6 +29,12 @@
   // GSAPとScrollTriggerの登録（一度だけ）
   if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
     gsap.registerPlugin(ScrollTrigger);
+
+    // iOS/タッチデバイスの慣性スクロール改善
+    // normalizeScrollはタッチデバイスでのスクロール体験を改善
+    ScrollTrigger.config({
+      ignoreMobileResize: true
+    });
   }
 
   // グローバルな変数管理用オブジェクト
@@ -1094,6 +1100,7 @@
     let ticketButton;
     const MOBILE_BREAKPOINT = 824;
     const SCROLL_THRESHOLD = 200;
+    let ticking = false;
 
     function handleTicketVisibility() {
       if (!ticketButton) return;
@@ -1106,6 +1113,17 @@
       }
     }
 
+    // スクロールハンドラのスロットリング（iOS慣性スクロール改善）
+    function throttledVisibility() {
+      if (!ticking) {
+        window.requestAnimationFrame(function() {
+          handleTicketVisibility();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+
     function init() {
       ticketButton = document.querySelector(".ticket");
       if (!ticketButton) return;
@@ -1113,10 +1131,8 @@
       // 初期状態を設定
       handleTicketVisibility();
 
-      // スクロールイベント
-      window.addEventListener("scroll", function () {
-        handleTicketVisibility();
-      }, { passive: true });
+      // スクロールイベント（スロットリング付き）
+      window.addEventListener("scroll", throttledVisibility, { passive: true });
 
       // リサイズイベント
       window.addEventListener("resize", function () {
@@ -1139,6 +1155,7 @@
     let scrollToTopButton;
     let pulseTimer;
     const MOBILE_BREAKPOINT = 824;
+    let ticking = false;
 
     function handleScrollToTopVisibility() {
       if (!scrollToTopButton) return;
@@ -1187,14 +1204,23 @@
       });
     }
 
+    // スクロールハンドラのスロットリング（iOS慣性スクロール改善）
+    function throttledScrollHandler() {
+      if (!ticking) {
+        window.requestAnimationFrame(function() {
+          handleScrollToTopVisibility();
+          handlePulseAnimation();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+
     function init() {
       scrollToTopButton = document.getElementById("scrollToTop");
       if (!scrollToTopButton) return;
 
-      window.addEventListener("scroll", function () {
-        handleScrollToTopVisibility();
-        handlePulseAnimation();
-      }, { passive: true });
+      window.addEventListener("scroll", throttledScrollHandler, { passive: true });
 
       window.addEventListener("resize", function () {
         handleScrollToTopVisibility();
@@ -1363,6 +1389,18 @@
       }
     }
 
+    // スクロールハンドラのスロットリング（iOS慣性スクロール改善）
+    let ticking = false;
+    function throttledUpdate() {
+      if (!ticking) {
+        window.requestAnimationFrame(function() {
+          updateButtonPositions();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+
     function init() {
       footer = document.querySelector("footer");
       ticketButton = document.querySelector(".ticket");
@@ -1372,7 +1410,7 @@
 
       if (!footer) return;
 
-      window.addEventListener("scroll", updateButtonPositions, { passive: true });
+      window.addEventListener("scroll", throttledUpdate, { passive: true });
       window.addEventListener("resize", updateButtonPositions);
       updateButtonPositions();
     }

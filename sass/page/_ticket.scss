@@ -58,6 +58,9 @@ html:has(.page-ticket) {
   font-family: var(--font-ja__bold);
   font-feature-settings: normal;
   @include fs.pc-size(padding-left, 22);
+  // iOS position fix
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
 }
 
 .ticket-nav__link::before {
@@ -68,6 +71,9 @@ html:has(.page-ticket) {
   border-bottom: 0;
   box-sizing: border-box;
   transform: rotate(135deg);
+  // iOS position fix
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
   @include fs.pc-size(width, 7);
   @include fs.pc-size(height, 7);
   @include fs.pc-size(left, 2);

@@ -43,11 +43,15 @@
   @include fs.pc-size(margin-bottom, 30);
 }
 .cafe-menu__artwork-image {
+  flex-shrink: 0;
+  width: auto;
   @include fs.pc-size(height, 90);
 }
 .cafe-menu__artwork-image img {
-  object-fit: contain;
+  width: auto;
   height: 100%;
+  max-width: 100%;
+  object-fit: contain;
 }
 .cafe-menu__artwork-caption {
   flex: 1;
@@ -103,6 +107,7 @@
     @include fs.sp-size(margin-bottom, 25);
   }
   .cafe-menu__artwork-image {
+    width: auto;
     @include fs.sp-size(height, 70);
   }
   .cafe-menu__artwork-caption {

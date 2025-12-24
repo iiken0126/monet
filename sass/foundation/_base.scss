@@ -37,10 +37,14 @@
 
 html {
   overflow: auto;
+  // iOS momentum scroll optimization
+  -webkit-overflow-scrolling: touch;
 }
 body {
   position: relative;
-  overflow: clip;
+  // overflow: clip はiOS Safariで慣性スクロールを妨げる可能性がある
+  overflow-x: hidden;
+  overflow-y: visible;
   line-height: 1.5;
   font-family: var(--font-ja__normal);
   background-color: var(--color-cream);
@@ -49,6 +53,8 @@ body {
   text-align: justify;
   color: #353535;
   font-feature-settings: "palt";
+  // iOS touch optimization
+  touch-action: manipulation;
   @include fs.pc-size(font-size, 18);
 }
 body::before {

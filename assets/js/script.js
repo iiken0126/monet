@@ -1,5 +1,20 @@
 /**
  * =======================================================
+ * ハッシュスクロール防止（最初に実行）
+ * ブラウザのデフォルトハッシュスクロールより先に実行
+ * =======================================================
+ */
+(function () {
+  if (window.location.hash) {
+    if ("scrollRestoration" in history) {
+      history.scrollRestoration = "manual";
+    }
+    window.scrollTo(0, 0);
+  }
+})();
+
+/**
+ * =======================================================
  * アプリケーション全体の初期化
  * =======================================================
  */
@@ -1874,12 +1889,12 @@
   /**
    * =======================================================
    * ハッシュスクロール補正モジュール
-   * ページ読み込み完了後にハッシュアンカーへ正確にスクロール
+   * ページ読み込み完了後にハッシュアンカーへスムーズにスクロール
+   * ※ハッシュスクロール防止はファイル先頭で実行済み
    * =======================================================
    */
   (function () {
     window.addEventListener("load", function () {
-      // URLにハッシュがある場合
       if (window.location.hash) {
         const hash = window.location.hash;
         const targetElement = document.querySelector(hash);
@@ -1887,12 +1902,12 @@
         if (targetElement) {
           // レイアウトが安定するまで少し待つ
           setTimeout(function () {
-            // scroll-margin-topを考慮してスクロール
+            // scroll-margin-topを考慮してスムーズにスクロール
             targetElement.scrollIntoView({
-              behavior: "instant",
+              behavior: "smooth",
               block: "start",
             });
-          }, 300);
+          }, 100);
         }
       }
     });

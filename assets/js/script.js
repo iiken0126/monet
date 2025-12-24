@@ -1113,7 +1113,7 @@
       // スクロールイベント
       window.addEventListener("scroll", function () {
         handleTicketVisibility();
-      });
+      }, { passive: true });
 
       // リサイズイベント
       window.addEventListener("resize", function () {
@@ -1191,7 +1191,7 @@
       window.addEventListener("scroll", function () {
         handleScrollToTopVisibility();
         handlePulseAnimation();
-      });
+      }, { passive: true });
 
       window.addEventListener("resize", function () {
         handleScrollToTopVisibility();
@@ -1369,7 +1369,7 @@
 
       if (!footer) return;
 
-      window.addEventListener("scroll", updateButtonPositions);
+      window.addEventListener("scroll", updateButtonPositions, { passive: true });
       window.addEventListener("resize", updateButtonPositions);
       updateButtonPositions();
     }

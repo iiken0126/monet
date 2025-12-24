@@ -2,10 +2,13 @@
  * =======================================================
  * ハッシュスクロール防止（最初に実行）
  * ブラウザのデフォルトハッシュスクロールを完全に防止
+ * ※チケットページは独自のハッシュ処理があるためスキップ
  * =======================================================
  */
 (function () {
-  if (window.location.hash) {
+  // チケットページは独自のハッシュ処理があるためスキップ
+  var isTicketPage = document.body && document.body.classList.contains("page-ticket");
+  if (!isTicketPage && window.location.hash) {
     // ハッシュを一時保存
     window.__savedHash = window.location.hash;
     // URLからハッシュを削除（ブラウザのスクロールを防止）

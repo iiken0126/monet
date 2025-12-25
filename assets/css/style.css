@@ -10,11 +10,8 @@
   *,
   *::before,
   *::after {
-    -webkit-animation-delay: -1ms;
     animation-delay: -1ms;
-    -webkit-animation-duration: 1ms;
     animation-duration: 1ms;
-    -webkit-animation-iteration-count: 1;
     animation-iteration-count: 1;
     background-attachment: initial;
     scroll-behavior: auto;
@@ -447,7 +444,6 @@ dialog {
   border: solid;
   color: inherit;
   display: block;
-  height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
   left: 0;
@@ -455,7 +451,6 @@ dialog {
   padding: 1em;
   position: absolute;
   right: 0;
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
 }
@@ -479,20 +474,7 @@ dialog:not([open]) {
   height: auto;
 }
 
-::-webkit-input-placeholder {
-  color: inherit;
-  opacity: 0.54;
-}
-
-input::-webkit-input-placeholder {
-  opacity: 1;
-}
-
 input::-moz-placeholder {
-  opacity: 1;
-}
-
-input:-ms-input-placeholder {
   opacity: 1;
 }
 
@@ -626,11 +608,13 @@ template {
 
 html {
   overflow: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 body {
   position: relative;
-  overflow: clip;
+  overflow-x: hidden;
+  overflow-y: visible;
   line-height: 1.5;
   font-family: var(--font-ja__normal);
   background-color: var(--color-cream);
@@ -639,6 +623,7 @@ body {
   text-align: justify;
   color: #353535;
   font-feature-settings: "palt";
+  touch-action: manipulation;
   font-size: clamp(12.65625px, calc(12.65625px + 9.84375 * (100vw - 900px) / 700), 22.5px);
 }
 
@@ -709,11 +694,11 @@ a:focus {
 
 img {
   width: 100%;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   position: relative;
   -webkit-user-select: none;
   -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
   pointer-events: none;
 }
@@ -761,35 +746,6 @@ img {
 }
 
 /* Safari用のキーフレーム */
-@-webkit-keyframes blur {
-  0% {
-    text-shadow: 0 0 100px currentColor;
-    opacity: 0;
-    color: transparent;
-  }
-  5% {
-    text-shadow: 0 0 90px currentColor;
-    color: transparent;
-  }
-  15% {
-    opacity: 1;
-    color: inherit;
-  }
-  20% {
-    text-shadow: 0 0 0px currentColor;
-    color: inherit;
-  }
-  80% {
-    text-shadow: 0 0 0px currentColor;
-    opacity: 1;
-    color: inherit;
-  }
-  100% {
-    text-shadow: 0 0 0px currentColor;
-    opacity: 1;
-    color: inherit;
-  }
-}
 /* 標準のキーフレーム */
 @keyframes blur {
   0% {
@@ -841,15 +797,12 @@ img {
   /* Safari最適化 */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  -webkit-perspective: 1000px;
   perspective: 1000px;
   transform-style: preserve-3d;
   -webkit-transform-style: preserve-3d;
   will-change: transform, filter, opacity;
   /* GPU最適化 */
-  -webkit-transform: translateZ(0);
   transform: translateZ(0);
 }
 
@@ -858,11 +811,9 @@ img {
   display: inline-block;
   animation-fill-mode: forwards;
   -webkit-animation-fill-mode: forwards;
-  -webkit-transform: translateZ(0);
   transform: translateZ(0);
   filter: none !important;
   /* Safari最適化を追加 */
-  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   will-change: transform, opacity, filter;
 }
@@ -875,29 +826,6 @@ img {
  * キーフレーム定義
  * ======================================================= */
 /* Cream（デフォルト） */
-@-webkit-keyframes blur-heading {
-  0% {
-    text-shadow: 0 0 100px var(--color-cream);
-    opacity: 0;
-  }
-  5% {
-    text-shadow: 0 0 90px var(--color-cream);
-  }
-  15% {
-    opacity: 1;
-  }
-  20% {
-    text-shadow: 0 0 0px var(--color-cream);
-  }
-  80% {
-    text-shadow: 0 0 0px var(--color-cream);
-    opacity: 1;
-  }
-  100% {
-    text-shadow: 0 0 0px var(--color-cream);
-    opacity: 1;
-  }
-}
 @keyframes blur-heading {
   0% {
     text-shadow: 0 0 100px var(--color-cream);
@@ -922,29 +850,6 @@ img {
   }
 }
 /* Primary (#2c766b) */
-@-webkit-keyframes blur-heading-primary {
-  0% {
-    text-shadow: 0 0 100px var(--color-primary);
-    opacity: 0;
-  }
-  5% {
-    text-shadow: 0 0 90px var(--color-primary);
-  }
-  15% {
-    opacity: 1;
-  }
-  20% {
-    text-shadow: 0 0 0px var(--color-primary);
-  }
-  80% {
-    text-shadow: 0 0 0px var(--color-primary);
-    opacity: 1;
-  }
-  100% {
-    text-shadow: 0 0 0px var(--color-primary);
-    opacity: 1;
-  }
-}
 @keyframes blur-heading-primary {
   0% {
     text-shadow: 0 0 100px var(--color-primary);
@@ -969,29 +874,6 @@ img {
   }
 }
 /* Special (#5EA8BF) */
-@-webkit-keyframes blur-heading-special {
-  0% {
-    text-shadow: 0 0 100px var(--color-special);
-    opacity: 0;
-  }
-  5% {
-    text-shadow: 0 0 90px var(--color-special);
-  }
-  15% {
-    opacity: 1;
-  }
-  20% {
-    text-shadow: 0 0 0px var(--color-special);
-  }
-  80% {
-    text-shadow: 0 0 0px var(--color-special);
-    opacity: 1;
-  }
-  100% {
-    text-shadow: 0 0 0px var(--color-special);
-    opacity: 1;
-  }
-}
 @keyframes blur-heading-special {
   0% {
     text-shadow: 0 0 100px var(--color-special);
@@ -1016,29 +898,6 @@ img {
   }
 }
 /* Special Sub (#4F94A9) */
-@-webkit-keyframes blur-heading-special-sub {
-  0% {
-    text-shadow: 0 0 100px var(--color-special-sub);
-    opacity: 0;
-  }
-  5% {
-    text-shadow: 0 0 90px var(--color-special-sub);
-  }
-  15% {
-    opacity: 1;
-  }
-  20% {
-    text-shadow: 0 0 0px var(--color-special-sub);
-  }
-  80% {
-    text-shadow: 0 0 0px var(--color-special-sub);
-    opacity: 1;
-  }
-  100% {
-    text-shadow: 0 0 0px var(--color-special-sub);
-    opacity: 1;
-  }
-}
 @keyframes blur-heading-special-sub {
   0% {
     text-shadow: 0 0 100px var(--color-special-sub);
@@ -1063,29 +922,6 @@ img {
   }
 }
 /* Goods (#6C9692) */
-@-webkit-keyframes blur-heading-goods {
-  0% {
-    text-shadow: 0 0 100px var(--color-goods);
-    opacity: 0;
-  }
-  5% {
-    text-shadow: 0 0 90px var(--color-goods);
-  }
-  15% {
-    opacity: 1;
-  }
-  20% {
-    text-shadow: 0 0 0px var(--color-goods);
-  }
-  80% {
-    text-shadow: 0 0 0px var(--color-goods);
-    opacity: 1;
-  }
-  100% {
-    text-shadow: 0 0 0px var(--color-goods);
-    opacity: 1;
-  }
-}
 @keyframes blur-heading-goods {
   0% {
     text-shadow: 0 0 100px var(--color-goods);
@@ -1110,29 +946,6 @@ img {
   }
 }
 /* Cafe (#BF4C4C) */
-@-webkit-keyframes blur-heading-cafe {
-  0% {
-    text-shadow: 0 0 100px var(--color-cafe);
-    opacity: 0;
-  }
-  5% {
-    text-shadow: 0 0 90px var(--color-cafe);
-  }
-  15% {
-    opacity: 1;
-  }
-  20% {
-    text-shadow: 0 0 0px var(--color-cafe);
-  }
-  80% {
-    text-shadow: 0 0 0px var(--color-cafe);
-    opacity: 1;
-  }
-  100% {
-    text-shadow: 0 0 0px var(--color-cafe);
-    opacity: 1;
-  }
-}
 @keyframes blur-heading-cafe {
   0% {
     text-shadow: 0 0 100px var(--color-cafe);
@@ -1367,7 +1180,8 @@ img {
 .nav__background {
   position: absolute;
   content: "";
-  object-fit: contain;
+  -o-object-fit: contain;
+     object-fit: contain;
   width: 100%;
   aspect-ratio: 1280/462;
   bottom: 0;
@@ -1595,7 +1409,8 @@ img {
 
 .footer__logo-image {
   height: 100%;
-  object-fit: contain;
+  -o-object-fit: contain;
+     object-fit: contain;
   width: auto;
 }
 
@@ -2619,7 +2434,8 @@ img {
 
 .artwork-image {
   height: 22%;
-  object-fit: contain;
+  -o-object-fit: contain;
+     object-fit: contain;
   height: 100%;
 }
 
@@ -2740,7 +2556,8 @@ img {
   width: auto;
   margin-left: auto;
   display: block;
-  object-fit: contain;
+  -o-object-fit: contain;
+     object-fit: contain;
   height: clamp(351.5625px, calc(351.5625px + 273.4375 * (100vw - 900px) / 700), 625px);
 }
 
@@ -3167,7 +2984,8 @@ img {
 .page-related__image img {
   width: 100%;
   height: auto;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .page-related__text {
@@ -3351,7 +3169,8 @@ img {
 .museum-section__image img {
   width: 100%;
   height: auto;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 @media screen and (max-width: 824px) {
@@ -3462,7 +3281,6 @@ body.loading-active {
   align-items: center;
   justify-content: center;
   /* Safari最適化 */
-  -webkit-transform: translateZ(0);
   transform: translateZ(0);
 }
 
@@ -3472,9 +3290,7 @@ body.loading-active {
   height: 100%;
   overflow: hidden;
   /* Safari最適化 */
-  -webkit-transform: translateZ(0);
   transform: translateZ(0);
-  -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
 }
 
@@ -3486,11 +3302,10 @@ body.loading-active {
   left: 50%;
   transform: translate(-50%, -50%);
   opacity: 0;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   /* Safari最適化 */
-  -webkit-transform: translate(-50%, -50%) translateZ(0);
   transform: translate(-50%, -50%) translateZ(0);
-  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   /* ビューポートベースのサイズに修正 */
   width: calc(100vw + 100px); /* 100%ではなく100vw */
@@ -3498,7 +3313,8 @@ body.loading-active {
   /* 画像をビューポートより大きく配置 */
   min-width: calc(100vw + 100px);
   min-height: calc(100svh + 100px);
-  object-position: center top; /* メインビジュアルと同じ位置指定 */
+  -o-object-position: center top;
+     object-position: center top; /* メインビジュアルと同じ位置指定 */
   will-change: filter, opacity, transform;
 }
 
@@ -3519,9 +3335,7 @@ body.loading-active {
   /* Safari最適化 */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  -webkit-perspective: 1000px;
   perspective: 1000px;
   transform-style: preserve-3d;
   -webkit-transform-style: preserve-3d;
@@ -3535,34 +3349,10 @@ body.loading-active {
   animation-fill-mode: forwards;
   -webkit-animation-fill-mode: forwards;
   display: inline-block;
-  -webkit-transform: translateZ(0);
   transform: translateZ(0);
 }
 
 /* Safari用のキーフレーム */
-@-webkit-keyframes blur {
-  0% {
-    text-shadow: 0 0 100px #2c766b;
-    opacity: 0;
-  }
-  5% {
-    text-shadow: 0 0 90px #2c766b;
-  }
-  15% {
-    opacity: 1;
-  }
-  20% {
-    text-shadow: 0 0 0px #2c766b;
-  }
-  80% {
-    text-shadow: 0 0 0px #2c766b;
-    opacity: 1;
-  }
-  100% {
-    text-shadow: 0 0 0px #2c766b;
-    opacity: 1;
-  }
-}
 /* 標準のキーフレーム */
 @keyframes blur {
   0% {
@@ -3610,8 +3400,10 @@ body.loading-active {
 .home-bg__image {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center top;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center top;
+     object-position: center top;
 }
 
 .home__main {
@@ -4021,7 +3813,8 @@ body.loading-active {
 .artwork-item__image {
   width: 100%;
   background-color: #fff;
-  object-fit: contain;
+  -o-object-fit: contain;
+     object-fit: contain;
   display: block;
   height: clamp(421.875px, calc(421.875px + 328.125 * (100vw - 900px) / 700), 750px);
 }
@@ -4058,7 +3851,8 @@ body.loading-active {
 .special-info__image img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 @media screen and (max-width: 824px) {
@@ -4139,7 +3933,8 @@ body.loading-active {
   width: auto;
   /* 白い背景問題の修正 */
   background-color: transparent; /* #fffから変更 */
-  object-fit: contain;
+  -o-object-fit: contain;
+     object-fit: contain;
   display: block;
   height: 600px; /* PC用の高さ */
   /* 古いSafari用のフォールバック追加 */
@@ -4148,7 +3943,7 @@ body.loading-active {
 }
 
 /* 古いWebkit向けの追加対策 */
-@supports not (object-fit: contain) {
+@supports not ((-o-object-fit: contain) or (object-fit: contain)) {
   .artwork-item__image {
     width: auto;
     max-width: 100%;
@@ -4163,7 +3958,7 @@ body.loading-active {
   .artwork-item__image {
     height: 280px; /* モバイル用の高さ */
   }
-  @supports not (object-fit: contain) {
+  @supports not ((-o-object-fit: contain) or (object-fit: contain)) {
     .artwork-item__image {
       max-height: 280px;
     }
@@ -4255,7 +4050,8 @@ body.loading-active {
 }
 
 .sponsors__link img {
-  object-fit: contain;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 .sponsors__caption {
@@ -4395,6 +4191,7 @@ html:has(.page-structure) {
 .structure__sidebar {
   flex-shrink: 0;
   position: sticky;
+  height: -moz-fit-content;
   height: fit-content;
   top: 0;
 }
@@ -4572,7 +4369,8 @@ html:has(.page-structure) {
 }
 
 .structure__image img {
-  object-fit: contain;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 .structure__image-caption {
@@ -5084,6 +4882,7 @@ html:has(.page-ticket) {
   font-family: var(--font-ja__bold);
   font-feature-settings: normal;
   padding-left: clamp(15.46875px, calc(15.46875px + 12.03125 * (100vw - 900px) / 700), 27.5px);
+  transform: translateZ(0);
 }
 
 .ticket-nav__link::before {
@@ -5094,6 +4893,7 @@ html:has(.page-ticket) {
   border-bottom: 0;
   box-sizing: border-box;
   transform: rotate(135deg);
+  backface-visibility: hidden;
   width: clamp(4.921875px, calc(4.921875px + 3.828125 * (100vw - 900px) / 700), 8.75px);
   height: clamp(4.921875px, calc(4.921875px + 3.828125 * (100vw - 900px) / 700), 8.75px);
   left: clamp(1.40625px, calc(1.40625px + 1.09375 * (100vw - 900px) / 700), 2.5px);
@@ -5415,7 +5215,8 @@ html:has(.page-ticket) {
 .audioguide-intro__image img {
   width: 100%;
   height: auto;
-  object-fit: contain;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 /* ===== NARRATOR ===== */
@@ -5439,7 +5240,8 @@ html:has(.page-ticket) {
 .narrator__image img {
   width: 100%;
   height: auto;
-  object-fit: contain;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 .narrator__info {
@@ -5553,7 +5355,8 @@ html:has(.page-ticket) {
   justify-content: center;
   border: 0.718px solid #4b74a3;
   background: rgba(255, 255, 255, 0.3019607843);
-  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+          backdrop-filter: blur(7px);
   border-radius: 50%;
   left: 50%;
   transform: translateX(-50%);
@@ -5595,7 +5398,8 @@ html:has(.page-ticket) {
   max-height: 100%;
   width: auto;
   height: auto;
-  object-fit: contain;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 /* QRコード用（1:1） */
@@ -6018,7 +5822,8 @@ html:has(.page-ticket) {
   justify-content: center;
   border: 1px solid #4f94a9;
   background: rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
   border-radius: 50%;
   left: 50%;
   transform: translateX(-50%);
@@ -6115,7 +5920,8 @@ html:has(.page-ticket) {
 .special-card__images img {
   width: 100%;
   height: auto;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 /* ===== SP ===== */
@@ -6199,7 +6005,8 @@ html:has(.page-ticket) {
 .enjoy-section__icon img {
   width: 100%;
   height: auto;
-  object-fit: contain;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 .enjoy-section__title {
@@ -6294,7 +6101,8 @@ html:has(.page-ticket) {
 .enjoy-guide__icon img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 .enjoy-guide__title {
@@ -6357,7 +6165,8 @@ html:has(.page-ticket) {
 .enjoy-tv__logo img {
   width: 100%;
   height: auto;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .enjoy-tv__body {
@@ -6549,7 +6358,8 @@ html:has(.page-ticket) {
 .collab-item__logo img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 .collab-swiper {
@@ -6571,7 +6381,8 @@ html:has(.page-ticket) {
 .collab-swiper .swiper-slide img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .collab-swiper .swiper-pagination {
@@ -7025,21 +6836,32 @@ html:has(.page-ticket) {
   height: 100%;
 }
 
-.goods-item .goods-swiper .swiper-wrapper {
+.goods-swiper .swiper-wrapper {
+  display: flex;
+  width: 100%;
   height: 100%;
 }
 
 .goods-swiper .swiper-slide {
+  flex-shrink: 0;
+  width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+.goods-item .goods-swiper .swiper-wrapper {
+  height: 100%;
+}
+
 .goods-swiper .swiper-slide img {
+  width: auto;
+  height: 100%;
   max-width: 100%;
   max-height: 100%;
-  object-fit: contain;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 .goods-swiper .swiper-pagination {
@@ -7223,9 +7045,12 @@ html:has(.page-ticket) {
 }
 
 .goods-card .goods-swiper .swiper-slide img {
+  width: auto;
+  height: 100%;
   max-width: 100%;
   max-height: 100%;
-  object-fit: contain;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 .goods-card .goods-swiper .swiper-pagination {
@@ -7532,7 +7357,8 @@ html:has(.page-ticket) {
 .cafe-menu__photo img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .cafe-menu__artwork {
@@ -7545,12 +7371,17 @@ html:has(.page-ticket) {
 }
 
 .cafe-menu__artwork-image {
+  flex-shrink: 0;
+  width: auto;
   height: clamp(63.28125px, calc(63.28125px + 49.21875 * (100vw - 900px) / 700), 112.5px);
 }
 
 .cafe-menu__artwork-image img {
-  object-fit: contain;
+  width: auto;
   height: 100%;
+  max-width: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 .cafe-menu__artwork-caption {
@@ -7598,6 +7429,7 @@ html:has(.page-ticket) {
     margin-bottom: clamp(24.0384615385px, calc(24.0384615385px + 28.7820512821 * (100vw - 375px) / 449), 52.8205128205px);
   }
   .cafe-menu__artwork-image {
+    width: auto;
     height: clamp(67.3076923077px, calc(67.3076923077px + 80.5897435897 * (100vw - 375px) / 449), 147.8974358974px);
   }
   .cafe-menu__artwork-caption {
@@ -7615,6 +7447,4 @@ html:has(.page-ticket) {
   .cafe-menu__description {
     font-size: clamp(13.4615384615px, calc(13.4615384615px + 16.1179487179 * (100vw - 375px) / 449), 29.5794871795px);
   }
-}
-
-/*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=style.css.map */

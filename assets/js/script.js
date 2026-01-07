@@ -1431,21 +1431,26 @@
         const originalHTML = target.innerHTML;
         let processedHTML = "";
         let spanIndex = 0;
+        let trimNextText = false; // brタグ後のテキストをトリムするフラグ
 
         const processNode = (node, isFirstNode = false) => {
           if (node.nodeType === Node.TEXT_NODE) {
             let text = node.textContent;
 
-            if (isFirstNode) {
+            // 最初のノードまたはbrタグ直後の場合、先頭空白を削除
+            if (isFirstNode || trimNextText) {
               text = text.trimStart();
+              trimNextText = false;
             }
+
+            // HTMLインデント用の空白（改行を含む連続空白）を処理
+            // 改行文字を含む空白シーケンスは削除
+            text = text.replace(/[ \t]*[\n\r]+[ \t]*/g, '');
 
             for (let i = 0; i < text.length; i++) {
               const char = text[i];
 
-              if (char === "\n" || char === "\r") {
-                continue;
-              } else if (char === " ") {
+              if (char === " ") {
                 processedHTML +=
                   '<span class="char-span" style="white-space: pre;">&nbsp;</span>';
                 spanIndex++;
@@ -1469,6 +1474,8 @@
                 ? ` class="${node.className}"`
                 : "";
               processedHTML += `<br${classes}>`;
+              // brタグ後のテキストの先頭空白を削除するフラグを立てる
+              trimNextText = true;
             } else if (tagName === "span" && node.className) {
               // クラス付きspan要素は保持して中身を処理
               const attributes = [];

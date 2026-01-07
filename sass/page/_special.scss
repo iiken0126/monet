@@ -141,15 +141,12 @@ a.special-card--full-link:hover,
 a.special-card--full-link:focus {
   opacity: 1;
 }
-a.special-card--full-link:hover .special-card__title,
-a.special-card--full-link:hover .special-card__text,
-a.special-card--full-link:focus .special-card__title,
-a.special-card--full-link:focus .special-card__text {
-  opacity: 0.5;
-}
-a.special-card--full-link .special-card__title,
-a.special-card--full-link .special-card__text {
+a.special-card--full-link .special-card__inner {
   transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+a.special-card--full-link:hover .special-card__inner,
+a.special-card--full-link:focus .special-card__inner {
+  opacity: 0.5;
 }
 
 /* ===== ボタン付きパネル（01, 04用）===== */
@@ -161,6 +158,11 @@ a.special-card--full-link .special-card__text {
 .special-card--with-buttons .special-card__links object a {
   display: inline-block;
   width: 100%;
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.special-card--with-buttons .special-card__links object a:hover,
+.special-card--with-buttons .special-card__links object a:focus {
+  opacity: 0.5;
 }
 
 /* ===== SP ===== */

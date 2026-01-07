@@ -97,7 +97,7 @@
   .cafe-menu {
     margin-top: 0;
     grid-template-columns: 1fr;
-    @include fs.sp-size(gap, 30);
+    @include fs.sp-size(gap, 50);
   }
 
   // ----- CAFE MENU PHOTO -----

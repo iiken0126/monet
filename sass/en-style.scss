@@ -28,6 +28,9 @@ h6 {
 .button-filled--en {
   @include fs.pc-size(max-width, 450);
 }
+.button-outline {
+  @include fs.pc-size(padding, 24 20 24 20);
+}
 .nav__lists {
   align-items: center;
 }

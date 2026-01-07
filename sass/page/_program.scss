@@ -29,6 +29,7 @@
 .program__section-note {
   font-weight: 500;
   line-height: 2;
+  flex: 1;
   font-family: var(--font-ja__bold);
   @include fs.pc-size(font-size, 16);
 }

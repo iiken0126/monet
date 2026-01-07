@@ -1572,10 +1572,6 @@
     return { init };
   })();
 
-  document.addEventListener("DOMContentLoaded", function () {
-    HeadingAnimationModule.init();
-  });
-
   /**
    * =======================================================
    * スクロールアニメーションモジュール
@@ -1583,8 +1579,7 @@
    * =======================================================
    */
   document.addEventListener("DOMContentLoaded", function () {
-    // HeadingAnimationModuleの初期化（span要素の準備）
-    HeadingAnimationModule.init();
+    // HeadingAnimationModuleはinitializeApp()で初期化されるためここでは呼ばない
 
     // リサイズ処理用のフラグとタイマー
     let resizeTimer;

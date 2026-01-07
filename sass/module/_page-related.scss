@@ -43,8 +43,13 @@
   background-image: url(../../assets/images/icon__arrow--black.svg);
   background-size: contain;
   background-repeat: no-repeat;
+  transition: transform 0.6s ease-out;
   @include fs.pc-size(width, 8);
   @include fs.pc-size(height, 13);
+}
+.page-related__item:hover .page-related__text::before,
+.page-related__item:focus .page-related__text::before {
+  transform: translateX(5px);
 }
 
 /* ===== SP ===== */

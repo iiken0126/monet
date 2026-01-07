@@ -1498,7 +1498,7 @@
 
               // 子ノードを再帰的に処理
               node.childNodes.forEach((child, index) =>
-                processNode(child, index === 0)
+                processNode(child, isFirstNode && index === 0)
               );
 
               // 終了タグ

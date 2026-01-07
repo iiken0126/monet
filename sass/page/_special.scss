@@ -130,6 +130,71 @@
   object-fit: cover;
 }
 
+/* ===== パネル全体リンク（02, 03用） ===== */
+a.special-card--full-link {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+}
+a.special-card--full-link:hover,
+a.special-card--full-link:focus {
+  opacity: 1;
+}
+a.special-card--full-link:hover .special-card__title,
+a.special-card--full-link:hover .special-card__text,
+a.special-card--full-link:focus .special-card__title,
+a.special-card--full-link:focus .special-card__text {
+  opacity: 0.5;
+}
+a.special-card--full-link .special-card__title,
+a.special-card--full-link .special-card__text {
+  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ===== ボタン付きパネル用オーバーレイリンク（01, 04用） ===== */
+.special-card--has-buttons {
+  position: relative;
+}
+.special-card__overlay-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+.special-card__overlay-link:hover,
+.special-card__overlay-link:focus {
+  opacity: 1;
+}
+.special-card--has-buttons .special-card__number {
+  z-index: 2;
+  pointer-events: none;
+}
+.special-card--has-buttons .special-card__inner {
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+}
+.special-card--has-buttons .special-card__title,
+.special-card--has-buttons .special-card__text {
+  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.special-card--has-buttons:hover .special-card__title,
+.special-card--has-buttons:hover .special-card__text {
+  opacity: 0.5;
+}
+.special-card--has-buttons .special-card__links {
+  pointer-events: auto;
+  position: relative;
+  z-index: 3;
+}
+.special-card--has-buttons .special-card__links a {
+  position: relative;
+  z-index: 3;
+}
+
 /* ===== SP ===== */
 @media screen and (max-width: 824px) {
   .special-list {

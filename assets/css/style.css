@@ -613,8 +613,7 @@ html {
 
 body {
   position: relative;
-  overflow-x: hidden;
-  overflow-y: visible;
+  overflow: clip;
   line-height: 1.5;
   font-family: var(--font-ja__normal);
   background-color: var(--color-cream);

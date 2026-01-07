@@ -120,13 +120,16 @@
   @include fs.pc-size(width, 8);
   @include fs.pc-size(height, 10);
 }
-/* --grid専用：ホバー時にアイコンが移動 */
-.special-card__links--grid a::before {
+/* ホバー時にアイコンが移動 */
+.special-card__links--grid a::before,
+.special-card__links--single a::before {
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 .special-card__links--grid a:hover::before,
-.special-card__links--grid a:focus::before {
-  transform: translateX(10px);
+.special-card__links--grid a:focus::before,
+.special-card__links--single a:hover::before,
+.special-card__links--single a:focus::before {
+  transform: translateX(5px);
 }
 .special-card__images {
   display: flex;

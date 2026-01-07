@@ -88,6 +88,11 @@
 // SP版スタイル
 // ============================================================
 @media screen and (max-width: 824px) {
+  // ----- PAGE SECTION HEADER -----
+  .page-section-header--cafe .page-section-header__title {
+    @include fs.sp-size(font-size, 39);
+  }
+
   // ----- CAFE MENU -----
   .cafe-menu {
     margin-top: 0;

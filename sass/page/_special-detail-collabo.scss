@@ -100,9 +100,17 @@
   @include fs.pc-size(margin-bottom, 20);
 }
 .collab-item__text {
+  display: grid;
   line-height: 2.133;
+  @include fs.pc-size(gap, 10);
   @include fs.pc-size(font-size, 15);
   @include fs.pc-size(margin-bottom, 40);
+}
+.collab-item__text p {
+  text-align: initial;
+}
+.collab-item__text a {
+  text-decoration: underline;
 }
 .collab-action {
   text-align: right;
@@ -150,6 +158,7 @@
   }
   .collab-item__text {
     line-height: 2;
+    @include fs.sp-size(gap, 10);
     @include fs.sp-size(font-size, 14);
     @include fs.sp-size(margin-bottom, 30);
   }

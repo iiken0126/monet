@@ -64,10 +64,18 @@ h6 {
   width: 60%;
   @include fs.pc-size(max-width, 760);
 }
-.ticket-nav__item:not(:first-child) {
+// 3番目: 左線を表示（日本語版の非表示を上書き）
+.ticket-nav__item:nth-of-type(3) {
+  @include fs.pc-size(padding-left, 24);
+}
+.ticket-nav__item:nth-of-type(3)::before {
+  content: "";
+}
+// 4番目: 左線を非表示
+.ticket-nav__item:nth-of-type(4) {
   padding-left: 0;
 }
-.ticket-nav__item:not(:first-child)::before {
+.ticket-nav__item:nth-of-type(4)::before {
   content: none;
 }
 

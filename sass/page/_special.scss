@@ -391,6 +391,11 @@ a.special-card--full-link:focus .special-card__text {
 .special-card--with-buttons .special-card__links object a:focus {
   opacity: 0.5;
 }
+/* objectリンクホバー時は親のホバー効果を無効化 */
+a.special-card--full-link:has(.special-card__links object:hover) .special-card__title,
+a.special-card--full-link:has(.special-card__links object:hover) .special-card__text {
+  opacity: 1;
+}
 
 /* ===== SP ===== */
 @media screen and (max-width: 824px) {

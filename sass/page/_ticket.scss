@@ -134,6 +134,7 @@ html:has(.page-ticket) {
 .ticket__content {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   @include fs.pc-size(gap, 60);
 }
 

@@ -42,12 +42,10 @@ html:has(.page-ticket) {
   @include fs.pc-size(top, 8);
 }
 
-.ticket-nav__item:nth-of-type(3),
-.ticket-nav__item:nth-of-type(4) {
+.ticket-nav__item:nth-of-type(3) {
   padding-left: 0;
 }
-.ticket-nav__item:nth-of-type(3)::before,
-.ticket-nav__item:nth-of-type(4)::before {
+.ticket-nav__item:nth-of-type(3)::before {
   content: none;
 }
 

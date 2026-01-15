@@ -64,6 +64,12 @@ h6 {
   width: 60%;
   @include fs.pc-size(max-width, 760);
 }
+.ticket-nav__item:nth-of-type(3) {
+  @include fs.pc-size(padding-left, 24);
+}
+.ticket-nav__item:nth-of-type(3)::before {
+  content: "";
+}
 
 .ticket-title {
   display: block;

@@ -52,6 +52,19 @@
   transform: translateX(5px);
 }
 
+/* ===== 非アクティブ状態 ===== */
+.page-related__item--disabled {
+  pointer-events: none;
+  opacity: 0.4;
+}
+.page-related__item--disabled .page-related__text::before {
+  transition: none;
+}
+.page-related__item--disabled:hover .page-related__text::before,
+.page-related__item--disabled:focus .page-related__text::before {
+  transform: none;
+}
+
 /* ===== SP ===== */
 @media screen and (max-width: 824px) {
   /* page-relatedがあるページのmainにpadding-bottom追加 */

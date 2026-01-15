@@ -397,6 +397,36 @@ a.special-card--full-link:has(.special-card__links object:hover) .special-card__
   opacity: 1;
 }
 
+/* ===== ホバー無効パネル ===== */
+.special-card--no-hover {
+  pointer-events: none;
+}
+.special-card--no-hover .special-card__title,
+.special-card--no-hover .special-card__text {
+  transition: none;
+}
+.special-card--no-hover:hover .special-card__title,
+.special-card--no-hover:hover .special-card__text {
+  opacity: 1;
+}
+.special-card--no-hover .special-card__links {
+  pointer-events: none;
+}
+.special-card--no-hover .special-card__links object a {
+  pointer-events: none;
+}
+.special-card--no-hover .special-card__links a:hover,
+.special-card--no-hover .special-card__links a:focus {
+  opacity: 1;
+}
+.special-card--no-hover .special-card__links a::before {
+  transition: none;
+}
+.special-card--no-hover .special-card__links a:hover::before,
+.special-card--no-hover .special-card__links a:focus::before {
+  transform: none;
+}
+
 /* ===== SP ===== */
 @media screen and (max-width: 824px) {
   .special-list {

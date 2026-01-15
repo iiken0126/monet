@@ -9,6 +9,14 @@
   @include fs.pc-size(gap, 140 60);
   @include fs.pc-size(padding-top, 92);
 }
+/* Present Page用のグリッド（1カラム・白背景） */
+.special-list__grid--present {
+  grid-template-columns: 1fr;
+  gap: 0;
+  background: #fff;
+  border-bottom: 3px solid rgba(79, 148, 169, 0.3);
+  @include fs.pc-size(padding, 0 56);
+}
 
 /* ===== SPECIAL CARD ===== */
 .special-card {
@@ -16,6 +24,14 @@
   display: flex;
   flex-direction: column;
   overflow: visible;
+}
+/* Present Page用カード */
+.special-card--present {
+  border-bottom: 1px solid rgba(44, 118, 107, 0.2);
+  @include fs.pc-size(padding, 60 0);
+}
+.special-card--present-last {
+  border-bottom: none;
 }
 .special-card__inner {
   text-align: center;
@@ -28,12 +44,39 @@
   @include fs.pc-size(padding-top, 92);
   @include fs.pc-size(padding, 110 30 40);
 }
+/* Present Page用inner */
+.special-card__inner--present {
+  text-align: left;
+  align-items: flex-start;
+  background: none;
+  @include fs.pc-size(padding, 0);
+}
 .special-card__link {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
+
+/* ===== SPECIAL CARD HEADER（番号+タイトル+ステータス横並び） ===== */
+.special-card__header {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  @include fs.pc-size(gap, 20);
+  @include fs.pc-size(padding, 0 0 20);
+}
+.special-card__header .special-card__number--inline {
+  order: 1;
+}
+.special-card__header .special-card__title {
+  order: 2;
+}
+.special-card__header .special-card__status {
+  order: 3;
+}
+
+/* ===== SPECIAL CARD NUMBER ===== */
 .special-card__number {
   position: absolute;
   display: flex;
@@ -50,12 +93,28 @@
   @include fs.pc-size(width, 181);
   @include fs.pc-size(height, 181);
 }
+/* インライン版（header内で使用） */
+.special-card__number--inline {
+  position: static;
+  transform: none;
+  flex-shrink: 0;
+  background: #fff;
+  border-color: var(--color-primary);
+  @include fs.pc-size(width, 60);
+  @include fs.pc-size(height, 60);
+}
 .special-card__number-num {
   font-family: var(--font__en);
   color: #4f94a9;
   line-height: 1;
   @include fs.pc-size(font-size, 60);
 }
+.special-card__number--inline .special-card__number-num {
+  color: var(--color-primary);
+  @include fs.pc-size(font-size, 32);
+}
+
+/* ===== SPECIAL CARD TITLE ===== */
 .special-card__title {
   font-family: var(--font-ja__normal-mincho);
   font-weight: 600;
@@ -65,10 +124,164 @@
   @include fs.pc-size(font-size, 23);
   @include fs.pc-size(margin-bottom, 10);
 }
+/* Present Page用タイトル */
+.special-card--present .special-card__title {
+  text-align: left;
+  margin-bottom: 0;
+  @include fs.pc-size(font-size, 24);
+  @include fs.pc-size(padding-top, 9);
+}
+
+/* 終了ステータス */
+.special-card__status {
+  font-weight: 500;
+  line-height: 2;
+  letter-spacing: 0.02em;
+  font-family: var(--font-ja__bold);
+  color: var(--color-primary);
+  @include fs.pc-size(font-size, 18);
+  @include fs.pc-size(margin-top, 12);
+}
+
+/* ===== SPECIAL CARD CONTENT ===== */
+.special-card__content {
+  width: 100%;
+  @include fs.pc-size(padding, 0 0 30);
+}
+
 .special-card__text {
   line-height: 2.133;
   @include fs.pc-size(font-size, 15);
 }
+.special-card--present .special-card__text {
+  text-align: left;
+}
+
+/* サブノート（※配布場所により〜） */
+.special-card__sub-note {
+  @include fs.pc-size(font-size, 12);
+  @include fs.pc-size(margin-top, 5);
+}
+
+/* ===== SPECIAL CARD INFO BOX ===== */
+.special-card__info-box {
+  width: 100%;
+  background: rgba(79, 148, 169, 0.1);
+  @include fs.pc-size(margin-top, 30);
+  @include fs.pc-size(padding, 40);
+}
+.special-card__info-item {
+  border-bottom: 1px solid rgba(51, 51, 51, 0.2);
+  @include fs.pc-size(padding, 30 0);
+}
+.special-card__info-item:first-child {
+  padding-top: 0;
+}
+.special-card__info-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+.special-card__info-item--single {
+  border-bottom: none;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+/* Card 04用：横並びdt+dd、下線なし、ゴシック */
+.special-card__info-item--inline {
+  display: flex;
+  border-bottom: none;
+  padding-top: 0;
+  padding-bottom: 0;
+  @include fs.pc-size(gap, 4);
+}
+.special-card__info-item--inline + .special-card__info-item--inline {
+  @include fs.pc-size(margin-top, 10);
+}
+.special-card__info-item--inline .special-card__info-term {
+  font-family: var(--font-ja__normal);
+  font-weight: 400;
+  line-height: 2.133;
+  flex-shrink: 0;
+  margin-bottom: 0;
+  @include fs.pc-size(font-size, 15);
+}
+.special-card__info-item--inline .special-card__info-desc {
+  font-family: var(--font-ja__normal);
+  flex: 1;
+  @include fs.pc-size(font-size, 15);
+}
+.special-card__info-term {
+  font-family: var(--font-ja__normal-mincho);
+  font-weight: 600;
+  line-height: 1.77;
+  @include fs.pc-size(font-size, 18);
+  @include fs.pc-size(margin-bottom, 5);
+}
+.special-card__info-item--single .special-card__info-term {
+  margin-bottom: 0;
+}
+.special-card__info-desc {
+  line-height: 2.133;
+  @include fs.pc-size(font-size, 15);
+}
+.special-card__info-desc-row {
+  display: flex;
+  @include fs.pc-size(gap, 4);
+}
+.special-card__info-desc-row .special-card__info-label {
+  flex-shrink: 0;
+}
+.special-card__info-desc-row .special-card__info-value {
+  flex: 1;
+}
+
+/* ===== SPECIAL CARD NOTE ===== */
+.special-card__note {
+  line-height: 1.833;
+}
+.special-card__note-label {
+  font-family: var(--font-ja__bold);
+  font-weight: 600;
+}
+.special-card__note-text {
+  line-height: 1.833;
+  text-align: initial;
+  font-feature-settings: normal;
+  color: #333;
+  @include fs.pc-size(font-size, 12);
+  @include fs.pc-size(margin-bottom, 20);
+}
+.special-card__note-text:last-child {
+  margin-bottom: 0;
+}
+.special-card__note-text a {
+  text-decoration: underline;
+  transition: opacity 0.3s ease;
+}
+.special-card__note-text a:hover,
+.special-card__note-text a:focus {
+  opacity: 0.7;
+}
+.special-card__note-list {
+  list-style: none;
+  text-align: left;
+  @include fs.pc-size(margin-top, 12);
+}
+.special-card__note-list li {
+  display: flex;
+  line-height: 1.833;
+  font-feature-settings: normal;
+  text-align: inherit;
+  @include fs.pc-size(font-size, 12);
+}
+.special-card__note-list li .special-card__note-mark {
+  flex-shrink: 0;
+}
+.special-card__note-list li .special-card__note-text-inner {
+  flex: 1;
+}
+
+/* ===== SPECIAL CARD LINKS ===== */
 .special-card__links {
   list-style: none;
   width: 100%;
@@ -188,29 +401,136 @@ a.special-card--full-link:focus .special-card__text {
     @include fs.sp-size(gap, 100);
     @include fs.sp-size(padding-top, 75);
   }
+  .special-list__grid--present {
+    gap: 0;
+    padding-top: 0;
+    @include fs.sp-size(padding, 0 20);
+  }
+
   /* Special Card */
   .special-card {
+  }
+  .special-card--present {
+    @include fs.sp-size(padding, 40 0);
+  }
+
+  .special-card__header {
+    flex-wrap: wrap;
+    align-items: center;
+    @include fs.sp-size(gap, 10 15);
+    @include fs.sp-size(padding, 0 0 20);
+  }
+  .special-card__header .special-card__number--inline {
+  }
+  .special-card__header .special-card__title {
+    flex: 1;
+  }
+  .special-card__header .special-card__status {
+    width: 100%;
+    margin-top: 0;
   }
   .special-card__number {
     @include fs.sp-size(top, -75);
     @include fs.sp-size(width, 151);
     @include fs.sp-size(height, 151);
   }
+  .special-card__number--inline {
+    @include fs.sp-size(width, 50);
+    @include fs.sp-size(height, 50);
+  }
   .special-card__number-num {
     @include fs.sp-size(font-size, 50);
   }
+  .special-card__number--inline .special-card__number-num {
+    @include fs.sp-size(font-size, 26);
+  }
+
   .special-card__inner {
     @include fs.sp-size(padding, 100 20 40);
   }
+  .special-card__inner--present {
+    padding: 0;
+  }
+
   .special-card__title {
     line-height: 1.66;
     @include fs.sp-size(font-size, 21);
     @include fs.sp-size(margin-bottom, 10);
   }
+  .special-card--present .special-card__title {
+    margin-bottom: 0;
+    @include fs.sp-size(font-size, 21);
+    @include fs.sp-size(padding-top, 5);
+  }
+
+  .special-card__status {
+    line-height: 2;
+    @include fs.sp-size(font-size, 16);
+  }
+
+  .special-card__content {
+    padding: 0;
+  }
+
   .special-card__text {
     line-height: 2;
     @include fs.sp-size(font-size, 14);
   }
+
+  .special-card__sub-note {
+    @include fs.sp-size(font-size, 12);
+    @include fs.sp-size(margin-top, 5);
+  }
+
+  .special-card__info-box {
+    @include fs.sp-size(margin-top, 30);
+    @include fs.sp-size(padding, 20);
+  }
+  .special-card__info-item {
+    @include fs.sp-size(padding, 20 0);
+  }
+  .special-card--present-last .special-card__info-item {
+    padding: 0;
+  }
+  .special-card--present-last .special-card__info-item:not(:first-child) {
+    @include fs.sp-size(padding-top, 10);
+  }
+  .special-card__info-item--inline {
+    @include fs.sp-size(gap, 4);
+  }
+  .special-card__info-item--inline + .special-card__info-item--inline {
+    margin-top: 0;
+  }
+  .special-card__info-item--inline .special-card__info-term,
+  .special-card__info-item--inline .special-card__info-desc {
+    @include fs.sp-size(font-size, 14);
+  }
+  .special-card__info-term {
+    @include fs.sp-size(font-size, 16);
+    @include fs.sp-size(margin-bottom, 5);
+  }
+  .special-card__info-desc {
+    line-height: 2;
+    @include fs.sp-size(font-size, 14);
+  }
+  .special-card__info-desc-row {
+    display: block;
+  }
+
+  .special-card__note {
+    @include fs.sp-size(margin-top, 30);
+  }
+  .special-card__note-text {
+    @include fs.sp-size(font-size, 12);
+    @include fs.sp-size(margin-bottom, 20);
+  }
+  .special-card__note-list {
+    @include fs.sp-size(margin-top, 10);
+  }
+  .special-card__note-list li {
+    @include fs.sp-size(font-size, 11);
+  }
+
   .special-card__links {
     @include fs.sp-size(margin-top, 30);
   }

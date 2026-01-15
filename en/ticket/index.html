@@ -155,10 +155,14 @@
                   <div class="nav__list-column">
                     <ul class="nav__list">
                       <li class="nav__item">
-                        <a href="../ticket/" class="nav__link is-current">Ticket</a>
+                        <a href="../ticket/" class="nav__link is-current">
+                          Ticket
+                        </a>
                       </li>
                       <li class="nav__item">
-                        <a href="../composition/" class="nav__link">Composition</a>
+                        <a href="../composition/" class="nav__link">
+                          Composition
+                        </a>
                       </li>
                       <!-- <li class="nav__item">
                         <a href="../audio-guide/" class="nav__link">Audio Guide</a>
@@ -245,8 +249,9 @@
           alt=""
         />
         <figcaption class="page-hero__artwork-caption">
-          <i>London, Parliament : Sun through the fog</i>, 1904, Musée
-          d’Orsay<br />
+          <i>London, Parliament : Sun through the fog</i>
+          , 1904, Musée d’Orsay
+          <br />
           Photo © GrandPalaisRmn (musée d’Orsay) / Hervé Lewandowski /
           distributed by AMF
         </figcaption>
@@ -258,21 +263,19 @@
       <nav class="ticket-nav">
         <ul class="ticket-nav__list">
           <li class="ticket-nav__item">
-            <a href="#goods-ticket" class="ticket-nav__link"
-              >Ticket with goods</a
-            >
-          </li>
-          <li class="ticket-nav__item">
-            <a href="#early-ticket" class="ticket-nav__link"
-              >Early Bird Ticket</a
-            >
-          </li>
-          <li class="ticket-nav__item">
             <a href="#web-ticket" class="ticket-nav__link">Ticket</a>
           </li>
           <li class="ticket-nav__item">
-            <a href="#other" class="ticket-nav__link"
-              >Other Special Tickets
+            <a href="#other" class="ticket-nav__link">Other Special Tickets</a>
+          </li>
+          <li class="ticket-nav__item">
+            <a href="#goods-ticket" class="ticket-nav__link">
+              Ticket with goods
+            </a>
+          </li>
+          <li class="ticket-nav__item">
+            <a href="#early-ticket" class="ticket-nav__link">
+              Early Bird Ticket
             </a>
           </li>
         </ul>
@@ -287,16 +290,269 @@
       <div class="main-content">
         <div class="container">
           <div class="ticket-sections">
+            <!-- ウェブ予約チケット -->
+            <section class="ticket-section js-fadein">
+              <h2 class="section-title ticket-title" id="web-ticket">
+                Ticket
+                <!-- <span class="ticket-title__status">＊販売終了</span> -->
+              </h2>
+              <div class="section-content">
+                <div class="ticket__content">
+                  <div class="">
+                    <p class="ticket-text ticket-text--has-color">
+                      <strong>
+                        Tickets may be purchased in advance from the museum
+                        website.
+                        <br />
+                        In-Person ticket may be purchased at the museum, if the
+                        time slot is not full.
+                      </strong>
+                    </p>
+                  </div>
+                  <div class="ticket__button">
+                    <a
+                      href="https://www.artizon.museum/en/ticket/"
+                      class="button-filled button-filled--thin"
+                      target="_blank"
+                    >
+                      <span class="button-filled__arrow"></span>
+                      <div class="button-filled__text">
+                        Purchase
+                        <span
+                          class="button-filled__icon button-filled__icon--external"
+                        ></span>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+                <div class="ticket-info">
+                  <table class="table">
+                    <thead>
+                      <tr class="table__header">
+                        <th class="table__title"></th>
+                        <th class="table__title">On-line ticket</th>
+                        <th class="table__title">
+                          In-Person ticket
+                          <br class="sp" />
+                          (purchase at museum)
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th class="table__category">General</th>
+                        <td>2,100 yen</td>
+                        <td>2,500 yen</td>
+                      </tr>
+
+                      <tr>
+                        <th class="table__category">
+                          University
+                          <br class="sp" />
+                          college
+                          <br class="sp" />
+                          high school students
+                        </th>
+                        <td colspan="2">
+                          Free entry Advance booking required
+                          <br />
+                          <span class="table__note">
+                            Please present their student ID upon entry.
+                          </span>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <th class="table__category">
+                          Disabled visitors
+                          <br class="pc" />
+                          (plus one accompanying assistant)
+                        </th>
+                        <td colspan="2">
+                          Free entry Advance booking not required
+                          <br />
+                          <span class="table__note">
+                            Please present disabled person’s handbook upon
+                            entry.
+                          </span>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <th class="table__category">
+                          Children through junior high school
+                        </th>
+                        <td colspan="2">
+                          Free entry Advance booking not required
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <ul class="notes">
+                    <li class="notes__item">
+                      <span class="notes__item-head">*</span>
+                      <span class="notes__item-text">
+                        Online tickets must be purchased up to 10 minutes before
+                        the end of each time slot.
+                      </span>
+                    </li>
+                    <li class="notes__item">
+                      <span class="notes__item-head">*</span>
+                      <span class="notes__item-text">
+                        Booking is not accepted when a time slot is full.
+                      </span>
+                    </li>
+                    <li class="notes__item">
+                      <span class="notes__item-head">*</span>
+                      <span class="notes__item-text">
+                        This admission fee gives the visitor access to the
+                        concurrent exhibition.
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+
+            <!-- 東京駅周辺美術館共通券 -->
+            <section class="ticket-section js-fadein">
+              <div class="ticket-head" id="other">
+                <h2 class="section-title ticket-title">
+                  <span class="ticket-title__text">
+                    Tickets of Museums around Tokyo Station 2026
+                  </span>
+                  <!-- <span class="ticket-title__status">*Sold out</span> -->
+                </h2>
+                <p class="ticket-head__note">Other Special Tickets</p>
+              </div>
+              <div class="section-content">
+                <div class="ticket__content">
+                  <p class="ticket-text">
+                    For details on this ticket for museums in the Tokyo Station
+                    area, please see the
+                    <a href="https://6museums.tokyo/" target="_blank">
+                      <span style="text-decoration-line: underline">
+                        6 Museums website
+                      </span>
+                    </a>
+                    *.
+                    <br />
+                    *In Japanese only.
+                  </p>
+                </div>
+                <div class="ticket-info">
+                  <div class="ticket-info-list">
+                    <dl class="ticket-info-list__item">
+                      <dt class="ticket-info-list__term --wide">
+                        Price (incl. tax)
+                      </dt>
+                      <dd class="ticket-info-list__desc">¥5,000</dd>
+                    </dl>
+                    <dl class="ticket-info-list__item">
+                      <dt class="ticket-info-list__term --wide">Sale period</dt>
+                      <dd class="ticket-info-list__desc">
+                        From January 4 [Sun], 2026, until sold out.
+                      </dd>
+                    </dl>
+                    <dl class="ticket-info-list__item">
+                      <dt class="ticket-info-list__term --wide">Period</dt>
+                      <dd class="ticket-info-list__desc">
+                        For the
+                        <i>Monet: Questioning Nature</i>
+                        exhibition, however, the passport is valid only from
+                        February 7 [Sat] to April 28 [Tue].
+                      </dd>
+                    </dl>
+                    <dl class="ticket-info-list__item">
+                      <dt class="ticket-info-list__term --wide">
+                        Where to buy
+                      </dt>
+                      <dd class="ticket-info-list__desc">
+                        Artizon Museum, Mitsui Memorial Museum, Mitsubishi
+                        Ichigokan Museum, Tokyo Station Gallery, Seikado Bunko
+                        Art Museum
+                        <br />
+                        *When it goes on sale and how long it is valid varies,
+                        however, depending on the museum.
+                      </dd>
+                    </dl>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- 展覧会パスポート2026 -->
+            <section class="ticket-section js-fadein">
+              <div class="ticket-head">
+                <h2 class="section-title ticket-title">
+                  <span class="ticket-title__text">
+                    Exhibition Passport 2026
+                  </span>
+                  <span class="ticket-title__status">*Sold out</span>
+                </h2>
+                <p class="ticket-head__note">Other Special Tickets</p>
+              </div>
+              <div class="section-content">
+                <div class="ticket__content">
+                  <p class="ticket-text">
+                    This bargain passport lets you visit exhibitions at the
+                    Artizon Museum from February 7, 2026, to January 31, 2027,
+                    as often as you wish. You can choose the smartphone or card
+                    version.
+                  </p>
+                </div>
+                <div class="ticket-info">
+                  <div class="ticket-info-list">
+                    <dl class="ticket-info-list__item">
+                      <dt class="ticket-info-list__term --wide">
+                        Price (incl. tax)
+                      </dt>
+                      <dd class="ticket-info-list__desc">
+                        Smartphone version: ¥5,000 (Purchases limited to one
+                        passport per person)
+                        <br />
+                        Card version: ¥5,200 (Purchases limited to two passports
+                        per person)
+                      </dd>
+                    </dl>
+                    <dl class="ticket-info-list__item">
+                      <dt class="ticket-info-list__term --wide">Sale period</dt>
+                      <dd class="ticket-info-list__desc">
+                        From 10:00, December 20 [Sat], 2025, until sold out.
+                      </dd>
+                    </dl>
+                    <dl class="ticket-info-list__item">
+                      <dt class="ticket-info-list__term --wide">Period</dt>
+                      <dd class="ticket-info-list__desc">
+                        For the
+                        <i>Monet: Questioning Nature</i>
+                        exhibition, however, the passport is valid only from
+                        February 7 [Sat] to April 28 [Tue], 2026.
+                      </dd>
+                    </dl>
+                    <dl class="ticket-info-list__item">
+                      <dt class="ticket-info-list__term --wide">
+                        Where to buy
+                      </dt>
+                      <dd class="ticket-info-list__desc">
+                        Smartphone version: Artizon Museum website
+                        <br />
+                        Card version: Artizon Museum 1F ticket counter
+                      </dd>
+                    </dl>
+                  </div>
+                </div>
+              </div>
+            </section>
             <!-- グッズ付きチケット -->
             <section class="ticket-section js-fadein">
               <div class="ticket-head" id="goods-ticket">
                 <h2 class="section-title ticket-title">
                   <span class="ticket-title__text">
-                    Open-Date Ticket with
-                    Limited-Edition Tote Bag
+                    Open-Date Ticket with Limited-Edition Tote Bag
                   </span>
 
-                  <!-- <span class="ticket-title__status">*Sold out</span> -->
+                  <span class="ticket-title__status">*Sold out</span>
                 </h2>
                 <p class="ticket-head__note">Special Limited-Edition Tickets</p>
               </div>
@@ -310,7 +566,7 @@
                     the plants in Monet’s Garden. The bag is available
                     exclusively in a special fluorescent pink color.
                   </p>
-                  <div class="ticket__button">
+                  <!-- <div class="ticket__button">
                     <a
                       href="https://l-tike.com/artizon18"
                       class="button-filled button-filled--thin"
@@ -318,21 +574,20 @@
                     >
                       <span class="button-filled__arrow"></span>
                       <div class="button-filled__text">
-                        Buy now<span
+                        Buy now
+                        <span
                           class="button-filled__icon button-filled__icon--external"
                         ></span>
                       </div>
                     </a>
-                  </div>
+                  </div> -->
                 </div>
                 <div class="ticket-details">
                   <div class="ticket-info">
                     <div class="ticket-info-list">
                       <dl class="ticket-info-list__item">
                         <dt class="ticket-info-list__term">Price(incl. tax)</dt>
-                        <dd class="ticket-info-list__desc">
-                          ¥4,900
-                        </dd>
+                        <dd class="ticket-info-list__desc">¥4,900</dd>
                       </dl>
                       <dl class="ticket-info-list__item">
                         <dt class="ticket-info-list__term">Sale period</dt>
@@ -343,7 +598,8 @@
                       <dl class="ticket-info-list__item">
                         <dt class="ticket-info-list__term">Valid period</dt>
                         <dd class="ticket-info-list__desc">
-                        February 7 [Sat] – May 24 [Sun], 2026</dd>
+                          February 7 [Sat] – May 24 [Sun], 2026
+                        </dd>
                       </dl>
                       <dl class="ticket-info-list__item">
                         <dt class="ticket-info-list__term">Where to buy</dt>
@@ -382,7 +638,7 @@
                   <span class="ticket-title__text">
                     Weekday-Only Early Bird Ticket
                   </span>
-                  <!-- <span class="ticket-title__status">*Sold out</span> -->
+                  <span class="ticket-title__status">*Sold out</span>
                 </h2>
                 <p class="ticket-head__note">Special Limited-Edition Tickets</p>
               </div>
@@ -394,7 +650,7 @@
                     [Tue]). No date and time reservation is required, and it is
                     offered at a special discounted price.
                   </p>
-                  <div class="ticket__button">
+                  <!-- <div class="ticket__button">
                     <a
                       href="https://art-ap.passes.jp/user/e/monet2026-weekday/"
                       class="button-filled button-filled--thin"
@@ -402,17 +658,20 @@
                     >
                       <span class="button-filled__arrow"></span>
                       <div class="button-filled__text">
-                        Buy now<span
+                        Buy now
+                        <span
                           class="button-filled__icon button-filled__icon--external"
                         ></span>
                       </div>
                     </a>
-                  </div>
+                  </div> -->
                 </div>
                 <div class="ticket-info">
                   <div class="ticket-info-list">
                     <dl class="ticket-info-list__item">
-                      <dt class="ticket-info-list__term --wide">Price (incl. tax)</dt>
+                      <dt class="ticket-info-list__term --wide">
+                        Price (incl. tax)
+                      </dt>
                       <dd class="ticket-info-list__desc">¥1,800</dd>
                     </dl>
                     <dl class="ticket-info-list__item">
@@ -424,7 +683,8 @@
                     <dl class="ticket-info-list__item">
                       <dt class="ticket-info-list__term --wide">Period</dt>
                       <dd class="ticket-info-list__desc">
-                      February 9 [Mon] – April 7 [Tue], 2026 </dd>
+                        February 9 [Mon] – April 7 [Tue], 2026
+                      </dd>
                     </dl>
                     <dl class="ticket-info-list__item">
                       <dt class="ticket-info-list__term --wide">
@@ -436,217 +696,6 @@
                 </div>
               </div>
             </section>
-
-            <!-- ウェブ予約チケット -->
-            <section class="ticket-section js-fadein">
-              <h2 class="section-title ticket-title" id="web-ticket">Ticket<!-- <span class="ticket-title__status">＊販売終了</span> -->
-              </h2>
-              <div class="section-content">
-                <div class="ticket__content">
-                  <div class="">
-                    <p class="ticket-text ticket-text--has-color">
-                      <strong>
-                        Tickets may be purchased in advance from the museum
-                        website.<br />
-                        In-Person ticket may be purchased at the museum, if the
-                        time slot is not full.
-                      </strong>
-                    </p>
-                    <p class="ticket-text">
-                      Online booking starts from January 7 [Wed], 2026.
-                    </p>
-                  </div>
-                  <!-- <div class="ticket__button">
-                    <a
-                      href="https://www.artizon.museum/en/ticket/"
-                      class="button-filled button-filled--thin"
-                      target="_blank"
-                    >
-                      <span class="button-filled__arrow"></span>
-                      <div class="button-filled__text">
-                        Purchase<span
-                          class="button-filled__icon button-filled__icon--external"
-                        ></span>
-                      </div>
-                    </a>
-                  </div> -->
-                </div>
-                <div class="ticket-info">
-                  <table class="table">
-                    <thead>
-                      <tr class="table__header">
-                        <th class="table__title"></th>
-                        <th class="table__title">On-line ticket</th>
-                        <th class="table__title">
-                          In-Person ticket <br class="sp" />(purchase at museum)
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th class="table__category">General</th>
-                        <td>2,100 yen</td>
-                        <td>2,500 yen</td>
-                      </tr>
-
-                      <tr>
-                        <th class="table__category">
-                          University<br class="sp" />
-                          college<br class="sp" />
-                          high school students
-                        </th>
-                        <td colspan="2">
-                          Free entry Advance booking required<br />
-                          <span class="table__note"
-                            >Please present their student ID upon entry.</span
-                          >
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <th class="table__category">
-                          Disabled visitors<br class="pc" />
-                          (plus one accompanying assistant)
-                        </th>
-                        <td colspan="2">
-                          Free entry Advance booking not required<br />
-                          <span class="table__note"
-                            >Please present disabled person’s handbook upon
-                            entry.</span
-                          >
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <th class="table__category">
-                          Children through junior high school
-                        </th>
-                        <td colspan="2">
-                          Free entry Advance booking not required
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <ul class="notes">
-                    <li class="notes__item">
-                      <span class="notes__item-head">*</span>
-                      <span class="notes__item-text"
-                        >Online tickets must be purchased up to 10 minutes
-                        before the end of each time slot.</span
-                      >
-                    </li>
-                    <li class="notes__item">
-                      <span class="notes__item-head">*</span>
-                      <span class="notes__item-text"
-                        >Booking is not accepted when a time slot is full.</span
-                      >
-                    </li>
-                    <li class="notes__item">
-                      <span class="notes__item-head">*</span>
-                      <span class="notes__item-text"
-                        >This admission fee gives the visitor access to the
-                        concurrent exhibition.</span
-                      >
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </section>
-													
-			<!-- 展覧会パスポート2026 -->
-            <section class="ticket-section js-fadein">
-              <div class="ticket-head" id="other">
-                <h2 class="section-title ticket-title">
-                  <span class="ticket-title__text">
-                    Exhibition Passport 2026
-                  </span>
-                  <!-- <span class="ticket-title__status">*Sold out</span> -->
-                </h2>
-                <p class="ticket-head__note">Other Special Tickets</p>
-              </div>
-              <div class="section-content">
-                <div class="ticket__content">
-                  <p class="ticket-text">
-                    This bargain passport lets you visit exhibitions at the Artizon Museum from February 7, 2026, to January 31, 2027, as often as you wish. You can choose the smartphone or card version.
-                  </p>
-                </div>
-                <div class="ticket-info">
-                  <div class="ticket-info-list">
-                    <dl class="ticket-info-list__item">
-                      <dt class="ticket-info-list__term --wide">Price (incl. tax)</dt>
-                      <dd class="ticket-info-list__desc">Smartphone version: ¥5,000 (Purchases limited to one passport per person)<br>Card version: ¥5,200 (Purchases limited to two passports per person)
-					　</dd>
-                    </dl>
-                    <dl class="ticket-info-list__item">
-                      <dt class="ticket-info-list__term --wide">Sale period</dt>
-                      <dd class="ticket-info-list__desc">
-                      From 10:00, December 20 [Sat], 2025, until sold out.</dd>
-                    </dl>
-                    <dl class="ticket-info-list__item">
-                      <dt class="ticket-info-list__term --wide">Period</dt>
-                      <dd class="ticket-info-list__desc">
-                        For the <i>Monet: Questioning Nature</i> exhibition, however, the passport is valid only from February 7 [Sat] to April 28 [Tue], 2026.
-                      </dd>
-                    </dl>
-                    <dl class="ticket-info-list__item">
-                      <dt class="ticket-info-list__term --wide">
-                        Where to buy
-                      </dt>
-                      <dd class="ticket-info-list__desc">Smartphone version: Artizon Museum website<br>
-                        Card version: Artizon Museum
-                      1F ticket counter</met></dd>
-                    </dl>
-                  </div>
-                </div>
-              </div>
-            </section>
-														
-			<!-- 東京駅周辺美術館共通券 -->
-            <section class="ticket-section js-fadein">
-              <div class="ticket-head">
-                <h2 class="section-title ticket-title">
-                  <span class="ticket-title__text">
-                    Tickets of Museums around Tokyo Station 2026
-                  </span>
-                  <!-- <span class="ticket-title__status">*Sold out</span> -->
-                </h2>
-                <p class="ticket-head__note">Other Special Tickets</p>
-              </div>
-              <div class="section-content">
-                <div class="ticket__content">
-                  <p class="ticket-text">
-                    For details on this ticket for museums in the Tokyo Station area, please see the <a href="https://6museums.tokyo/" target="_blank"><span style="text-decoration-line: underline">6 Museums website</span></a>*.<br>*In Japanese only.
-                  </p>
-                </div>
-                <div class="ticket-info">
-                  <div class="ticket-info-list">
-                    <dl class="ticket-info-list__item">
-                      <dt class="ticket-info-list__term --wide">Price (incl. tax)</dt>
-                      <dd class="ticket-info-list__desc">¥5,000
-					　</dd>
-                    </dl>
-                    <dl class="ticket-info-list__item">
-                      <dt class="ticket-info-list__term --wide">Sale period</dt>
-                      <dd class="ticket-info-list__desc">
-                      From January 4 [Sun], 2026, until sold out.</dd>
-                    </dl>
-                    <dl class="ticket-info-list__item">
-                      <dt class="ticket-info-list__term --wide">Period</dt>
-                      <dd class="ticket-info-list__desc">
-                        For the <i>Monet: Questioning Nature</i> exhibition, however, the passport is valid only from February 7 [Sat] to April 28 [Tue].
-                      </dd>
-                    </dl>
-                    <dl class="ticket-info-list__item">
-                      <dt class="ticket-info-list__term --wide">
-                        Where to buy
-                      </dt>
-                      <dd class="ticket-info-list__desc">Artizon Museum, Mitsui Memorial Museum, Mitsubishi Ichigokan Museum, Tokyo Station Gallery, Seikado Bunko Art Museum<br>*When it goes on sale and how long it is valid varies, however, depending on the museum.</met></dd>
-                    </dl>
-                  </div>
-                </div>
-              </div>
-            </section>
-
           </div>
         </div>
       </div>
@@ -1015,14 +1064,14 @@
       });
     </script>
     <!--Google Tag Manager (noscript) -->
-    <noscript
-      ><iframe
+    <noscript>
+      <iframe
         src="https://www.googletagmanager.com/ns.html?id=GTM-M58X8H4"
         height="0"
         width="0"
         style="display: none; visibility: hidden"
-      ></iframe
-    ></noscript>
+      ></iframe>
+    </noscript>
     <!--End Google Tag Manager (noscript) -->
   </body>
 </html>
